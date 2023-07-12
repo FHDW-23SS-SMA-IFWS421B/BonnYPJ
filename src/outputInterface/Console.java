@@ -21,20 +21,26 @@ public class Console implements ControlPanel {
     }
 
     public void display(String message) {
-        System.out.print("Bot: ");
+        /*  */
+        String currentBot = "PERSA";
+        String text = "";
         switch (message) {
             case "@wiki":
-                System.out.println("I am the wiki bot");
+                currentBot = "Wikibot";
+                text = "I am the wiki bot\n";
                 break;
             case "@translator":
-                System.out.println("I am the translator bot");
+                currentBot = "Translatebot";
+                text = "I am the translator bot\n";
                 break;
             case "@weather":
-                System.out.println("I am the weather bot");
+                currentBot = "Weatherbot";
+                text = "I am the weather bot\n";
                 break;
             default:
-                System.out.println("This bot does not exist");
+                text = "This bot does not exist\n";
                 break;
         }
+        System.out.print(String.format("%s: ", currentBot) + text);
     }
 }
