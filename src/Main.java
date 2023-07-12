@@ -1,20 +1,18 @@
-import ApiConnection.*;
-
-import java.util.Scanner;
+import Interface.ControlPanel;
+import outputInterface.*;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.print("Enter a City name: ");
+        communicate();
+    }
 
-        String cityName = myObj.nextLine();  // Read user input
-
-        try {
-            OpenWeatherMapAPI weatherAPI = new OpenWeatherMapAPI("e6409848f08fd04167779a4c19729199");
-            String response = weatherAPI.getCurrentWeather(cityName);
-            System.out.println(response);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static void communicate() {
+        ControlPanel console = new Console();
+        String input = "";
+        while (!input.equals("exit")){
+            input = console.input();
+            console.display(input);
         }
+
     }
 }
