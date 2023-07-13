@@ -1,6 +1,11 @@
 package Interface;
 
 public interface ControlPanel {
-    String input();
-    void display(String message);
+    String getInput();
+
+    String getUserInput();
+
+    void output(String output);
+
+    void output(String output, boolean nextLine);
 }
