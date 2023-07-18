@@ -17,6 +17,7 @@ public class Authenticator implements AuthenticationManager{
         }
         if (checkValidUsername(username)) {                                                  // existing username -> password check
             if (checkPassword(username)) {
+                io.output("Anmeldung erfolgreich. Wilkommen " + username + ".\n" );
                 return username;
             }
             else {

@@ -10,17 +10,8 @@ public class Main {
         Session session = new Session();
         boolean b = true;
         while (true) {
-            session.initializeSession();            // login
+//            session.initializeSession();            // login
+            session.persaCommunication();
         }
-    }
-
-
-    public static void communicate() {
-        ioHandler console = new ioHandler();
-        String input = "";
-        while (!input.equals("exit")){
-            input = console.getInput();
-        }
-
     }
 }

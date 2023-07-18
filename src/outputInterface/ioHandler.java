@@ -15,14 +15,16 @@ public class ioHandler implements ControlPanel {
         try {
             text = input.readLine();
         } catch (IOException e) {
+            System.out.println("INPUT ERROR");
             e.printStackTrace();
         }
         return text;
     }
 
     @Override
-    public String getUserInput() {
-        return "User: " + getInput();
+    public String prefixInput(String prefix) {
+        output(String.format("%s: ", prefix), false);
+        return  getInput();
     }
 
 

@@ -3,7 +3,7 @@ package Interface;
 public interface ControlPanel {
     String getInput();
 
-    String getUserInput();
+    String prefixInput(String prefix);
 
     void output(String output);
 
