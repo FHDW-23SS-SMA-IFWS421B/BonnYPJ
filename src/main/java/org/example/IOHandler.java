@@ -1,12 +1,15 @@
 package org.example;
 
+import org.example.bots.Botlist;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 
-public class ioHandler {
-    public static String getInput() {
+public class IOHandler {
+    public static String getInput(String username) {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
         String text = "";
         try {
@@ -15,24 +18,18 @@ public class ioHandler {
             System.out.println("- - INPUT ERROR - -");
             e.printStackTrace();
         }
+        Logging.LogInput(username, text, LocalDateTime.now());
         return text;
     }
 
-    public static String getPrefixInput(String prefix) {
-        output(prefix, false);
-        return  getInput();
+    public static String getPrefixInput(String username, String prefix) {
+        output(Botlist.SYSTEM, prefix);
+        return  getInput(username);
     }
 
-    public static void output(String output) {
-        System.out.println(output);
+    public static void output(Botlist botname, String output) {
+        System.out.printf(output);
+        Logging.LogOutput(botname, output, LocalDateTime.now());
     }
 
-    public static void output(String output, boolean nextLine) {
-        if (nextLine) {
-            System.out.println(output);
-        }
-        else {
-            System.out.printf(output);
-        }
-    }
 }
