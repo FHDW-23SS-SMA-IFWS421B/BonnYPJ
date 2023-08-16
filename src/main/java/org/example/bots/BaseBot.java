@@ -1,6 +1,6 @@
-package org.example.Bots;
+package org.example.bots;
 
-import org.example.Interfaces.BaseBotInterface;
+import org.example.ineterfaces.BaseBotInterface;
 
 public class BaseBot implements BaseBotInterface {
     @Override

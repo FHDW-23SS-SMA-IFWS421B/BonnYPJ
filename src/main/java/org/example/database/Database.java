@@ -1,4 +1,4 @@
-package org.example.Database;//package Database;
+package org.example.database;//package Database;
 //import java.sql.*;
 //import java.util.Arrays;
 //import java.util.Collections;

@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.Database.Logging;
+import org.example.database.Logging;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.Interfaces.SessionInterface;
+import org.example.ineterfaces.SessionInterface;
 
 public class Session implements SessionInterface {
     private String currentUser = "None";
@@ -11,7 +11,7 @@ public class Session implements SessionInterface {
     }
 
     @Override
-    public void persaCommunication() {
+    public void communication() {
 
     }
 

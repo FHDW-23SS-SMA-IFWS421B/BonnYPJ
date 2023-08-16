@@ -1,4 +1,4 @@
-package org.example.Database;
+package org.example.database;
 
 import java.time.LocalDateTime;
 

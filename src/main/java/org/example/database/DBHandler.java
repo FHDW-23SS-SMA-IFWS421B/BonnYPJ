@@ -1,6 +1,6 @@
-package org.example.Database;
+package org.example.database;
 
-import org.example.Interfaces.DBHandling;
+import org.example.ineterfaces.DBHandling;
 
 import java.util.HashMap;
 
@@ -16,22 +16,22 @@ public class DBHandler implements DBHandling {
     }
 
     @Override
-    public String[] getUserlist() {
+    public String[] getUserList() {
         return new String[0];
     }
 
     @Override
-    public String getUserPasswort(String user) {
+    public String getUserPassword(String user) {
         return null;
     }
 
     @Override
-    public void deactiveBot(String botname) {
+    public void deactivateBot(String botName) {
 
     }
 
     @Override
-    public void activateBot(String botname) {
+    public void activateBot(String botName) {
 
     }
 
@@ -46,7 +46,7 @@ public class DBHandler implements DBHandling {
     }
 
     @Override
-    public boolean botStatus(String botname) {
+    public boolean botStatus(String botName) {
         return false;
     }
 }

@@ -1,4 +1,4 @@
-package org.example.Bots;
+package org.example.bots;
 
 public class PERSABot extends BaseBot{
 

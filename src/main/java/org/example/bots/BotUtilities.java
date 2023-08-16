@@ -1,6 +1,6 @@
-package org.example.Bots;
+package org.example.bots;
 
-import org.example.Interfaces.BotUtilitiesInterface;
+import org.example.ineterfaces.BotUtilitiesInterface;
 
 import java.util.HashMap;
 
