@@ -10,30 +10,23 @@ public class Session implements SessionInterface {
         Authenticator authenticator = new Authenticator(this);
     }
 
-    public void startSession() {
-
-    }
-
-    @Override
-    public void startSession(Session session) {
-    }
-
     @Override
     public void persaCommunication() {
+
     }
 
     @Override
     public void closeSession() {
+
     }
 
     @Override
     public String getCurrentUser() {
-        return currentUser;
+        return null;
     }
 
     @Override
     public void setCurrentUser(String username) {
-        this.currentUser = username;
 
     }
 }

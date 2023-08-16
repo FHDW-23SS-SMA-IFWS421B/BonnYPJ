@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.bots.Botlist;
+import org.example.Database.Logging;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,13 +23,13 @@ public class IOHandler {
     }
 
     public static String getPrefixInput(String username, String prefix) {
-        output(Botlist.SYSTEM, prefix);
+        output("SYSTEM", prefix);
         return  getInput(username);
     }
 
-    public static void output(Botlist botname, String output) {
+    public static void output(String botName, String output) {
         System.out.printf(output);
-        Logging.LogOutput(botname, output, LocalDateTime.now());
+        Logging.LogOutput(botName, output, LocalDateTime.now());
     }
 
 }

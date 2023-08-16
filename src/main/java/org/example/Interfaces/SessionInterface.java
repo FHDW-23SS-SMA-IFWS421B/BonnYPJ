@@ -3,7 +3,6 @@ package org.example.Interfaces;
 import org.example.Session;
 
 public interface SessionInterface {
-    public void startSession(Session session);
     public void persaCommunication();
     public void closeSession();
     public String getCurrentUser();

@@ -1,7 +1,5 @@
 package org.example;
 
-import org.example.bots.Botlist;
-
 public class Authenticator {
     Session currentSession;
 
@@ -13,11 +11,10 @@ public class Authenticator {
             session.setCurrentUser(username);
         }
         else {
-            IOHandler.output(Botlist.SYSTEM, "Fehler bei der Anmeldung");
+            IOHandler.output("SYSTEM", "Fehler bei der Anmeldung");
         }
 
     }
-
 
     public String checkUsername() {
         String username = IOHandler.getPrefixInput(currentSession.getCurrentUser(),
@@ -30,7 +27,7 @@ public class Authenticator {
         }
     }
 
-    public  boolean checkPassword(String username) {
+    public  boolean checkPassword(String userName) {
         String password = IOHandler.getPrefixInput(currentSession.getCurrentUser(),
                 "Gebe deinen Password ein: ");
         if (true) {                                                                                                     // TODO check if password is correct

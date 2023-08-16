@@ -1,6 +1,6 @@
 package org.example.Database;
 
-import Interface.DBImplementing;
+import org.example.Interfaces.DBImplementing;
 
 public class DBImplementation implements DBImplementing {
     @Override
