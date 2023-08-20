@@ -1,6 +1,6 @@
 package org.example.database;
 
-import org.example.ineterfaces.DBHandling;
+import org.example.interfaces.DBHandling;
 
 import java.util.HashMap;
 

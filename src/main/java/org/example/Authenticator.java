@@ -1,5 +1,7 @@
 package org.example;
 
+import static org.example.IOHandler.*;
+
 public class Authenticator {
     Session currentSession;
 
@@ -11,13 +13,13 @@ public class Authenticator {
             session.setCurrentUser(username);
         }
         else {
-            IOHandler.output("SYSTEM", "Fehler bei der Anmeldung");
+            output("SYSTEM", "Fehler bei der Anmeldung");
         }
 
     }
 
     public String checkUsername() {
-        String username = IOHandler.getPrefixInput(currentSession.getCurrentUser(),
+        String username = getPrefixInput(currentSession.getCurrentUser(),
                 "Gebe deinen Nutzernamen ein: ");
         if (true) {                                                                                                     // TODO Check if username is in Database
             return username;
@@ -28,7 +30,7 @@ public class Authenticator {
     }
 
     public  boolean checkPassword(String userName) {
-        String password = IOHandler.getPrefixInput(currentSession.getCurrentUser(),
+        String password = getPrefixInput(currentSession.getCurrentUser(),
                 "Gebe deinen Password ein: ");
         if (true) {                                                                                                     // TODO check if password is correct
             return true;
