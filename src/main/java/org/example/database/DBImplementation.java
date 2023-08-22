@@ -6,17 +6,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-public class DBImplementation implements DBImplementing {
+public class DBImplementation{
 
     public DBImplementation(){
 
     }
 
-    @Override
     public void createDb(String query) {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
              Statement stmt = conn.createStatement()
@@ -29,7 +26,7 @@ public class DBImplementation implements DBImplementing {
         }
     }
 
-    @Override
+
     public String[] listDbs() throws SQLException {
 
         String query = "SELECT bots from botList";
@@ -41,7 +38,7 @@ public class DBImplementation implements DBImplementing {
     return allMessages;
     }
 
-    @Override
+
     public void writeDb(String query) throws SQLException {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
              Statement stmt = conn.createStatement();
@@ -50,7 +47,7 @@ public class DBImplementation implements DBImplementing {
         }
     }
 
-    @Override
+
     public Object[] readDb(String query, String columnName) {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
              Statement stmt = conn.createStatement()
