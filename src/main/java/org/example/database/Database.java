@@ -18,7 +18,7 @@ package org.example.database;//package Database;
 //                    + "bot VARCHAR(50))";
 //            String createUserTableQuery = "CREATE TABLE IF NOT EXISTS user_credentials (id INT AUTO_INCREMENT, "
 //                    + "username VARCHAR(50), password VARCHAR(50))";
-//            String createBotTableQuery = "CREATE TABLE IF NOT EXISTS bots (bots VARCHAR(50), status VARCHAR(50))";
+//            String createBotTableQuery = "CREATE TABLE IF NOT EXISTS botList (bots VARCHAR(50), status VARCHAR(50))";
 //            stmt.execute(createLogsTableQuery);
 //            stmt.execute(createUserTableQuery);
 //            stmt.execute(createBotTableQuery);
