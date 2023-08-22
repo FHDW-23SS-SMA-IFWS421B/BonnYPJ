@@ -1,5 +1,6 @@
 package org.example;
 
+
 import org.example.database.Logging;
 
 import java.io.BufferedReader;

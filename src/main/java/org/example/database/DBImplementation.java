@@ -1,6 +1,5 @@
 package org.example.database;
 
-import org.example.ineterfaces.DBImplementing;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,14 +9,12 @@ import java.util.List;
 
 public class DBImplementation{
 
-    public DBImplementation(){
 
-    }
-
-    public void createDb(String query) {
+    public static void createDb(String tablename, String values) {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
              Statement stmt = conn.createStatement()
         ) {
+            String query = "CREATE TABLE IF NOT EXISTS " + tablename + "(" + values + ")";
             stmt.execute(query);
 
         }catch (SQLException e) {
@@ -27,43 +24,44 @@ public class DBImplementation{
     }
 
 
-    public String[] listDbs() throws SQLException {
-
-        String query = "SELECT bots from botList";
-        Object [] objectArray = readDb(query, "bots");
-        String [] allMessages = new String[objectArray.length];
-        for (int i = 0; i< objectArray.length; i++) {
-            allMessages[i] = String.valueOf(objectArray[i]);
-        }
-    return allMessages;
-    }
 
 
-    public void writeDb(String query) throws SQLException {
+    protected static void writeDb(String tablename, String columnnames, String values) throws SQLException {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
              Statement stmt = conn.createStatement();
              ) {
+            String query = "INSERT INTO " + tablename + " (" + columnnames + ")" + "VALUES (" + values + ")";
             stmt.executeUpdate(query);
         }
     }
 
+    protected static void updateDb(String tablename, String target, String value, String condition, String criteria) throws SQLException{
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
+             Statement stmt = conn.createStatement();
+        ) {
+            String query = "UPDATE " + tablename + " SET " + target + " = " + value + " WHERE " + condition + " = " + criteria;
+                    stmt.executeUpdate(query);
+        }
+    }
 
-    public Object[] readDb(String query, String columnName) {
+
+    protected static String[] readDb(String target, String tablename, String value, String condition) {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
              Statement stmt = conn.createStatement()
 
         ) {
-            List<Object> allMessages = new ArrayList<>();
+            String query = "SELECT " + target + " FROM " + tablename + " WHERE " + value + " = " + condition;
+            List<String> allMessages = new ArrayList<>();
             ResultSet resultSet = stmt.executeQuery(query);
             int columnCount = resultSet.getMetaData().getColumnCount();
             while (resultSet.next()) {
                 for (int i = 1; i <= columnCount; i++) {
-                    Object value = resultSet.getObject(i);
-                    allMessages.add(value);
+                    String element = resultSet.getString(i);
+                    allMessages.add(element);
                 }
 
             }
-            return allMessages.toArray();
+            return allMessages.toArray(new String[0]);
 
         }catch (SQLException e) {
             e.printStackTrace();
