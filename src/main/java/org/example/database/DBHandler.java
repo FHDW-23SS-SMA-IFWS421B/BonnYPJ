@@ -9,10 +9,10 @@ public class DBHandler{
 
     public static String[] readLogs(String username) throws SQLException {
 
-        String target = "message";
+        String target = "*";
         String tablename = "logs";
         String value = "username";
-        String condition = username + "' order by timestamp desc limit 100";
+        String condition = username + " order by timestamp desc limit 100";
         return DBImplementation.readDb(target, tablename, value, condition);
     }
 

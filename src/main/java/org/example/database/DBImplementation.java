@@ -15,6 +15,7 @@ public class DBImplementation{
              Statement stmt = conn.createStatement()
         ) {
             String query = "CREATE TABLE IF NOT EXISTS " + tablename + "(" + values + ")";
+            System.out.println(query);
             stmt.execute(query);
 
         }catch (SQLException e) {
@@ -31,6 +32,7 @@ public class DBImplementation{
              Statement stmt = conn.createStatement();
              ) {
             String query = "INSERT INTO " + tablename + " (" + columnnames + ")" + "VALUES (" + values + ")";
+            System.out.println(query);
             stmt.executeUpdate(query);
         }
     }
@@ -50,7 +52,8 @@ public class DBImplementation{
              Statement stmt = conn.createStatement()
 
         ) {
-            String query = "SELECT " + target + " FROM " + tablename + " WHERE " + value + " = " + condition;
+            String query = "SELECT " + target + " FROM " + tablename + " WHERE " + value + " = '" + condition + "'";
+            System.out.println(query);
             List<String> allMessages = new ArrayList<>();
             ResultSet resultSet = stmt.executeQuery(query);
             int columnCount = resultSet.getMetaData().getColumnCount();

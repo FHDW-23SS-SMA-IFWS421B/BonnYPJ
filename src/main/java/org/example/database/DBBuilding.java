@@ -26,7 +26,7 @@ public class DBBuilding {
     }
     public static void buildTableBotList(){
         String tablenameBots = "botList";
-        String valuesBots = "(bots VARCHAR(50), status VARCHAR(50)";
+        String valuesBots = "bots VARCHAR(50), status VARCHAR(50)";
         DBImplementation.createDb(tablenameBots, valuesBots);
     }
 
@@ -47,7 +47,7 @@ public class DBBuilding {
         for (String[] user : users) {
             String condition = user[0];
             String values = "'" + user[0] + "', '" + user[1] + "'";
-
+            System.out.println(DBImplementation.readDb(target, tablename, target, condition).length);
             if (DBImplementation.readDb(target, tablename, target, condition).length == 0) {
                 DBImplementation.writeDb(tablename, columnnames, values);
             }
