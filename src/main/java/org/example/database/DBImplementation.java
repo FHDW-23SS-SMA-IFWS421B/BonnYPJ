@@ -23,9 +23,6 @@ public class DBImplementation{
         }
     }
 
-
-
-
     protected static void writeDb(String tablename, String columnnames, String values) throws SQLException {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
              Statement stmt = conn.createStatement();
@@ -43,7 +40,6 @@ public class DBImplementation{
                     stmt.executeUpdate(query);
         }
     }
-
 
     public static String[] readDb(String target, String tablename, String value, String condition) {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");

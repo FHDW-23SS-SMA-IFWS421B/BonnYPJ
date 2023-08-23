@@ -4,12 +4,13 @@ import org.example.bots.BotUtilities;
 import org.example.ineterfaces.SessionInterface;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 
 public class Session implements SessionInterface {
     private String currentUser = "None";
     private String[] exit = {"!exit", "!logout", "!abmelden", "!schließen"};
 
-    public Session() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public Session() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, SQLException {
         /* user authentication and welcome message  */
         boolean end = false;
         while (!end) {

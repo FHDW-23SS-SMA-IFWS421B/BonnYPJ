@@ -19,11 +19,13 @@ public class DBBuilding {
         String valuesLogs = "username VARCHAR(50), timestamp VARCHAR(50), message VARCHAR(1000), bot VARCHAR(50)";
         DBImplementation.createDb(tablenameLogs, valuesLogs);
     }
+
     public static void buildTableUserCredentials(){
         String tablenameUserCredentials = "user_credentials";
         String valuesUserCredentials = "id INT AUTO_INCREMENT, username VARCHAR(50), password VARCHAR(50)";
         DBImplementation.createDb(tablenameUserCredentials, valuesUserCredentials);
     }
+
     public static void buildTableBotList(){
         String tablenameBots = "botList";
         String valuesBots = "bots VARCHAR(50), status VARCHAR(50)";
