@@ -32,6 +32,7 @@ public class Session implements SessionInterface {
             if (botAnswer != null) {
                 IOHandler.output(botAnswer[0], botAnswer[1]);
             }
+
         }
 
     }
