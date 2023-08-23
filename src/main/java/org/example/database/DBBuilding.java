@@ -33,52 +33,46 @@ public class DBBuilding {
     public static void insertUserCredentials() throws SQLException {
         String tablename = "user_credentials";
         String columnnames = "username, password";
-        String valuesAdmin = "'admin', 'admin'";
-        String valuesAmendt = "'amendt', 'effzeh'";
-        String valuesHoeltje = "'hoeltje', 'woelf'";
-        String valuesAbdellaoui = "'abdellaoui', 'arminia'";
-        String valuesFueller = "'fueller', '1234'";
+
+        String[][] users = {
+                {"admin", "admin"},
+                {"amendt", "effzeh"},
+                {"hoeltje", "woelf"},
+                {"abdellaoui", "arminia"},
+                {"fueller", "1234"}
+        };
+
         String target = "username";
-        String conditionAdmin = "admin";
-        String conditionAmendt = "amendt";
-        String conditionHoeltje = "hoeltje";
-        String coniditonAbdellaoui = "abdellaoui";
-        String conditionFueller = "fueller";
-        if (DBImplementation.readDb(target, tablename, target, conditionAdmin).length != 0) {
-            DBImplementation.writeDb(tablename, columnnames, valuesAdmin);
-        }
-        if (DBImplementation.readDb(target, tablename, target, conditionAmendt).length != 0) {
-            DBImplementation.writeDb(tablename, columnnames, valuesAmendt);
-        }
-        if (DBImplementation.readDb(target, tablename, target, conditionHoeltje).length != 0){
-            DBImplementation.writeDb(tablename, columnnames, valuesHoeltje);
-        }
-        if (DBImplementation.readDb(target, tablename, target, coniditonAbdellaoui).length != 0){
-            DBImplementation.writeDb(tablename, columnnames, valuesAbdellaoui);
-        }
-        if (DBImplementation.readDb(target, tablename, target, conditionFueller).length != 0){
-            DBImplementation.writeDb(tablename, columnnames, valuesFueller);
+
+        for (String[] user : users) {
+            String condition = user[0];
+            String values = "'" + user[0] + "', '" + user[1] + "'";
+
+            if (DBImplementation.readDb(target, tablename, target, condition).length == 0) {
+                DBImplementation.writeDb(tablename, columnnames, values);
+            }
         }
     }
 
     public static void insertBots() throws SQLException {
         String tablename = "botList";
         String columnnames = "bots, status";
-        String valuesWeatherBot = "Weather, True";
-        String valuesTranslatorBot = "Translator, True";
-        String valuesWikiBot = "Wiki, True";
+
+        String[][] bots = {
+                {"Weather", "True"},
+                {"Translator", "True"},
+                {"Wiki", "True"}
+        };
+
         String target = "bots";
-        String conditionWeather = "Weather";
-        String conditionTranslator = "Translator";
-        String conditionWiki = "Wiki";
-        if (DBImplementation.readDb(target, tablename, target, conditionWeather).length != 0) {
-            DBImplementation.writeDb(tablename, columnnames, valuesWeatherBot);
-        }
-        if (DBImplementation.readDb(target, tablename, target, conditionTranslator).length != 0) {
-            DBImplementation.writeDb(tablename, columnnames, valuesTranslatorBot);
-        }
-        if (DBImplementation.readDb(target, tablename, target, conditionWiki).length != 0){
-            DBImplementation.writeDb(tablename, columnnames, valuesWikiBot);
+
+        for (String[] bot : bots) {
+            String condition = bot[0];
+            String values = "'" + bot[0] + "', '" + bot[1] + "'";
+
+            if (DBImplementation.readDb(target, tablename, target, condition).length == 0) {
+                DBImplementation.writeDb(tablename, columnnames, values);
+            }
         }
     }
 }
