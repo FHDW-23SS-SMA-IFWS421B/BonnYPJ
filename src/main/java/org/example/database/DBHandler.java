@@ -9,7 +9,7 @@ public class DBHandler{
 
     public static String[] readLogs(String username) throws SQLException {
 
-        String target = "message";
+        String target = "*";
         String tablename = "logs";
         String value = "username";
         String condition = username + "' order by timestamp desc limit 100";
@@ -27,8 +27,8 @@ public class DBHandler{
     public static String[] getUserList() throws SQLException {
         String target = "username";
         String tablename = "user_credentials";
-        String value = "1";
-        String condition = "1";
+        String value = "'1'";
+        String condition = "1'";
         return DBImplementation.readDb(target, tablename, value, condition);
 
     }
@@ -37,7 +37,7 @@ public class DBHandler{
         String target = "password";
         String tablename = "user_credentials";
         String value = "username";
-        String condition = username ;
+        String condition = username + "'";
         String[] userPassword = DBImplementation.readDb(target, tablename, value, condition);
         return String.join(" ", userPassword);
     }
@@ -63,13 +63,9 @@ public class DBHandler{
     public static String[] botList() throws SQLException {
         String target = "bots";
         String tablename = "botList";
-        String value = "1";
-        String condition = "1" ;
-        Object [] objectArray = DBImplementation.readDb(target, tablename, value, condition);
-        String [] allMessages = new String[objectArray.length];
-        for (int i = 0; i< objectArray.length; i++) {
-            allMessages[i] = String.valueOf(objectArray[i]);
-        }
+        String value = "'1'";
+        String condition = "1'";
+        String [] allMessages = DBImplementation.readDb(target, tablename, value, condition);
         return allMessages;
     }
 
@@ -78,8 +74,8 @@ public class DBHandler{
         String[] bot = botList();
         String target = "status";
         String tablename = "botList";
-        String value = "1";
-        String condition = "1" ;
+        String value = "'1'";
+        String condition = "1'" ;
         String[] botStatusList = (String[]) DBImplementation.readDb(target, tablename, value, condition);
 
 
@@ -93,8 +89,8 @@ public class DBHandler{
         String target = "status";
         String tablename = "botList";
         String value = "bots";
-        String condition = "'" + botName + "'" ;
+        String condition =botName + "'" ;
         String botStatus = String.join(" ", Arrays.toString(DBImplementation.readDb(target, tablename, value, condition)));
-        return botStatus.equals("[true]");
+        return botStatus.equals("[True]");
     }
 }

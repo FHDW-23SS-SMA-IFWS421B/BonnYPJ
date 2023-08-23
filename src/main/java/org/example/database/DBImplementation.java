@@ -45,12 +45,12 @@ public class DBImplementation{
     }
 
 
-    protected static String[] readDb(String target, String tablename, String value, String condition) {
+    public static String[] readDb(String target, String tablename, String value, String condition) {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
              Statement stmt = conn.createStatement()
 
         ) {
-            String query = "SELECT " + target + " FROM " + tablename + " WHERE " + value + " = " + condition;
+            String query = "SELECT " + target + " FROM " + tablename + " WHERE " + value + " = '" + condition;
             List<String> allMessages = new ArrayList<>();
             ResultSet resultSet = stmt.executeQuery(query);
             int columnCount = resultSet.getMetaData().getColumnCount();
