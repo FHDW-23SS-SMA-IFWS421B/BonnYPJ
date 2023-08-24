@@ -7,13 +7,18 @@ import java.util.HashMap;
 public class DBHandler{
 
 
-    public static String[] readLogs(String username) throws SQLException {
-
+    public static HashMap readLogs(String username) throws SQLException {
+        HashMap<Integer, String[]> hashMap = new HashMap<>();
         String target = "*";
+        Integer offset;
         String tablename = "logs";
         String value = "username";
-        String condition = username + "' order by timestamp desc limit 100";
-        return DBImplementation.readDb(target, tablename, value, condition);
+        for (offset = 0; offset<100; offset++){
+            Integer key = offset + 1;
+            String condition = username + "' order by timestamp desc limit 1 OFFSET " + offset;
+            hashMap.put(key, DBImplementation.readDb(target, tablename, value, condition));
+        }
+        return hashMap;
     }
 
     public static void writeLogs(String username, String timestamp, String message, String bot) throws SQLException {
@@ -74,13 +79,11 @@ public class DBHandler{
         String[] bot = botList();
         String target = "status";
         String tablename = "botList";
-        String value = "'1'";
-        String condition = "1'" ;
-        String[] botStatusList = (String[]) DBImplementation.readDb(target, tablename, value, condition);
-
+        String value = "bots";
 
         for (int i = 0; i < bot.length; i++) {
-            botStatus.put(bot[i], botStatusList[i]);
+            String botStatusList = DBImplementation.readDb(target, tablename, value, bot[1]).toString();
+            botStatus.put(bot[i], botStatusList);
         }
         return botStatus;
     }

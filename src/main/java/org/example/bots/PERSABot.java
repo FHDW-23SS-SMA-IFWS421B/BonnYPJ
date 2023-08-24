@@ -1,5 +1,10 @@
 package org.example.bots;
 
-public class PERSABot extends BaseBot{
+public class PERSABot{
+    public PERSABot(String input) {
+
+    }
+
+
 
 }

@@ -14,21 +14,32 @@ public class Session implements SessionInterface {
         /* user authentication and welcome message  */
         boolean end = false;
         while (!end) {
-            Authenticator authenticator = new Authenticator(this);
+            boolean end2 = false;
+            while (!end2) {
+                Authenticator authenticator = new Authenticator();
+                String username = authenticator.authenticate(this);
+                if (username != null) {
+                    this.currentUser = username;
+                    end2 = true;
+                }
+            }
             communication();
         }
     }
+
 
     @Override
     public void communication() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         boolean end = false;
         while (!end) {
-            String input = IOHandler.getPrefixInput(currentUser, "- ");
+            String input = IOHandler.getPrefixInput(currentUser, "\n- ");
             for (String element : exit) {
                 if (element.equals(input)) {
-                    end = true;
+                    IOHandler.output("SYSTEM", "\n");
+                    return;
                 }
             }
+
             String[] botAnswer = BotUtilities.sendRequestToBot(input);
             if (botAnswer != null) {
                 IOHandler.output(botAnswer[0], botAnswer[1]);
