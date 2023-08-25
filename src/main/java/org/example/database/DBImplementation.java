@@ -34,7 +34,6 @@ public class DBImplementation{
     protected static void writeDb(String tablename, String columnnames, String values) throws SQLException {
         try (Statement stmt = conn.createStatement()) {
             String query = "INSERT INTO " + tablename + " (" + columnnames + ")" + "VALUES (" + values + ")";
-            System.out.println("Values: " + values + " Ende Values");
             stmt.executeUpdate(query);
         }
     }
