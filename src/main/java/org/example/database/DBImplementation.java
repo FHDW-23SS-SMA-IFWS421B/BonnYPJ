@@ -8,12 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBImplementation{
+    private static Connection conn;
+    static String url = "jdbc:sqlite:src/main/java/org/example/database/Database.db";
+
+    public static void initializeConnection(){
+        try{
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
-    public static void createDb(String tablename, String values) {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
-             Statement stmt = conn.createStatement()
-        ) {
+    protected static void createDb(String tablename, String values) {
+        try (Statement stmt = conn.createStatement()) {
             String query = "CREATE TABLE IF NOT EXISTS " + tablename + "(" + values + ")";
             stmt.execute(query);
 
@@ -24,28 +32,22 @@ public class DBImplementation{
     }
 
     protected static void writeDb(String tablename, String columnnames, String values) throws SQLException {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
-             Statement stmt = conn.createStatement();
-             ) {
+        try (Statement stmt = conn.createStatement()) {
             String query = "INSERT INTO " + tablename + " (" + columnnames + ")" + "VALUES (" + values + ")";
+            System.out.println("Values: " + values + " Ende Values");
             stmt.executeUpdate(query);
         }
     }
 
     protected static void updateDb(String tablename, String target, String value, String condition, String criteria) throws SQLException{
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
-             Statement stmt = conn.createStatement();
-        ) {
+        try (Statement stmt = conn.createStatement()) {
             String query = "UPDATE " + tablename + " SET " + target + " = " + value + " WHERE " + condition + " = " + criteria;
-                    stmt.executeUpdate(query);
+            stmt.executeUpdate(query);
         }
     }
 
-    public static String[] readDb(String target, String tablename, String value, String condition) {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/java/org/example/database/Database.db");
-             Statement stmt = conn.createStatement()
-
-        ) {
+    protected static String[] readDb(String target, String tablename, String value, String condition) {
+        try (Statement stmt = conn.createStatement()) {
             String query = "SELECT " + target + " FROM " + tablename + " WHERE " + value + " = '" + condition;
             List<String> allMessages = new ArrayList<>();
             ResultSet resultSet = stmt.executeQuery(query);

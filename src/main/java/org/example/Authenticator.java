@@ -10,7 +10,7 @@ public class Authenticator {
         String username = checkUsername(session);
         if (username != null && checkPassword(session, username)) {
             IOHandler.output(session.getCurrentUser(), "SYSTEM", "\n\n\nWilkommen bei PERSA. Dem PERsonal Service Assistant.\n" +
-                    "Für Hilfe bei der Nutzung des Bots schreibe '!Persa info'");
+                    "Für Hilfe bei der Nutzung des Bots schreibe \"!Persa info\"");
             return username;
         }
 
