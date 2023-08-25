@@ -10,7 +10,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WeatherBot extends BotTemplate {
+public class WeatherBot implements BotTemplate{
 
     private static final String API_KEY = "e6409848f08fd04167779a4c19729199";
     private static final String CURRENT_WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather";
@@ -26,7 +26,7 @@ public class WeatherBot extends BotTemplate {
         System.out.println(result);
     }
 
-    private void setupCommands() {
+    public void setupCommands() {
         commands.put("!weather", "Aktuelles Wetter");
         commands.put("!weather Prognose", "Wetterprognose");
     }
