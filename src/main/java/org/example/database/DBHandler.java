@@ -21,11 +21,19 @@ public class DBHandler{
         return hashMap;
     }
 
-    public static void writeLogs(String username, String timestamp, String message, String bot) throws SQLException {
+    public static void writeUserLogs(String username, String timestamp, String message) throws SQLException {
 
         String tablename = "logs";
         String columnnames = "username, timestamp, message, bot";
-        String values = "'" + username + "', '" + timestamp + "', '" + message + "', '" + bot + "'";
+        String values = "'" + username + "', '" + timestamp + "', '" + message + "'";
+        DBImplementation.writeDb(tablename, columnnames, values);
+    }
+
+    public static void writeBotLogs(String username, String timestamp, String message) throws SQLException {
+
+        String tablename = "logs";
+        String columnnames = "username, timestamp, message, bot";
+        String values = "'" + username + "', '" + timestamp + "', '" + message + "'";
         DBImplementation.writeDb(tablename, columnnames, values);
     }
 
