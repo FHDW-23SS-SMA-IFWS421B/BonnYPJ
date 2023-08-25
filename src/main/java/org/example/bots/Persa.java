@@ -23,7 +23,9 @@ public class Persa {
             case "help":
                 return help();
         }
-        return null;
+        return "Kein Zulässiger command.\n" +
+                "Für eine Liste der verfügbaren Commands schreibe '!Persa info\n" +
+                "Für eine Liste der verfügbaren Bots schreibe !Persa botliste";
     }
 
     private void answer(String currentUser, String answer) throws SQLException {
@@ -32,7 +34,7 @@ public class Persa {
 
     /* COMMANDS */
     private String info() {
-        String info = " ";
+        String info = "PERSA ist ein PERsonal Server Assistant";
         return info;
     }
 
@@ -45,8 +47,4 @@ public class Persa {
         String help = "";
         return help;
     }
-
-
-
-
 }

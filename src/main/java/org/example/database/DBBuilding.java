@@ -13,7 +13,6 @@ public class DBBuilding {
         insertBots();
     }
 
-
     public static void buildTableLogs(){
         String tablenameLogs = "logs";
         String valuesLogs = "username VARCHAR(50), timestamp VARCHAR(50), message VARCHAR(1000), bot VARCHAR(50)";
@@ -39,9 +38,10 @@ public class DBBuilding {
         String[][] users = {
                 {"admin", "admin"},
                 {"amendt", "effzeh"},
-                {"hoeltje", "woelf"},
-                {"abdellaoui", "arminia"},
-                {"fueller", "1234"}
+                {"hoeltje", "wolf"},
+                {"abdellaoui", "freiburg"},
+                {"user", "password"},
+                {"fueller", "fhdw"}
         };
 
         String target = "username";
