@@ -29,20 +29,20 @@ public class Session implements SessionInterface {
 
 
     @Override
-    public void communication() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void communication() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, SQLException {
         boolean end = false;
         while (!end) {
             String input = IOHandler.getPrefixInput(currentUser, "\n- ");
             for (String element : exit) {
                 if (element.equals(input)) {
-                    IOHandler.output("SYSTEM", "\n");
+                    IOHandler.output(currentUser, "SYSTEM", "\n");
                     return;
                 }
             }
 
-            String[] botAnswer = BotUtilities.sendRequestToBot(input);
+            String[] botAnswer = BotUtilities.sendRequestToBot(currentUser, input);
             if (botAnswer != null) {
-                IOHandler.output(botAnswer[0], botAnswer[1]);
+                IOHandler.output(currentUser, botAnswer[0], botAnswer[1]);
             }
 
         }

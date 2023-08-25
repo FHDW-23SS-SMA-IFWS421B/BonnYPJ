@@ -9,13 +9,13 @@ public class Authenticator {
         /* Asks for username/password and then validates them */
         String username = checkUsername(session);
         if (username != null && checkPassword(session, username)) {
-            IOHandler.output("SYSTEM", "\n\n\nWilkommen bei PERSA. Dem PERsonal Service Assistant.\n" +
+            IOHandler.output(session.getCurrentUser(), "SYSTEM", "\n\n\nWilkommen bei PERSA. Dem PERsonal Service Assistant.\n" +
                     "Für Hilfe bei der Nutzung des Bots schreibe '!Persa info'");
             return username;
         }
 
         else {
-            IOHandler.output("SYSTEM", "Nutzername oder Passwort falsch.\n\n");
+            IOHandler.output(session.getCurrentUser(), "SYSTEM", "Nutzername oder Passwort falsch.\n\n");
             return null;
 
         }

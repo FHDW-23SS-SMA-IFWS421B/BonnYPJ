@@ -4,14 +4,15 @@ import org.example.IOHandler;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 public class BotUtilities {
-    public static String[] sendRequestToBot(String input) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public static String[] sendRequestToBot(String currentUser, String input) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, SQLException {
         String[] botAnswer = null;
         String[] botRequest  = getNameRequestFromInput(input);
         if (botRequest == null) {
-            IOHandler.output("SYSTEM",
+            IOHandler.output(currentUser, "SYSTEM",
                     "Befehl nicht erkannt.\n" +
                             "Benötigte Struktur: '![Botname] [Befehl]\n");
             return null;
