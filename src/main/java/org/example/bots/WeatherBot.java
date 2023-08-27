@@ -1,5 +1,6 @@
 package org.example.bots;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.example.exceptions.InvalidInputException;
@@ -10,7 +11,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WeatherBot implements BotTemplate{
+public class WeatherBot implements BotTemplate {
 
     private static final String API_KEY = "e6409848f08fd04167779a4c19729199";
     private static final String CURRENT_WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather";
@@ -41,7 +42,10 @@ public class WeatherBot implements BotTemplate{
 
     public String connection(String input) throws InvalidInputException {
 
-        if (input.equals("!weather")){
+        JSONObject weatherData;
+
+
+        if (input.equals("!weather")) {
             return commandList();
         }
 
@@ -60,36 +64,41 @@ public class WeatherBot implements BotTemplate{
         } catch (UnsupportedEncodingException e) {
             throw new InvalidInputException("Fehler beim Aufbau der API-URL.");
         }
-
-        JSONObject weatherData = apiConnection.connectToApi(apiUrl, null);
-
-        if (weatherData != null && weatherData.has("name")) {
-            if (!forecast) {
-                if (!forecast) {
-                    try {
-                        String cityName = weatherData.optString("name", "Unknown City");
-                        JSONObject main = weatherData.getJSONObject("main");
-                        double temperature = main.optDouble("temp", Double.NaN);
-                        double windSpeed = weatherData.getJSONObject("wind").optDouble("speed", Double.NaN);
-
-                        if (!Double.isNaN(temperature) && !Double.isNaN(windSpeed)) {
-                            result = "Das Wetter in " + cityName + ": \n Temperatur: " + temperature + "°C \n Windgeschwindigkeit: "
-                                    + windSpeed + " m/s";
-                        } else {
-                            throw new InvalidInputException("Ungültige Daten vom API erhalten");
-                        }
-                    } catch (Exception e) {
-                        throw new InvalidInputException("Stadtname nicht gefunden, bitte überprüfe die Schreibweise.");
-                    }
-                } else {
-                    return weatherData.toString();
-                }
-            } else {
-                throw new InvalidInputException("Der Wetterdienst konnte nicht erreicht werden.");
-            }
-
+        if (!forecast) {
+            weatherData = apiConnection.connectToApi(apiUrl, null);
+        }else{
+            return "Forecast nicht vorhanden.";
         }
+        result = jsonFormat(weatherData.toString());
         return result;
+    }
+
+    @Override
+    public String jsonFormat(String data) throws InvalidInputException {
+        StringBuilder result = new StringBuilder();
+
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            String cityName = jsonObject.getString("name");
+            JSONObject mainObject = jsonObject.getJSONObject("main");
+            double temperature = mainObject.getDouble("temp");
+            JSONObject windObject = jsonObject.getJSONObject("wind");
+            double windSpeed = windObject.getDouble("speed");
+
+            result.append("Das Wetter in ").append(cityName).append(":\n");
+            result.append("- Temperatur: ").append(temperature).append(" °C\n");
+            result.append("- Windgeschwindigkeit: ").append(windSpeed).append(" m/s\n");
+
+        } catch (JSONException e) {
+            throw new InvalidInputException("Angabe nicht gefunden.");
+        }
+
+        if (result.length() == 0) {
+            return "Unbekannte Suchanfrage.";
+        } else {
+            return result.toString();
+        }
+
     }
 
     private String buildApiUrl(String location, boolean forecast) throws UnsupportedEncodingException {

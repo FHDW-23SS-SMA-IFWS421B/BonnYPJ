@@ -1,6 +1,7 @@
 package org.example.bots;
 
-import org.example.bots.BotTemplate;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.example.exceptions.InvalidInputException;
@@ -40,30 +41,57 @@ public class WikiBot implements BotTemplate {
     }
 
     @Override
-    public String connection(String input) throws InvalidInputException {
-        JSONObject wikiData;
+    public String connection(String input) throws InvalidInputException, UnsupportedEncodingException {
+        String apiCommand = "";
+        StringBuilder apiCommandBuilder = new StringBuilder();
 
-        if (input.equals("!wiki")){
+        if (input.equals("!wiki")) {
             return commandList();
         }
 
         String[] command = input.split(" ");
-        String apiCommand = "";
-        for (int i = 1; i < command.length; i++){
-            apiCommand += command[i];
-        }
-        try {
-            String apiUrl = buildApiUrl(input);
-            wikiData = apiConnection.connectToApi(apiUrl, null);
-        }catch (UnsupportedEncodingException e) {
-            throw new InvalidInputException("Fehler beim Aufbau der API-URL.");
+
+        for (int i = 1; i < command.length; i++) {
+            apiCommandBuilder.append(command[i]);
         }
 
-        return wikiData.toString();
+        String apiUrl = buildApiUrl(input);
+        JSONObject wikiData = apiConnection.connectToApi(apiUrl, null);
+        String output = jsonFormat(wikiData.toString());
+
+        return output;
+    }
+
+
+    public String jsonFormat(String data) throws InvalidInputException {
+        StringBuilder result = new StringBuilder();
+
+        try {
+            JSONArray pagesArray = new JSONObject(data).getJSONArray("pages");
+
+            for (int i = 0; i < pagesArray.length(); i++) {
+                JSONObject pageObj = pagesArray.getJSONObject(i);
+                String title = pageObj.getString("title");
+                String description = pageObj.getString("description");
+
+                result.append("- ").append(title).append(": ").append(description).append("\n");
+            }
+        } catch (JSONException e) {
+            throw new InvalidInputException("Angabe nicht gefunden.");
+        }
+        if (result.isEmpty()){
+            return "Unbekannte Suchanfrage.";
+        }else{
+            return result.toString();
+        }
+
+
     }
 
     private String buildApiUrl(String input) throws UnsupportedEncodingException {
         String encodedInput = URLEncoder.encode(input, "UTF-8");
         return String.format("%s%s&limit=3", BASE_URL, encodedInput);
     }
+
+
 }
