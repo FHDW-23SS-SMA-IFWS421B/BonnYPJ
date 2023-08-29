@@ -1,8 +1,8 @@
-package org.example.bots;
+package org.example.bot.bots;
 
 import org.example.apiConnection.APIConnect;
+import org.example.bot.tempLate;
 import org.example.exceptions.InvalidInputException;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class TranslateBot implements BotTemplate {
+public class TranslateBot implements tempLate {
 
     private static final String API_KEY = "3dba9f7c-b663-2d6d-9ded-f5cb55afc8c2:fx";
     private static final String BASE_URL = "https://api-free.deepl.com/v2/translate";

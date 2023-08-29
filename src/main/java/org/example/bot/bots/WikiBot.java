@@ -1,5 +1,6 @@
-package org.example.bots;
+package org.example.bot.bots;
 
+import org.example.bot.tempLate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,7 +13,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WikiBot implements BotTemplate {
+public class WikiBot implements tempLate {
 
     private static final String BASE_URL = "https://de.wikipedia.org/w/rest.php/v1/search/page?q=";
 

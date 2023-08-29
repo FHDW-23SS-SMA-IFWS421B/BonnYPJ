@@ -1,6 +1,9 @@
 package org.example;
 
-import org.example.bots.BotUtilities;
+import org.example.bot.BotCaller;
+import org.example.bot.BotUtilities;
+import org.example.exceptions.IOException;
+import org.example.exceptions.ProcessingError;
 import org.example.ineterfaces.SessionInterface;
 
 import java.lang.reflect.InvocationTargetException;
@@ -10,7 +13,7 @@ public class Session implements SessionInterface {
     private String currentUser = "None";
     private String[] exit = {"!exit", "!logout", "!abmelden", "!schließen"};
 
-    public Session() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, SQLException {
+    public Session() throws IOException, SQLException {
         /* user authentication and welcome message  */
         boolean end = false;
         while (!end) {
@@ -29,24 +32,22 @@ public class Session implements SessionInterface {
 
 
     @Override
-    public void communication() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, SQLException {
+    public void communication() throws IOException {
         boolean end = false;
         while (!end) {
-            String input = IOHandler.getPrefixInput(currentUser, "\n- ");
-            for (String element : exit) {
-                if (element.equals(input)) {
-                    IOHandler.output(currentUser, "SYSTEM", "\n");
-                    return;
+            try {
+                String input = IOHandler.getPrefixInput(currentUser, "\n- ");
+                for (String element : exit) {
+                    if (element.equals(input)) {
+                        IOHandler.output(currentUser, "SYSTEM", "\n");
+                        end = true;
+                    }
                 }
+                BotCaller botCaller = new BotCaller(input, currentUser);
+            } catch (SQLException e) {
+                throw new IOException();
             }
-
-            String[] botAnswer = BotUtilities.sendRequestToBot(currentUser, input);
-            if (botAnswer != null) {
-                IOHandler.output(currentUser, botAnswer[0], botAnswer[1]);
-            }
-
         }
-
     }
 
     @Override

@@ -1,10 +1,10 @@
-package org.example.bots;
+package org.example.bot;
 
 import org.example.exceptions.InvalidInputException;
 
 import java.io.UnsupportedEncodingException;
 
-public interface BotTemplate {
+public interface tempLate {
     void setupCommands();
     String commandList();
     String connection(String input) throws InvalidInputException, UnsupportedEncodingException;

@@ -1,4 +1,4 @@
-package org.example.bots;
+package org.example.bot.bots;
 
 import org.example.IOHandler;
 
