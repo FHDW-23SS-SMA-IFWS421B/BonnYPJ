@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class APIConnect {
-
     public JSONObject connectToApi(String urlString, String urlParams) {
         JSONObject jsonResponse = new JSONObject();
         String urlParameters = urlParams;
