@@ -19,12 +19,18 @@ public class WikiBot implements BotTemplate {
     private APIConnect apiConnection = new APIConnect();
     private Map<String, String> commands = new HashMap<>();
     private String result = null;
+    private String botName = getName();
 
     public WikiBot(String input) throws InvalidInputException, UnsupportedEncodingException {
         setupCommands();
         String result = connection(input);
         System.out.println(result);
     }
+
+    public String getName() {
+        return "Wiki-Bot";
+    }
+
 
     @Override
     public void setupCommands() {
@@ -65,23 +71,23 @@ public class WikiBot implements BotTemplate {
 
     public String jsonFormat(String data) throws InvalidInputException {
         StringBuilder result = new StringBuilder();
-
+        result.append(botName + ":\n");
         try {
             JSONArray pagesArray = new JSONObject(data).getJSONArray("pages");
 
             for (int i = 0; i < pagesArray.length(); i++) {
-                JSONObject pageObj = pagesArray.getJSONObject(i);
-                String title = pageObj.getString("title");
-                String description = pageObj.getString("description");
+                JSONObject pageObject = pagesArray.getJSONObject(i);
+                String title = pageObject.getString("title");
+                String description = pageObject.getString("description");
 
                 result.append("- ").append(title).append(": ").append(description).append("\n");
             }
         } catch (JSONException e) {
             throw new InvalidInputException("Angabe nicht gefunden.");
         }
-        if (result.isEmpty()){
-            return "Unbekannte Suchanfrage.";
-        }else{
+        if (result.isEmpty()) {
+            return botName + ": Unbekannte Suchanfrage.\n";
+        } else {
             return result.toString();
         }
 

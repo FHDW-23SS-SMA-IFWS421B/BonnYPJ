@@ -2,6 +2,7 @@ package org.example.bots;
 
 import org.example.apiConnection.APIConnect;
 import org.example.exceptions.InvalidInputException;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,12 +21,18 @@ public class TranslateBot implements BotTemplate {
     private Map<String, String> commands = new HashMap<>();
     Map<String, String> languageMap = new HashMap<>();
     private String result = null;
+    private String botName = getName();
 
 
     public TranslateBot(String input) throws InvalidInputException, UnsupportedEncodingException {
         setupCommands();
         String result = connection(input);
         System.out.println(result);
+    }
+
+    @Override
+    public String getName() {
+        return "Translator-Bot";
     }
 
     @Override
@@ -44,7 +51,7 @@ public class TranslateBot implements BotTemplate {
 
     @Override
     public String connection(String input) throws InvalidInputException, UnsupportedEncodingException {
-        JSONObject translateData;
+        JSONObject translatorData;
 
         if (input.equals("!translator")) {
             return commandList();
@@ -71,7 +78,7 @@ public class TranslateBot implements BotTemplate {
 
             String apiUrl = buildApiUrl(command[1], text);
 
-            JSONObject translatorData = apiConnection.connectToApi(apiUrl, null);
+            translatorData = apiConnection.connectToApi(apiUrl, null);
             String output = jsonFormat(translatorData.toString());
             return output;
         } else {
@@ -81,7 +88,25 @@ public class TranslateBot implements BotTemplate {
 
     @Override
     public String jsonFormat(String data) throws InvalidInputException {
-        return null;
+        StringBuilder result = new StringBuilder();
+        result.append(botName + ":\n");
+        try {
+            JSONArray translationsArray = new JSONObject(data).getJSONArray("translations");
+
+            for (int i = 0; i < translationsArray.length(); i++) {
+                JSONObject translationObject = translationsArray.getJSONObject(i);
+                String text = translationObject.getString("text");
+
+                result.append("Übersetzung: ").append(text);
+            }
+        } catch (JSONException e) {
+            throw new InvalidInputException("Angabe nicht gefunden.");
+        }
+        if (result.isEmpty()) {
+            return "Unbekannte Suchanfrage.";
+        } else {
+            return result.toString();
+        }
     }
 
     private String buildApiUrl(String language, String text) throws UnsupportedEncodingException {
@@ -91,7 +116,4 @@ public class TranslateBot implements BotTemplate {
     }
 
 
-    private String getLanguage() {
-        return null;
-    }
 }

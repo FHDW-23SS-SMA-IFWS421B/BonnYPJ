@@ -20,11 +20,17 @@ public class WeatherBot implements BotTemplate {
     private APIConnect apiConnection = new APIConnect();
     private Map<String, String> commands = new HashMap<>();
     private String result = null;
+    private String botName = getName();
 
     public WeatherBot(String input) throws InvalidInputException {
         setupCommands();
         String result = connection(input);
         System.out.println(result);
+    }
+
+    @Override
+    public String getName() {
+        return "Weather-Bot";
     }
 
     public void setupCommands() {
@@ -66,7 +72,7 @@ public class WeatherBot implements BotTemplate {
         }
         if (!forecast) {
             weatherData = apiConnection.connectToApi(apiUrl, null);
-        }else{
+        } else {
             return "Forecast nicht vorhanden.";
         }
         result = jsonFormat(weatherData.toString());
@@ -76,7 +82,7 @@ public class WeatherBot implements BotTemplate {
     @Override
     public String jsonFormat(String data) throws InvalidInputException {
         StringBuilder result = new StringBuilder();
-
+        result.append(botName + ":\n");
         try {
             JSONObject jsonObject = new JSONObject(data);
             String cityName = jsonObject.getString("name");
