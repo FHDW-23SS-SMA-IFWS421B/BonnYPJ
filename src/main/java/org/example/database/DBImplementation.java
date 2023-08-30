@@ -31,17 +31,23 @@ public class DBImplementation{
         }
     }
 
-    protected static void writeDb(String tablename, String columnnames, String values) throws SQLException {
+    protected static void writeDb(String tablename, String columnnames, String values){
         try (Statement stmt = conn.createStatement()) {
             String query = "INSERT INTO " + tablename + " (" + columnnames + ")" + "VALUES (" + values + ")";
             stmt.executeUpdate(query);
+        }catch (SQLException e) {
+            e.printStackTrace();
+
         }
     }
 
-    protected static void updateDb(String tablename, String target, String value, String condition, String criteria) throws SQLException{
+    protected static void updateDb(String tablename, String target, String value, String condition, String criteria){
         try (Statement stmt = conn.createStatement()) {
             String query = "UPDATE " + tablename + " SET " + target + " = " + value + " WHERE " + condition + " = " + criteria;
             stmt.executeUpdate(query);
+        }catch (SQLException e) {
+            e.printStackTrace();
+
         }
     }
 
