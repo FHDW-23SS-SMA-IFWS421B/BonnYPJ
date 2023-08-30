@@ -14,7 +14,7 @@ public class BotUtilities {
         if (botRequest == null) {
             IOHandler.output(currentUser, "SYSTEM",
                     "Befehl nicht erkannt.\n" +
-                            "Benötigte Struktur: '![Botname] [Befehl]\n");
+                            "Benötigte Struktur: \"![Botname] [Befehl]\" \n");
             return null;
         }
         Class<?> botClass = Class.forName("org.example.bots." + botRequest[0]);
