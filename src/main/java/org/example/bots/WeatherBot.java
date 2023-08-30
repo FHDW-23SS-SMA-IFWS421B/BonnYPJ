@@ -7,6 +7,7 @@ import org.example.exceptions.InvalidInputException;
 import org.example.apiConnection.APIConnect;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.annotation.Documented;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +39,7 @@ public class WeatherBot implements BotTemplate {
         commands.put("!weather Prognose", "Wetterprognose");
     }
 
+    @Override
     public String commandList() {
         StringBuilder output = new StringBuilder("Willkommen beim Wetterbot. Dir stehen folgende Befehle zur Verfügung:\n");
         for (String command : commands.keySet()) {
@@ -46,6 +48,7 @@ public class WeatherBot implements BotTemplate {
         return output.toString();
     }
 
+    @Override
     public String connection(String input) throws InvalidInputException {
 
         JSONObject weatherData;
