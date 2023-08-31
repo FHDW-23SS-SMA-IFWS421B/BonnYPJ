@@ -66,6 +66,7 @@ public class Persa extends BotTemplate {
         commands.put("!Persa info",                     "Gibt informationen zum PERSA Chatsystem aus");
         commands.put("!Persa credits",                  "Zeigt an wer an dem Projekt mitgearbeitet hat");
         commands.put("!Persa log",                      "Gibt den Log der letzten Anfragen und Antworten aus.");
+        commands.put("!Persa botliste",                 "Gibt eine Liste der Bots und ihr Status aus.");
         commands.put("!Persa aktivieren [botname]",     "aktiviert einen Bot, damit er genutzt werden kann.");
         commands.put("!Persa deaktivieren [botname]",   "deaktiviert einen Bot, wodurch er nicht mehr genutzt werden kann.");
     }
@@ -81,7 +82,26 @@ public class Persa extends BotTemplate {
 
     private String cmdInfo() {
         return "PERSA ist dein PERsonal Service Assistant.\n" +
-                "Er bietet ein Chat mit diversen Bots, die dich im Alltag unterstützen können.";
+                "Er bietet ein Chat mit diversen Bots, die dich im Alltag unterstützen können.\n" +
+                "Schreibe '!Persa' für eine Liste an Commands.\n" +
+                "Schreibe '!Persa botliste' für eine Liste an Bots\n" +
+                "Schreibe '![botname] für Informationen zur Nutzung des jeweiligen Bots.\n";
+    }
+
+    private String cmdBotlist() {
+        HashMap<String, String> botStatusList = DBHandler.botStatusList();
+        String answer = "";
+        for (Map.Entry<String, String> entry : botStatusList.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            String name = key.substring(0, 1).toUpperCase() + key.substring(1);
+            String status = "(nicht aktiv)";
+            if (value.equals("True")) {
+                status = "(aktiv)";
+            }
+            answer = String.format("%s\n%s %s", answer, name, status);
+        }
+        return answer;
     }
 
     private String cmdCredits() {
@@ -135,9 +155,14 @@ public class Persa extends BotTemplate {
     private String cmdStatus(String name) {
         String[] botList = DBHandler.botList();
         for (String s : botList) {
-            System.out.println(s + "-" + name);
             if (Objects.equals(s, name)) {
-                return String.valueOf(DBHandler.botStatus(name));
+                boolean status = DBHandler.botStatus(name);
+                if (status) {
+                    return String.format("Der %s-Bot ist aktiv.", name.substring(0, 1).toUpperCase() + name.substring(1));
+                }
+                else {
+                    return String.format("Der %s-Bot ist nicht aktiv.", name.substring(0, 1).toUpperCase() + name.substring(1));
+                }
             }
         }
         return String.format("Es wurde kein Bot mit dem Namen '%s' gefunden", name);
