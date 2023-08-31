@@ -36,7 +36,7 @@ public class DBImplementation{
             String query = "INSERT INTO " + tablename + " (" + columnnames + ")" + "VALUES (" + values + ")";
             stmt.executeUpdate(query);
         }catch (SQLException e) {
-            e.printStackTrace();
+
 
         }
     }

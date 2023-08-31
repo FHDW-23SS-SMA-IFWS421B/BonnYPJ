@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class DBBuilding {
 
-    public DBBuilding() throws SQLException {
+    public DBBuilding() {
         buildTableLogs();
         buildTableUserCredentials();
         buildTableBotList();
@@ -31,7 +31,7 @@ public class DBBuilding {
         DBImplementation.createDb(tablenameBots, valuesBots);
     }
 
-    public static void insertUserCredentials() throws SQLException {
+    public static void insertUserCredentials() {
         String tablename = "user_credentials";
         String columnnames = "username, password";
 
@@ -56,14 +56,14 @@ public class DBBuilding {
         }
     }
 
-    public static void insertBots() throws SQLException {
+    public static void insertBots() {
         String tablename = "botList";
         String columnnames = "bots, status";
 
         String[][] bots = {
-                {"Weather", "True"},
-                {"Translator", "True"},
-                {"Wiki", "True"}
+                {"weather", "True"},
+                {"translator", "True"},
+                {"wiki", "True"}
         };
 
         String target = "bots";

@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class DBHandler{
 
 
-    public static HashMap readLogs(String username) throws SQLException {
+    public static HashMap readLogs(String username) {
         HashMap<Integer, String[]> hashMap = new HashMap<>();
         String target = "*";
         Integer offset;
@@ -21,7 +21,7 @@ public class DBHandler{
         return hashMap;
     }
 
-    public static void writeLogs(String username, String timestamp, String message, String bot) throws SQLException {
+    public static void writeLogs(String username, String timestamp, String message, String bot) {
 
         String tablename = "logs";
         String columnnames = "username, timestamp, message, bot";
@@ -29,7 +29,7 @@ public class DBHandler{
         DBImplementation.writeDb(tablename, columnnames, values);
     }
 
-    public static String[] getUserList() throws SQLException {
+    public static String[] getUserList()  {
         String target = "username";
         String tablename = "user_credentials";
         String value = "'1'";
@@ -38,7 +38,7 @@ public class DBHandler{
 
     }
 
-    public static String getUserPassword(String username) throws SQLException {
+    public static String getUserPassword(String username) {
         String target = "password";
         String tablename = "user_credentials";
         String value = "username";
@@ -47,7 +47,7 @@ public class DBHandler{
         return String.join(" ", userPassword);
     }
 
-    public static void deactivateBot(String botName) throws SQLException {
+    public static void deactivateBot(String botName)  {
         String tablename = "botList";
         String target = "status";
         String value = "False";
@@ -56,7 +56,7 @@ public class DBHandler{
         DBImplementation.updateDb(tablename, target, value, condition, criteria);
     }
 
-    public static void activateBot(String botName) throws SQLException {
+    public static void activateBot(String botName)  {
         String tablename = "botList";
         String target = "status";
         String value = "True";
@@ -65,7 +65,7 @@ public class DBHandler{
         DBImplementation.updateDb(tablename, target, value, condition, criteria);
     }
 
-    public static String[] botList() throws SQLException {
+    public static String[] botList() {
         String target = "bots";
         String tablename = "botList";
         String value = "'1'";
@@ -74,7 +74,7 @@ public class DBHandler{
         return allMessages;
     }
 
-    public static HashMap botStatusList() throws SQLException {
+    public static HashMap botStatusList() {
         HashMap<String, String> botStatus = new HashMap<>();
         String[] bot = botList();
         String target = "status";
@@ -88,7 +88,7 @@ public class DBHandler{
         return botStatus;
     }
 
-    public static boolean botStatus(String botName) throws SQLException {
+    public static boolean botStatus(String botName) {
         String target = "status";
         String tablename = "botList";
         String value = "bots";

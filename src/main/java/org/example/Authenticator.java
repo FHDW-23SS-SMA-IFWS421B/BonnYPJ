@@ -5,7 +5,7 @@ import org.example.database.DBHandler;
 import java.sql.SQLException;
 
 public class Authenticator {
-    public String authenticate(Session session) throws SQLException {
+    public String authenticate(Session session) {
         /* Asks for username/password and then validates them */
         String username = checkUsername(session);
         if (username != null && checkPassword(session, username)) {
@@ -22,7 +22,7 @@ public class Authenticator {
 
     }
 
-    public String checkUsername(Session session) throws SQLException {
+    public String checkUsername(Session session) {
         String username = IOHandler.getPrefixInput(session.getCurrentUser(),
                 "Gebe deinen Nutzernamen ein: ");
         String[] userList = DBHandler.getUserList();
@@ -35,7 +35,7 @@ public class Authenticator {
 
     }
 
-    public  boolean checkPassword(Session session, String userName) throws SQLException {
+    public  boolean checkPassword(Session session, String userName) {
         String password = IOHandler.getPrefixInput(session.getCurrentUser(),
                 "Gebe deinen Password ein: ");
         if (password.equals(DBHandler.getUserPassword(userName))) {

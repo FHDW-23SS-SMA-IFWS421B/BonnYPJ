@@ -1,46 +1,42 @@
-package org.example.bots;
+package org.example.bot.bots;
 
+import org.example.bot.ApiBotTemplate;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import org.example.exceptions.InvalidInputException;
 import org.example.apiConnection.APIConnect;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.annotation.Documented;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WeatherBot implements BotTemplate {
-
+public class WeatherBot extends ApiBotTemplate {
+    public String botName = "Weather-Bot";
     private static final String API_KEY = "e6409848f08fd04167779a4c19729199";
     private static final String CURRENT_WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather";
     private static final String FORECAST_API_URL = "http://api.openweathermap.org/data/2.5/forecast/daily";
-
     private APIConnect apiConnection = new APIConnect();
     private Map<String, String> commands = new HashMap<>();
     private String result = null;
-    private String botName = getName();
 
-    public WeatherBot(String input) throws InvalidInputException {
-        setupCommands();
-        String result = connection(input);
-        System.out.println(result);
-    }
 
     @Override
-    public String getName() {
-        return "Weather-Bot";
+    public void processRequest(String request, String username) {
+        setupCommands();
+        String result = connection(request);
+        if (result == null) {
+            answer(username, botName, processingError);
+        } else {
+            answer(username, botName, result);
+        }
     }
 
-    public void setupCommands() {
+    private void setupCommands() {
         commands.put("!weather", "Aktuelles Wetter");
         commands.put("!weather Prognose", "Wetterprognose");
     }
 
-    @Override
-    public String commandList() {
+    private String commandList() {
         StringBuilder output = new StringBuilder("Willkommen beim Wetterbot. Dir stehen folgende Befehle zur Verfügung:\n");
         for (String command : commands.keySet()) {
             output.append(" - ").append(command).append(": ").append(commands.get(command)).append("\n");
@@ -48,8 +44,7 @@ public class WeatherBot implements BotTemplate {
         return output.toString();
     }
 
-    @Override
-    public String connection(String input) throws InvalidInputException {
+    private String connection(String input) {
 
         JSONObject weatherData;
 
@@ -61,7 +56,7 @@ public class WeatherBot implements BotTemplate {
         String[] command = input.split(" ");
 
         if (!commands.containsKey(command[0])) {
-            throw new InvalidInputException("Unbekannter Befehl.");
+            return null;
         }
 
         boolean forecast = command.length == 3 && command[2].equals("Prognose");
@@ -71,7 +66,7 @@ public class WeatherBot implements BotTemplate {
         try {
             apiUrl = buildApiUrl(location, forecast);
         } catch (UnsupportedEncodingException e) {
-            throw new InvalidInputException("Fehler beim Aufbau der API-URL.");
+            return null;
         }
         if (!forecast) {
             weatherData = apiConnection.connectToApi(apiUrl, null);
@@ -82,8 +77,7 @@ public class WeatherBot implements BotTemplate {
         return result;
     }
 
-    @Override
-    public String jsonFormat(String data) throws InvalidInputException {
+    private String jsonFormat(String data) {
         StringBuilder result = new StringBuilder();
         result.append(botName + ":\n");
         try {
@@ -99,7 +93,7 @@ public class WeatherBot implements BotTemplate {
             result.append("- Windgeschwindigkeit: ").append(windSpeed).append(" m/s\n");
 
         } catch (JSONException e) {
-            throw new InvalidInputException("Angabe nicht gefunden.");
+            return null;
         }
 
         if (result.length() == 0) {
@@ -115,4 +109,6 @@ public class WeatherBot implements BotTemplate {
         String baseUrl = forecast ? FORECAST_API_URL : CURRENT_WEATHER_API_URL;
         return String.format("%s?q=%s&appid=%s&units=metric", baseUrl, encodedLocation, API_KEY);
     }
+
+
 }
