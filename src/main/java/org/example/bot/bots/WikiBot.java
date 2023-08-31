@@ -1,6 +1,6 @@
 package org.example.bot.bots;
 
-import org.example.bot.ApiBotTemplate;
+import org.example.bot.BotTemplate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,12 +12,11 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WikiBot extends ApiBotTemplate {
+public class WikiBot extends BotTemplate {
     public String botName = "Wiki-Bot";
     private static final String BASE_URL = "https://de.wikipedia.org/w/rest.php/v1/search/page?q=";
     private APIConnect apiConnection = new APIConnect();
     private Map<String, String> commands = new HashMap<>();
-    private String result = null;
 
     @Override
     public void processRequest(String request, String username) {

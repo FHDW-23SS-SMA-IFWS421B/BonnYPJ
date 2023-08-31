@@ -10,9 +10,5 @@ public class Main {
         DBImplementation.initializeConnection();
         DBBuilding dbBuilding = new DBBuilding();
         Session session = new Session();
-
-
     }
-
-
 }

@@ -17,7 +17,7 @@ public class IOHandler {
         try {
             text = input.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            output(username, "SYSTEM", "Es gab einen Fehler bei der Eingabe. Versuche es erneut.");
         }
         Logging.LogInput(username, text, LocalDateTime.now());
         return text;

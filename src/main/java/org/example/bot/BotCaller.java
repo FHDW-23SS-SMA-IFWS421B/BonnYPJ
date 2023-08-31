@@ -8,9 +8,11 @@ import org.example.bot.bots.WikiBot;
 import java.util.HashMap;
 
 public class BotCaller {
-    private HashMap<String, BasicBotTemplate> botObjects = new HashMap<>();
-    final String requestError = "Unbekannter Bot. Überprüfe nochmal auf Rechschreibfehler.\n" +
-            "Mit !Persa botliste kannst du die die Namen aller Bots anzeigen lassen.\n";
+    private HashMap<String, BotTemplate> botObjects = new HashMap<>();
+    final String requestError = """
+            Unbekannter Bot. Überprüfe nochmal auf Rechschreibfehler.
+            Mit !Persa botliste kannst du die die Namen aller Bots anzeigen lassen.
+            """;
 
     public BotCaller(String input, String currentUser) {
         setBotObjects();
@@ -22,7 +24,7 @@ public class BotCaller {
 
         botName = botName.toLowerCase();
         if (botName.length() >= 3) {
-            if (botName.substring(botName.length() -3).equals("bot")) {
+            if (botName.endsWith("bot")) {
                 botName = botName.substring(0, botName.length() - 3);
             }
         }
@@ -35,10 +37,10 @@ public class BotCaller {
     }
 
     private void setBotObjects() {
-        BasicBotTemplate persaBot = new Persa();
-        BasicBotTemplate wikiBot = new WikiBot();
-        BasicBotTemplate translateBot = new TranslateBot();
-        BasicBotTemplate weatherBot = new WeatherBot();
+        BotTemplate persaBot = new Persa();
+        BotTemplate wikiBot = new WikiBot();
+        BotTemplate translateBot = new TranslateBot();
+        BotTemplate weatherBot = new WeatherBot();
         botObjects.put("persa", persaBot);
         botObjects.put("wiki", wikiBot);
         botObjects.put("translator", translateBot);
@@ -48,7 +50,6 @@ public class BotCaller {
     private static String getBotNameFromInput(String input) {
         /* Returns bot name and request. If form is not valid returns null */
         String[] arrayOfInput = input.split(" ");
-        String[] nameRequest = new String[2];
 
         if (arrayOfInput.length == 0) {
             IOHandler.output("None", "SYSTEM", "Gebe einen Befehl ein. " +
@@ -62,7 +63,6 @@ public class BotCaller {
             return null;
         }
 
-        String botName = arrayOfInput[0].substring(1);
-        return botName;
+        return arrayOfInput[0].substring(1);
     }
 }

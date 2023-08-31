@@ -1,4 +1,4 @@
-package org.example.bot;
+package org.example.ineterfaces;
 
 public interface BasicBotTemplatInterface {
     void processRequest(String request, String username);

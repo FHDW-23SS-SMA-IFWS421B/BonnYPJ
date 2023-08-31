@@ -1,6 +1,6 @@
 package org.example.bot.bots;
 
-import org.example.bot.ApiBotTemplate;
+import org.example.bot.BotTemplate;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.example.apiConnection.APIConnect;
@@ -10,14 +10,13 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WeatherBot extends ApiBotTemplate {
+public class WeatherBot extends BotTemplate {
     public String botName = "Weather-Bot";
     private static final String API_KEY = "e6409848f08fd04167779a4c19729199";
     private static final String CURRENT_WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather";
     private static final String FORECAST_API_URL = "http://api.openweathermap.org/data/2.5/forecast/daily";
     private APIConnect apiConnection = new APIConnect();
     private Map<String, String> commands = new HashMap<>();
-    private String result = null;
 
 
     @Override
@@ -73,7 +72,7 @@ public class WeatherBot extends ApiBotTemplate {
         } else {
             return "Forecast nicht vorhanden.";
         }
-        result = jsonFormat(weatherData.toString());
+        String result = jsonFormat(weatherData.toString());
         return result;
     }
 

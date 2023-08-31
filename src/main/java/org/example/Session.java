@@ -39,8 +39,6 @@ public class Session implements SessionInterface {
         }
     }
 
-
-
     @Override
     public String getCurrentUser() {
         return this.currentUser;
@@ -49,6 +47,5 @@ public class Session implements SessionInterface {
     @Override
     public void setCurrentUser(String username) {
         this.currentUser = username;
-
     }
 }

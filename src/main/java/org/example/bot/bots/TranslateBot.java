@@ -1,7 +1,7 @@
 package org.example.bot.bots;
 
 import org.example.apiConnection.APIConnect;
-import org.example.bot.ApiBotTemplate;
+import org.example.bot.BotTemplate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,14 +12,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class TranslateBot extends ApiBotTemplate {
+public class TranslateBot extends BotTemplate {
     public String botName = "Translator-Bot";
     private static final String API_KEY = "3dba9f7c-b663-2d6d-9ded-f5cb55afc8c2:fx";
     private static final String BASE_URL = "https://api-free.deepl.com/v2/translate";
     private APIConnect apiConnection = new APIConnect();
     private Map<String, String> commands = new HashMap<>();
     Map<String, String> languageMap = new HashMap<>();
-    private String result = null;
 
     @Override
     public void processRequest(String request, String username) {

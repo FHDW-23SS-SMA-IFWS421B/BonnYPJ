@@ -1,10 +1,9 @@
 package org.example.bot;
 
 import org.example.IOHandler;
+import org.example.ineterfaces.BasicBotTemplatInterface;
 
-import java.sql.SQLException;
-
-public abstract class BasicBotTemplate implements BasicBotTemplatInterface {
+public abstract class BotTemplate implements BasicBotTemplatInterface {
     public String processingError = "Es gab ein Problem bei der Verarbeitung der Anfrage. Versuche es erneut.";
 
     @Override
