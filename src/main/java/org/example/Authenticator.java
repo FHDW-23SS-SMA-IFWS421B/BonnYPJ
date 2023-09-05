@@ -2,15 +2,17 @@ package org.example;
 
 import org.example.database.DBHandler;
 
-import java.sql.SQLException;
-
 public class Authenticator {
-    public String authenticate(Session session) throws SQLException {
+    public String authenticate(Session session) {
         /* Asks for username/password and then validates them */
         String username = checkUsername(session);
         if (username != null && checkPassword(session, username)) {
-            IOHandler.output(session.getCurrentUser(), "SYSTEM", "\n\n\nWilkommen bei PERSA. Dem PERsonal Service Assistant.\n" +
-                    "Für Hilfe bei der Nutzung des Bots schreibe \"!Persa info\"");
+            IOHandler.output(session.getCurrentUser(), "SYSTEM", """
+
+
+
+                    Wilkommen bei PERSA. Dem PERsonal Service Assistant.
+                    Für Hilfe bei der Nutzung des Bots schreibe "!Persa info\"""");
             return username;
         }
 
@@ -22,12 +24,12 @@ public class Authenticator {
 
     }
 
-    public String checkUsername(Session session) throws SQLException {
+    public String checkUsername(Session session) {
         String username = IOHandler.getPrefixInput(session.getCurrentUser(),
                 "Gebe deinen Nutzernamen ein: ");
         String[] userList = DBHandler.getUserList();
-        for (int i = 0; i < userList.length; i++) {
-            if (username.equals(userList[i])) {
+        for (String s : userList) {
+            if (username.equals(s)) {
                 return username;
             }
         }
@@ -35,15 +37,10 @@ public class Authenticator {
 
     }
 
-    public  boolean checkPassword(Session session, String userName) throws SQLException {
+    public  boolean checkPassword(Session session, String userName) {
         String password = IOHandler.getPrefixInput(session.getCurrentUser(),
                 "Gebe deinen Password ein: ");
-        if (password.equals(DBHandler.getUserPassword(userName))) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return password.equals(DBHandler.getUserPassword(userName));
     }
 
 }
