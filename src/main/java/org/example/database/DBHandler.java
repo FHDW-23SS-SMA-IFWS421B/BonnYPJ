@@ -51,7 +51,7 @@ public class DBHandler{
         String tablename = "botList";
         String target = "status";
         String value = "False";
-        String condition = "bots";
+        String condition = "bots'";
         String criteria = botName;
         DBImplementation.updateDb(tablename, target, value, condition, criteria);
     }
@@ -60,7 +60,7 @@ public class DBHandler{
         String tablename = "botList";
         String target = "status";
         String value = "True";
-        String condition = "bots";
+        String condition = "bots'";
         String criteria = botName;
         DBImplementation.updateDb(tablename, target, value, condition, criteria);
     }
