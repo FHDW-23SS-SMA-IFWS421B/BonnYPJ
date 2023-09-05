@@ -13,8 +13,7 @@ public class Session implements SessionInterface {
         while (!end) {
             boolean end2 = false;
             while (!end2) {
-                Authenticator authenticator = new Authenticator();
-                String username = authenticator.authenticate(this);
+                String username = Authenticator.authenticate(this);
                 if (username != null) {
                     this.currentUser = username;
                     end2 = true;
@@ -34,8 +33,10 @@ public class Session implements SessionInterface {
                     IOHandler.output(currentUser, "SYSTEM", "\n");
                     end = true;
                 }
+                if (!end) {
+                    BotCaller botCaller = new BotCaller(input, currentUser);
+                }
             }
-            BotCaller botCaller = new BotCaller(input, currentUser);
         }
     }
 

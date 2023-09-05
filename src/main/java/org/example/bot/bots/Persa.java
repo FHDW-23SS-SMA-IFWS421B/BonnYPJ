@@ -101,10 +101,10 @@ public class Persa extends BotTemplate {
             String value = entry.getValue();
             String name = key.substring(0, 1).toUpperCase() + key.substring(1);
             String status = "(nicht aktiv)";
-            if (value.equals("True")) {
+            if (value.equals("true")) {
                 status = "(aktiv)";
             }
-            answer = String.format("%s\n%s %s", answer, name, status);
+            answer += String.format("%s %s\n", name, status);
         }
         return answer;
     }
@@ -222,6 +222,6 @@ public class Persa extends BotTemplate {
             }
         }
         return logOutput + "\n" +
-                "--- ENDE DER LOGS ---\n";
+                "--- ENDE DER LOGS ---\n\n";
     }
 }

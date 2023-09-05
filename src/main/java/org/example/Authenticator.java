@@ -4,7 +4,7 @@ import org.example.database.DBHandler;
 import org.example.bot.bots.Persa;
 
 public class Authenticator {
-    public String authenticate(Session session) {
+    public static String authenticate(Session session) {
         /* Asks for username/password and then validates them */
         String username = checkUsername(session);
         if (username != null && checkPassword(session, username)) {
@@ -23,7 +23,7 @@ public class Authenticator {
 
     }
 
-    public String checkUsername(Session session) {
+    public static String checkUsername(Session session) {
         String username = IOHandler.getPrefixInput(session.getCurrentUser(),
                 "Gebe deinen Nutzernamen ein: ",
                 "SYSTEM");
@@ -37,7 +37,7 @@ public class Authenticator {
 
     }
 
-    public  boolean checkPassword(Session session, String userName) {
+    public static boolean checkPassword(Session session, String userName) {
         String password = IOHandler.getPrefixInput(session.getCurrentUser(),
                 "Gebe deinen Password ein: ",
                 "SYSTEM");
