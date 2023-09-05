@@ -1,17 +1,16 @@
 package org.example;
 
 import org.example.database.DBHandler;
+import org.example.bot.bots.Persa;
 
 public class Authenticator {
     public String authenticate(Session session) {
         /* Asks for username/password and then validates them */
         String username = checkUsername(session);
         if (username != null && checkPassword(session, username)) {
+            IOHandler.output(session.getCurrentUser(), "Persa", Persa.getLogs(session.getCurrentUser()));
             IOHandler.output(session.getCurrentUser(), "SYSTEM", """
-
-
-
-                    Wilkommen bei PERSA. Dem PERsonal Service Assistant.
+                    Willkommen bei PERSA. Dem PERsonal Service Assistant.
                     Für Hilfe bei der Nutzung des Bots schreibe "!Persa info\"""");
             return username;
         }
@@ -26,7 +25,8 @@ public class Authenticator {
 
     public String checkUsername(Session session) {
         String username = IOHandler.getPrefixInput(session.getCurrentUser(),
-                "Gebe deinen Nutzernamen ein: ");
+                "Gebe deinen Nutzernamen ein: ",
+                "SYSTEM");
         String[] userList = DBHandler.getUserList();
         for (String s : userList) {
             if (username.equals(s)) {
@@ -39,7 +39,8 @@ public class Authenticator {
 
     public  boolean checkPassword(Session session, String userName) {
         String password = IOHandler.getPrefixInput(session.getCurrentUser(),
-                "Gebe deinen Password ein: ");
+                "Gebe deinen Password ein: ",
+                "SYSTEM");
         return password.equals(DBHandler.getUserPassword(userName));
     }
 

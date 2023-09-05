@@ -5,6 +5,8 @@ import org.example.bot.bots.Persa;
 import org.example.bot.bots.TranslateBot;
 import org.example.bot.bots.WeatherBot;
 import org.example.bot.bots.WikiBot;
+import org.example.database.DBHandler;
+
 import java.util.HashMap;
 
 public class BotCaller {
@@ -29,13 +31,19 @@ public class BotCaller {
                 botName = botName.substring(0, botName.length() - 3);
             }
         }
+
         String request = "!" + botName;
         for (int i = 1; i<arrayOfInput.length; i++) {
             request += " " + arrayOfInput[i];
         }
-        System.out.println(botName + "\n-" + request);
-        if (botObjects.get(botName) != null) {
-            botObjects.get(botName).processRequest(request, currentUser);
+
+        if (botObjects.get(botName) != null || botName.equals("persa")) {
+            if (DBHandler.botStatus(botName) || botName.equals("persa")) {
+                botObjects.get(botName).processRequest(request, currentUser);
+            } else {
+                IOHandler.output(currentUser, botName, String.format("Der %s-Bot ist zurzeit nicht verfügbar.\n" +
+                        "Gebe '!Persa aktivieren %s' ein, um ihn wieder zu aktivieren.", botName, botName));
+            }
         } else {
             IOHandler.output("None", "SYSTEM", requestError);
         }

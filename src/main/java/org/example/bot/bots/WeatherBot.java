@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WeatherBot extends BotTemplate {
-    public String botName = "Weather-Bot";
+    public String botName = "weather";
     private static final String API_KEY = "e6409848f08fd04167779a4c19729199";
     private static final String CURRENT_WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather";
     private static final String FORECAST_API_URL = "http://api.openweathermap.org/data/2.5/forecast/daily";

@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WikiBot extends BotTemplate {
-    public String botName = "Wiki-Bot";
+    public String botName = "wiki";
     private static final String BASE_URL = "https://de.wikipedia.org/w/rest.php/v1/search/page?q=";
     private APIConnect apiConnection = new APIConnect();
     private Map<String, String> commands = new HashMap<>();
@@ -64,6 +64,14 @@ public class WikiBot extends BotTemplate {
         JSONObject wikiData = apiConnection.connectToApi(apiUrl, null);
         String output = null;
         output = jsonFormat(wikiData.toString());
+
+        if(output == null) {
+            return null;
+        }
+
+        if(output.equals("Wiki-Bot:\n")){
+            return "Unbekannte Suchanfrage";
+        }
 
         return output;
     }

@@ -12,8 +12,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.example.IOHandler;
+
 public class TranslateBot extends BotTemplate {
-    public String botName = "Translator-Bot";
+    public String botName = "translator";
     private static final String API_KEY = "3dba9f7c-b663-2d6d-9ded-f5cb55afc8c2:fx";
     private static final String BASE_URL = "https://api-free.deepl.com/v2/translate";
     private APIConnect apiConnection = new APIConnect();
@@ -23,7 +25,7 @@ public class TranslateBot extends BotTemplate {
     @Override
     public void processRequest(String request, String username) {
         setupCommands();
-        String result = connection(request);
+        String result = connection(username, request);
         if (result == null) {
             answer(username, botName, processingError);
         } else {
@@ -44,7 +46,7 @@ public class TranslateBot extends BotTemplate {
         return output.toString();
     }
 
-    private String connection(String input) {
+    private String connection(String currentUser, String input) {
         JSONObject translatorData;
 
         if (input.equals("!translator")) {
@@ -65,10 +67,8 @@ public class TranslateBot extends BotTemplate {
 
         if (selectedLanguage != null) {
             String[] language = {selectedLanguage};
-            System.out.println("Selected language: " + language[0] + "\n Was möchtest du übersetzen lassen?");
-
-            Scanner scanner = new Scanner(System.in);
-            String text = scanner.nextLine();
+            IOHandler.output(currentUser, botName, "Selected language: " + language[0] + "\n Was möchtest du übersetzen lassen?");
+            String text = IOHandler.getInput(currentUser, "SYSTEM");
 
             String apiUrl = null;
             try {

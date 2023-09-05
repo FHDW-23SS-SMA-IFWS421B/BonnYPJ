@@ -28,7 +28,7 @@ public class Session implements SessionInterface {
     public void communication() {
         boolean end = false;
         while (!end) {
-            String input = IOHandler.getPrefixInput(currentUser, "\n- ");
+            String input = IOHandler.getPrefixInput(currentUser, "\n- ", "");
             for (String element : exit) {
                 if (element.equals(input)) {
                     IOHandler.output(currentUser, "SYSTEM", "\n");

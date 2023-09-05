@@ -51,7 +51,7 @@ public class DBHandler{
         String tablename = "botList";
         String target = "status";
         String value = "False";
-        String condition = "bots'";
+        String condition = "bots";
         String criteria = botName;
         DBImplementation.updateDb(tablename, target, value, condition, criteria);
     }
@@ -60,7 +60,7 @@ public class DBHandler{
         String tablename = "botList";
         String target = "status";
         String value = "True";
-        String condition = "bots'";
+        String condition = "bots";
         String criteria = botName;
         DBImplementation.updateDb(tablename, target, value, condition, criteria);
     }
@@ -81,10 +81,9 @@ public class DBHandler{
         String tablename = "botList";
         String value = "bots";
 
-        for (int i = 0; i < bot.length; i++) {
-            String botStatusList = DBImplementation.readDb(target, tablename, value, bot[1]).toString();
-            botStatus.put(bot[i], botStatusList);
-        }
+        for (String botName : bot) {
+            botStatus.put(botName, String.valueOf(botStatus(botName)));
+            }
         return botStatus;
     }
 

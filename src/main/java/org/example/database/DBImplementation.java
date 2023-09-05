@@ -43,7 +43,7 @@ public class DBImplementation{
 
     protected static void updateDb(String tablename, String target, String value, String condition, String criteria){
         try (Statement stmt = conn.createStatement()) {
-            String query = "UPDATE " + tablename + " SET " + target + " = " + value + " WHERE " + condition + " = " + criteria;
+            String query = "UPDATE " + tablename + " SET " + target + " = '" + value + "' WHERE " + condition + " = '" + criteria + "'";
             stmt.executeUpdate(query);
         }catch (SQLException e) {
             e.printStackTrace();
