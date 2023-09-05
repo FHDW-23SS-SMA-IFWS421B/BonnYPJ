@@ -58,7 +58,7 @@ public class WeatherBot extends BotTemplate {
             return null;
         }
 
-        boolean forecast = command.length == 3 && command[2].equals("Prognose");
+        boolean forecast = command.length == 3 && command[2].equals("prognose");
         String location = command[1];
 
         String apiUrl;

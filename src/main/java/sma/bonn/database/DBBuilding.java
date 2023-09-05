@@ -59,9 +59,9 @@ public class DBBuilding {
         String columnnames = "bots, status";
 
         String[][] bots = {
-                {"weather", "True"},
-                {"translator", "True"},
-                {"wiki", "True"}
+                {"weather", "False"},
+                {"translator", "False"},
+                {"wiki", "False"}
         };
 
         String target = "bots";

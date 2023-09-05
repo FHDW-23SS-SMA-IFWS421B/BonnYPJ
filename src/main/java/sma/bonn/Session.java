@@ -33,9 +33,9 @@ public class Session implements SessionInterface {
                     IOHandler.output(currentUser, "SYSTEM", "\n");
                     end = true;
                 }
-                if (!end) {
-                    BotCaller botCaller = new BotCaller(input, currentUser);
-                }
+            }
+            if (!end) {
+                BotCaller botCaller = new BotCaller(input, currentUser);
             }
         }
     }
