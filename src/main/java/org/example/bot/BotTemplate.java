@@ -8,6 +8,6 @@ public abstract class BotTemplate implements BasicBotTemplatInterface {
 
     @Override
     public void answer(String username, String botName, String answer) {
-        IOHandler.output(username, botName, answer);
+        IOHandler.output(username, botName, "\n" + answer);
     }
 }

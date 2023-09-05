@@ -17,7 +17,8 @@ public class BotCaller {
     public BotCaller(String input, String currentUser) {
         setBotObjects();
 
-        String botName = getBotNameFromInput(input);
+        String[] arrayOfInput = input.split(" ");
+        String botName = getBotRequest(arrayOfInput);
         if (botName == null) {
             return;
         }
@@ -28,9 +29,13 @@ public class BotCaller {
                 botName = botName.substring(0, botName.length() - 3);
             }
         }
-
+        String request = "!" + botName;
+        for (int i = 1; i<arrayOfInput.length; i++) {
+            request += " " + arrayOfInput[i];
+        }
+        System.out.println(botName + "\n-" + request);
         if (botObjects.get(botName) != null) {
-            botObjects.get(botName.toLowerCase()).processRequest(input, currentUser);
+            botObjects.get(botName).processRequest(request, currentUser);
         } else {
             IOHandler.output("None", "SYSTEM", requestError);
         }
@@ -47,9 +52,8 @@ public class BotCaller {
         botObjects.put("weather", weatherBot);
     }
 
-    private static String getBotNameFromInput(String input) {
+    private static String getBotRequest(String[] arrayOfInput) {
         /* Returns bot name and request. If form is not valid returns null */
-        String[] arrayOfInput = input.split(" ");
 
         if (arrayOfInput.length == 0) {
             IOHandler.output("None", "SYSTEM", "Gebe einen Befehl ein. " +
@@ -62,7 +66,6 @@ public class BotCaller {
             IOHandler.output("None", "SYSTEM", "Befehle müssen mit einem Ausrufezeichen beginnen");
             return null;
         }
-
         return arrayOfInput[0].substring(1);
     }
 }

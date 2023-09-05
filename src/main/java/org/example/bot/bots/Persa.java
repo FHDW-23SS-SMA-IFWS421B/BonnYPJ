@@ -109,7 +109,8 @@ public class Persa extends BotTemplate {
                 PERSA ist im Zuge der Arbeit für 'Softwaremodeling & Architecture Entstanden.
                 Es haben folgende Studenten mitgewirkt:
                 - Youssef Abdellaoui
-                - Jan Hölthe- Phillip Amendt""";
+                - Jan Hölthe
+                - Phillip Amendt""";
     }
 
     private String cmdLog() {
