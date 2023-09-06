@@ -44,8 +44,8 @@
     - [2.3 Wiki-Bot](#23-wiki-bot)
         - [2.3.1 Kontextabgrenzung](#231-kontextabgrenzung)
         - [2.3.2 Lösungsstrategie](#232-lösungsstrategie)
-        - [2.3.3 Bausteinsicht](#233-bausteinsetz)
-        - [2.3.4 Laufzeitsicht](#234-aufzeitsicht)
+        - [2.3.3 Bausteinsicht](#233-bausteinsicht)
+        - [2.3.4 Laufzeitsicht](#234-laufzeitsicht)
 
 # 1. Systemdokumentation
 
