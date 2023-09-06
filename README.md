@@ -88,16 +88,20 @@ Der Benutzer interagiert mit dem System und erhält darauf Antworten. Die Konver
 Die Lösungsstrategie umfasst die generellen Entscheidungen und Herangehensweisen bei der Realisierung des Systems.
 
 ###Technologienetscheidungen
+
 Zu Projektstart, muss man sich Gedanken, über Technologien, die man einsetzten wird, machen.
 Für die Entwicklung des Projekts wurde die Programmiersprache Java ausgewählt. Java zeichnet sich durch seine Robustheit und die objektorientierte Natur aus, wodurch sich eine Struktur aus Klassen und Objekten erstellen lässt, die für die geplante Architektur erforderlich ist. Zur Datenhaltung wurde eine SQLite-Datenbank gewählt. Diese Entscheidung basiert auf der Einfachheit und der Fähigkeit von SQLite, lokal ohne Server zu arbeiten. Weitere Informationen zu den verwendeten Technologien sind in der Kontextabgrenzung zu finden.
 
 ###Entwurfsmuster
+
 Um sicherzustellen, dass das System zuverlässig, skalierbar und erweiterbar ist, wurden gängige Design- und Architekturmuster implementiert. Dies trägt zur besseren Wartbarkeit des Codes, zur Austauschbarkeit einzelner Komponenten und zur klaren Zuweisung von Aufgaben an spezifische Systemteile bei. Weitere Einzelheiten zu den verwendeten Mustern sind im Abschnitt "Querschnittliche Konzepte" zu finden.
 
 ###Qualitätsanforderungen
+
 Zur Erfüllung der diversen Qualitätsmerkmale wurden unterschiedliche Maßnahmen ergriffen. Der Code wurde bewusst sauber und übersichtlich gehalten, um eine einfache Wartung und Erweiterung zu ermöglichen. Darüber hinaus wurde viel Wert auf eine hochwertige Benutzererfahrung gelegt.
 
 ###Organisationsentscheidungen
+
 Um eine reibungslose und gleichzeitige Zusammenarbeit mehrerer Teammitglieder sicherzustellen, wurden Aufgaben und Teilmodule definiert, die zur Umsetzung des Systems implementiert werden müssen. Zur späteren Integration dieser Module wurden Schnittstellen festgelegt, die jedem Modul geplante Eingaben und Ausgaben zuweisen. Für die Zusammenarbeit wurde GitHub genutzt, wodurch jedes Teammitglied stets Zugriff auf den aktuellsten Code hatte und im Bedarfsfall auch auf ältere Versionen zugreifen konnte.
 
 ## 1.4 Bausteinsicht
