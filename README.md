@@ -135,11 +135,11 @@ Die Laufzeitsicht kann in zwei Aspekte unterteilt werden: die Interaktionen des 
 
 Der Ablauf der Benutzerinteraktion bezieht sich insbesondere auf den Anmeldevorgang. Um eine Verbindung zwischen beiden Sequenzdiagrammen herzustellen, wird angenommen, dass der Login erfolgreich war, sodass mit dem ersten Benutzereingabe-Schritt begonnen werden kann.
 
-![img_1.png](Sequenzdiagramm_User.png)
+![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/32baaefc-3ea3-4304-a0db-1ad3d936ceb8)
 
 Im Sequenzdiagramm wird der Ablauf mit dem Benutzer gestartet, der versucht, sich anzumelden. Dieser Vorgang wird in der "Session"-Klasse durchgeführt, wobei die eingegebenen Daten (Benutzername und Passwort) zur Überprüfung an den "Authenticator" weitergeleitet werden. Der "Authenticator" prüft, ob die eingegebenen Daten in der Datenbank, in der die Benutzernamen und die zugehörigen Passwörter gespeichert sind, vorhanden sind. Das Ergebnis dieser Überprüfung wird dann wieder vom "Authenticator" an die "Session" zurückgegeben, und die "Session" informiert daraufhin den Benutzer, ob der Login erfolgreich war oder fehlgeschlagen ist.
 
-![img_2.png](Sequenzdiagramm_Programm.png)
+![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/fed8b30f-dc1b-4039-a3dc-1f6526b42a45)
 
 Der Ablauf des Programms beginnt in der "Session"-Klasse, die den "IOHandler" verwendet, um eine Willkommensnachricht auszugeben und anschließend auf die Benutzereingabe zu warten. Nachdem der "IOHandler" die Benutzereingabe erhalten hat, wird diese an die "Session" zurückgegeben und von dort aus an den "BotCaller" weitergeleitet.
 
