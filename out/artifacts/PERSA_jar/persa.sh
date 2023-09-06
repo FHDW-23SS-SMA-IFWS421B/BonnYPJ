@@ -1,1 +1,2 @@
-java -jar ./persa.jar
+java -jar persa.jar
+sleep 30
