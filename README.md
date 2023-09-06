@@ -24,6 +24,7 @@ Stakeholder des Chatbots sind die Benutzer sowie Administratoren. Alle Stakehold
 
 Um eine Kontextabgrenzung der Software zu ermöglichen, sollte im Vorhinein eine oberflächliche Darstellung der einzelnen Akteure und deren Zusammenhänge oberflächlich vorgenommen werden. In dieser Arbeit wird dies mithilfe des beigefügten Diagramms visualisiert.
 ![img.png](Kontextabgrenzung.png)
+
 In dem Diagramm sind die zwei Beteiligten Benutzer und Admin abgebildet. Der Admin kann das Gesamtsystem starten, sowie weitere Chatbots hinzufügen. Des Weiteren können Admin und Benutzer sich anmelden und daraufhin einen Chatbot auswählen und diesen ansprechen. Die Chatnachrichten werden dann in der SQLite Datenbank gespeichert und können auch abgerufen werden.
 
 Nachdem der Benutzer oder der Admin das Chatsystem angesprochen hat, erkennt dieser aus der Nachricht welcher Chatbot gemeint ist und kann dadurch eine Anfrage an die dafür ausgewählte Rest-API senden. Diese ruft dann im Webbrowser die Informationen ab und leitet diese zurück ans Chatsystem, welches dem Benutzer oder dem Admin die Antwort anzeigt.
@@ -58,6 +59,7 @@ Der Ablauf des Programmes beginnt mit der Session Klasse und diese lässt vom IO
 ## 1.6 Infrastrukturschicht
 
 ![img_3.png](Infrastruktur.png)
+
 Das Programm wird auf der execution Evironment Ebene unter dem Java Runtime Evironment SE als ausführbares Artifakt unter persa.jar ausgeführt. Die Usereingaben werden unter dem artifact, script unter persa.bat eingegeben. Das execution Evironment führt zum einem die Verbindung zur Komponente Api Connection, um die Api Abfragen der Chatbots durchzuführen, und zur SQL Connection für die Datenbankabfragen durch.
 
 ## 1.7 Querschnittliche Konzepte
