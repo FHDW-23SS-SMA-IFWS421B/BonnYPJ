@@ -67,8 +67,17 @@ Im technischen Kontext des Translator Bots sind die folgenden technischen Aspekt
 
 In diesem detaillierten Kontext sind die verschiedenen Aspekte des Translator Bots hervorgehoben, sowohl im fachlichen als auch im technischen Bereich, um ein umfassendes Verständnis seiner Funktionsweise zu vermitteln.
 
-
 ### Lösungsstrategie
+
+Die Lösungsstrategie für den Übersetzer Bot beginnt mit der Aktivierung durch den Nutzer über den Befehl "!translator" im IOHandler. Dieser Befehl fungiert als Auslöser für den BotCaller, der den Übersetzer Bot aktiviert. Wenn der Nutzer lediglich den Befehl "!translator" eingibt, wird eine Liste der verfügbaren Befehle und unterstützten Sprachen angezeigt, um dem Nutzer die Auswahl zu erleichtern.
+
+Die Zielsprache kann der Nutzer durch Eingabe des entsprechenden Sprachcodes auswählen, wobei DE für Deutsch, EN für Englisch, ES für Spanisch, FR für Französisch und IT für Italienisch stehen. Ein Beispiel wäre "!translator EN" für die Übersetzung ins Englische. Nach der Sprachauswahl wird der Nutzer aufgefordert, den zu übersetzenden Text oder das zu übersetzende Wort über den IOHandler einzugeben.
+
+Der Übersetzer Bot verarbeitet den Sprachcode und den eingegebenen Text, um eine URL für die Übersetzungsdienst-API zu generieren. Diese URL wird dann an die Klasse "APIConnect" übergeben, die einen HTTP GET-Request an die API sendet und die Antwort verarbeitet.
+
+Im Falle eines fehlgeschlagenen Requests oder eines API-Problems wird eine entsprechende Fehlermeldung an den Nutzer zurückgegeben. Bei einer erfolgreichen Anfrage erhält die APIConnect-Klasse ein JSON-Objekt als Antwort, das der Übersetzer Bot verarbeitet und in einen gut formatierten Text umwandelt. Diese formatierte Übersetzung wird dem Nutzer über den IOHandler präsentiert.
+
+Auf diese Weise ermöglicht der Übersetzer Bot eine effiziente und benutzerfreundliche Übersetzung von Texten und Wörtern in verschiedenen Sprachen, wobei Fehlerbehandlung und klare Ausgabe im Vordergrund stehen.
 
 ### Bausteinsicht
 
@@ -107,6 +116,18 @@ Im technischen Kontext des Wetter Bots sind die folgenden technischen Aspekte vo
 In diesem ausführlichen Kontext werden die verschiedenen Aspekte des Wetter Bots, sowohl im fachlichen als auch im technischen Bereich, betont, um ein umfassendes Verständnis seiner Funktionsweise und seines Zwecks zu vermitteln.
 
 ### Lösungsstrategie
+
+Der Wetter Bot wird aktiviert, wenn der Nutzer den Befehl "!weather" im IOHandler eingibt. Dieser Befehl dient als Auslöser für den BotCaller, um den Wetter Bot zu starten. Wenn der Nutzer "!weather" ohne weitere Angabe eingibt, zeigt der Bot eine Befehlsliste an, die dem Nutzer die Wahl zwischen aktuellem Wetter und Wettervorhersage ermöglicht.
+
+Der Nutzer kann wählen, ob er das aktuelle Wetter oder eine Wettervorhersage abfragen möchte. Für eine einfache Wetterabfrage gibt der Nutzer "!weather" gefolgt von der gewünschten Stadt ein. Wenn er eine Wettervorhersage möchte, fügt er "Prognose" hinzu, also "!weather" gefolgt von der Stadt und "Prognose".
+
+Die Stadteingabe erfolgt über den IOHandler. Der Nutzer gibt den Namen der Stadt ein, für die er das Wetter abfragen möchte. Der Bot wird dann versuchen, die Wetterdaten für diese Stadt zu erhalten.
+
+Der Bot verarbeitet die Eingabe des Nutzers und erstellt eine URL für die Anfrage an die Wetter-API, abhängig davon, ob eine Wetterabfrage oder eine Prognose angefordert wird. Diese URL wird an die Klasse "APIConnect" übergeben, die einen HTTP GET-Request an die API sendet und die Antwort verarbeitet.
+
+Im Falle eines fehlgeschlagenen Requests oder anderer Probleme bei der API-Anfrage wird eine Fehlermeldung an den Nutzer zurückgegeben, um ihn über das Problem zu informieren.
+
+Bei einer erfolgreichen Anfrage an die API erhält die APIConnect-Klasse ein JSON-Objekt als Antwort. Dieses JSON-Objekt wird vom Wetter Bot verarbeitet und in einen gut formatierten Text umgewandelt. Der Text stellt entweder das aktuelle Wetter für die angegebene Stadt oder eine fünftägige Wettervorhersage dar. Auf diese Weise ermöglicht der Wetter Bot eine präzise und benutzerfreundliche Abfrage von Wetterinformationen, sowohl für das aktuelle Wetter als auch für Prognosen, wobei Fehlerbehandlung und klare Ausgabe im Vordergrund stehen, um eine reibungslose Benutzererfahrung sicherzustellen.
 
 ### Bausteinsicht
 
