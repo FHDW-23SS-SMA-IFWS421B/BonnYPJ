@@ -237,6 +237,26 @@ Es ist von größter Bedeutung, diese Risiken und Herausforderungen während des
 
 ## 1.12 Installationsanleitung
 
+Um das Programm erfolgreich zum Laufen zu bringen, sind einige technische Anforderungen und Schritte erforderlich, die im Folgenden bildungssprachlich und ausführlicher erläutert werden:
+
+**Systemvoraussetzungen:** Für die reibungslose Ausführung des Chatbots wird mindestens OpenJDK Version 17 oder Java Version 8 benötigt. Diese Java-Umgebung ist erforderlich, um den Chatbot-Code zu interpretieren und auszuführen.
+
+**Speicherplatz:** Stelle sicher, dass auf deinem Rechner mindestens 80 Megabyte freier Speicherplatz verfügbar sind. Dieser Speicherplatz wird benötigt, um den Chatbot und seine begleitenden Dateien zu speichern und auszuführen.
+
+**Erforderliche Dateien:** Um den Chatbot auszuführen, werden spezifische Dateien benötigt:
+
+Die Datei "persa.jar": Dies ist das ausführbare JAR-Archiv des Chatbots, das seine Funktionalität enthält.
+
+Die Datei "persa.bat" (für Windows) oder "persa.sh" (für Linux): Diese Startskripte ermöglichen es, den Chatbot zu initiieren.
+
+Der Ordner "database": Dieser Ordner enthält die Datenbanken und Daten, die der Chatbot während seiner Ausführung benötigt.
+
+Verzeichnisstruktur: Es ist entscheidend, dass die Verzeichnisstruktur, wie sie bereitgestellt wurde, unverändert bleibt. Dies gewährleistet, dass der Chatbot alle erforderlichen Ressourcen und Dateien findet und korrekt ausführt.
+
+Starten des Chatbots: Um den Chatbot zu starten, führe entweder die Datei "persa.bat" (für Windows) oder "persa.sh" (für Linux) aus. Ein Terminal- oder Befehlszeilenfenster öffnet sich, und der Chatbot wird initialisiert.
+
+Die Einhaltung dieser Schritte und Voraussetzungen gewährleistet, dass der Chatbot auf deinem System ordnungsgemäß funktioniert und du eine reibungslose Interaktion mit ihm haben kannst. Beachte bitte die spezifischen Anweisungen für dein Betriebssystem (Windows oder Linux) und die Versionsanforderungen für Java.
+
 ## 1.13 Konfiguration
 
 Der Benutzer gibt seinen Benutzernamen und sein Passwort ein. Bei korrekten Anmeldedaten erfolgt eine erfolgreiche Anmeldung, und der Benutzer erhält Zugriff auf die Chatbots. Im Falle eines falschen Passworts wird der Benutzer aufgefordert, die Daten erneut einzugeben, bis die korrekten Anmeldedaten vorliegen.
