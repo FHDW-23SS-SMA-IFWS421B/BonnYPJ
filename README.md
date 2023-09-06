@@ -12,6 +12,10 @@
         - [1.2.2 Fachlicher Kontext](#122-fachlicher-kontext)
         - [1.2.3 Technischer Kontext](#123-technischer-kontext)
     - [1.3 Lösungsstrategie](#13-lösungsstrategie)
+        - [1.3.1 Technologienentscheidungen](#131-technologienentscheidungen)
+        - [1.3.2 Entwurfsmuster](#132-entwurfsmuster)
+        - [1.3.3 Qualitätsanforderungen](#133-qualitätsanforderungen)
+        - [1.3.4 Organisationsentscheidungen](#134-organisationsentscheidungen)
     - [1.4 Bausteinsicht](#14-bausteinsicht)
     - [1.5 Laufzeitsicht](#15-laufzeitsicht)
     - [1.6 Infrastruktursicht](#16-infrastruktursicht)
@@ -81,6 +85,20 @@ Der Benutzer interagiert mit dem System und erhält darauf Antworten. Die Konver
 Über das Control Panel interagiert der Benutzer mit dem System. Das System dient dabei auch als Schnittstelle für die Systemantworten und nutzt spezifische API-Anfragen, um die Daten mit der API auszutauschen. Des Weiteren wird die Verbindung zwischen dem System und der Datenbank durch eine SQL-Verbindung hergestellt.
 
 ## 1.3 Lösungsstrategie
+Die Lösungsstrategie umfasst die generellen Entscheidungen und Herangehensweisen bei der Realisierung des Systems.
+
+###Technologienetscheidungen
+Zu Projektstart, muss man sich Gedanken, über Technologien, die man einsetzten wird, machen.
+Für die Entwicklung des Projekts wurde die Programmiersprache Java ausgewählt. Java zeichnet sich durch seine Robustheit und die objektorientierte Natur aus, wodurch sich eine Struktur aus Klassen und Objekten erstellen lässt, die für die geplante Architektur erforderlich ist. Zur Datenhaltung wurde eine SQLite-Datenbank gewählt. Diese Entscheidung basiert auf der Einfachheit und der Fähigkeit von SQLite, lokal ohne Server zu arbeiten. Weitere Informationen zu den verwendeten Technologien sind in der Kontextabgrenzung zu finden.
+
+###Entwurfsmuster
+Um sicherzustellen, dass das System zuverlässig, skalierbar und erweiterbar ist, wurden gängige Design- und Architekturmuster implementiert. Dies trägt zur besseren Wartbarkeit des Codes, zur Austauschbarkeit einzelner Komponenten und zur klaren Zuweisung von Aufgaben an spezifische Systemteile bei. Weitere Einzelheiten zu den verwendeten Mustern sind im Abschnitt "Querschnittliche Konzepte" zu finden.
+
+###Qualitätsanforderungen
+Zur Erfüllung der diversen Qualitätsmerkmale wurden unterschiedliche Maßnahmen ergriffen. Der Code wurde bewusst sauber und übersichtlich gehalten, um eine einfache Wartung und Erweiterung zu ermöglichen. Darüber hinaus wurde viel Wert auf eine hochwertige Benutzererfahrung gelegt.
+
+###Organisationsentscheidungen
+Um eine reibungslose und gleichzeitige Zusammenarbeit mehrerer Teammitglieder sicherzustellen, wurden Aufgaben und Teilmodule definiert, die zur Umsetzung des Systems implementiert werden müssen. Zur späteren Integration dieser Module wurden Schnittstellen festgelegt, die jedem Modul geplante Eingaben und Ausgaben zuweisen. Für die Zusammenarbeit wurde GitHub genutzt, wodurch jedes Teammitglied stets Zugriff auf den aktuellsten Code hatte und im Bedarfsfall auch auf ältere Versionen zugreifen konnte.
 
 ## 1.4 Bausteinsicht
 
