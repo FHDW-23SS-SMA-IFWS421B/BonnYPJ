@@ -389,7 +389,7 @@ Basierend auf dem gewählten Sprachcode und dem eingegebenen Text wird mithilfe 
 Die erstellte URL wird als Parameter an die Klasse APIConnect übergeben. Diese Klasse sendet dann einen GET-Request an die API. Im Falle eines fehlgeschlagenen Requests wird eine Fehlermeldung ausgegeben.
 
 **6. Antwortverarbeitung:**
-Bei einer erfolgreichen Anfrage gibt die APIConnect-Klasse ein JSONObject zurück. Der Bot verarbeitet dieses JSONObject, formatiert es zu einem String und gibt die Übersetzung aus
+Bei einer erfolgreichen Anfrage gibt die APIConnect-Klasse ein JSONObject zurück. Der Bot verarbeitet dieses JSONObject, formatiert es zu einem String und gibt die Übersetzung aus.
 
 ## 2.2 Wetter-Bot
 
