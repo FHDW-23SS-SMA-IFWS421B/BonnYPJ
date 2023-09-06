@@ -46,7 +46,6 @@
         - [2.3.2 Lösungsstrategie](#232-lösungsstrategie)
         - [2.3.3 Bausteinsicht](#233-bausteinsetz)
         - [2.3.4 Laufzeitsicht](#23-4laufzeitsicht)
-- [3 Weitere Schritte](#3-weitere-schritte)
 
 # 1. Systemdokumentation
 
