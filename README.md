@@ -12,7 +12,7 @@
         - [1.2.2 Fachlicher Kontext](#122-fachlicher-kontext)
         - [1.2.3 Technischer Kontext](#123-technischer-kontext)
     - [1.3 Lösungsstrategie](#13-lösungsstrategie)
-        - [1.3.1 Technologienentscheidungen](#131-technologienentscheidungen)
+        - [1.3.1 Technologieentscheidungen](#131-technologieentscheidungen)
         - [1.3.2 Entwurfsmuster](#132-entwurfsmuster)
         - [1.3.3 Qualitätsanforderungen](#133-qualitätsanforderungen)
         - [1.3.4 Organisationsentscheidungen](#134-organisationsentscheidungen)
@@ -70,7 +70,7 @@ Zu den Stakeholdern des Chatbots zählen sowohl die Benutzer als auch die Admini
 
 ### 1.2.1 Visualisierung
 
-Um eine Kontextabgrenzung der Software zu ermöglichen, sollte im Vorhinein eine oberflächliche Darstellung der einzelnen Akteure und deren Zusammenhänge oberflächlich vorgenommen werden. In dieser Arbeit wird dies mithilfe des beigefügten Diagramms visualisiert.
+Um eine Kontextabgrenzung der Software zu ermöglichen, sollte im Vorhinein eine Darstellung der einzelnen Akteure und deren Zusammenhänge oberflächlich vorgenommen werden. In dieser Arbeit wird dies mithilfe des beigefügten Diagramms visualisiert.
 
 ![img.png](Kontextabgrenzung.png)
 
@@ -84,19 +84,19 @@ Der Nutzer interagiert aktiv mit dem System und erhält im Anschluss entsprechen
 
 ### 1.2.3 Technischer Kontext
 
-Der Benutzer interagiert mit dem System über das Control Panel. Das System fungiert dabei nicht nur als Schnittstelle für die Systemantworten, sondern verwendet auch gezielte API-Anfragen, um Daten mit der API auszutauschen. Darüber hinaus erfolgt die Verbindung zwischen dem System und der Datenbank über eine SQL-Verbindung.
+Der Benutzer interagiert mit dem System über das Control Panel. Das System fungiert dabei nicht nur als Schnittstelle für die Systemantworten, sondern verwendet auch gezielte API-Abfragen, um Daten mit der API auszutauschen. Darüber hinaus erfolgt die Verbindung zwischen dem System und der Datenbank über eine SQL-Verbindung.
 
 ## 1.3 Lösungsstrategie
 
 Die Lösungsstrategie umfasst die generellen Entscheidungen und Herangehensweisen bei der Realisierung des Systems.
 
-### 1.3.1 Technologienetscheidungen
+### 1.3.1 Technologieentscheidungen
 
 Bei Projektbeginn ist es von essenzieller Bedeutung, im Vorfeld sorgfältig über die eingesetzten Technologien nachzudenken.
 
-Für die Entwicklung dieses Projekts wurde die Programmiersprache Java als zentrales Element ausgewählt. Java zeichnet sich insbesondere durch seine Robustheit und die objektorientierte Natur aus, wodurch eine Struktur aus Klassen und Objekten geschaffen werden kann, die exakt den Anforderungen der geplanten Architektur entspricht.
+Für die Entwicklung dieses Projekts wurde die Programmiersprache Java als zentrales Element ausgewählt. Java zeichnet sich insbesondere durch seine objektorientierte Nutzungsoberfläche aus, wodurch eine Struktur aus Klassen und Objekten geschaffen werden kann, die exakt den Anforderungen der geplanten Architektur entspricht.
 
-Hinsichtlich der Datenhaltung fiel die Wahl auf eine SQLite-Datenbank. Diese Entscheidung gründet sich auf ihrer Einfachheit sowie der Fähigkeit von SQLite, lokal ohne Server zu operieren. Weiterführende Informationen zu den verwendeten Technologien sind in der Kontextabgrenzung des Projekts einsehbar.
+Hinsichtlich der Datenverwaltung fiel die Wahl auf eine SQLite-Datenbank. Diese Entscheidung gründet sich auf ihrer Einfachheit sowie der Fähigkeit von SQLite, lokal ohne Server zu operieren.
 
 ### 1.3.2 Entwurfsmuster
 
@@ -118,13 +118,13 @@ Für die koordinierte Zusammenarbeit wurde das Tool GitHub eingesetzt, was jedem
 
 ![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/8c019632-8ae3-4a86-acf0-b80615614ae3)
 
-Das Programm besteht aus insgesamt 17 Bausteinen, die in einer hierarchischen Struktur zusammenarbeiten. Als zentraler Baustein fungiert die Klasse "Session," die als Einstiegspunkt des Programms dient. Der "Authenticator" ist dafür zuständig, die Überprüfung von Benutzername und Passwort durchzuführen.
+Das Programm besteht aus insgesamt 17 Bausteinen, die in einer hierarchischen Struktur zusammenarbeiten. Als zentraler Baustein fungiert die Klasse "Session", die als Einstiegspunkt des Programms dient. Der "Authenticator" ist dafür zuständig, die Überprüfung von Benutzername und Passwort durchzuführen.
 
 Der "IOHandler" wird verwendet, um Benutzereingaben zu erfassen und alle Ausgaben zu verarbeiten.
 
 Die "DBBuilding"-Klasse hat die Aufgabe, beim Programmstart zu überprüfen, ob die erforderlichen Datenbanken bereits vorhanden sind. Falls nicht, werden sie mit den erforderlichen Daten erstellt. Die "DBHandler"-Klasse liest und schreibt in die Datenbankprotokolle, liest Benutzernamen und Passwörter, aktiviert und deaktiviert Chatbots und zeigt die Chatbots und ihren Status an. Die "DBImplementation"-Klasse stellt die Verbindung zur Datenbank her und führt alle SQL-Anweisungen aus den Klassen "DBBuilding" und "DBHandler" aus.
 
-Die "BotCaller"-Klasse analysiert die Benutzereingabe und ruft die entsprechenden Chatbots auf, darunter der Wiki-Bot, der Wetter-Bot, der Übersetzungs-Bot und der Persa-Bot. Von diesen Chatbots, mit Ausnahme des Persa-Bots, da es sich bei diesem um das Verwaltungssystem handelt, wird eine Verbindung zu externen Schnittstellen hergestellt. Die "ApiConnect"-Klasse ermöglicht es den einzelnen Chatbots, auf diese externen Schnittstellen zuzugreifen und die benötigten Informationen abzurufen.
+Die "BotCaller"-Klasse analysiert die Benutzereingabe und ruft die entsprechenden Chatbots auf, darunter der Wiki-Bot, der Wetter-Bot, der Übersetzungs-Bot und der Persa-Bot. Von diesen Chatbots, mit Ausnahme des Persa-Bots, da es sich bei diesem um das Verwaltungssystem handelt, wird eine Verbindung zu externen Schnittstellen hergestellt. Die "APIConnect"-Klasse ermöglicht es den einzelnen Chatbots, auf diese externen Schnittstellen zuzugreifen und die benötigten Informationen abzurufen.
 
 In einer zusammenfassenden Betrachtung wird deutlich, dass die Bausteinsicht eine hochgradig abstrakte Darstellungsform darstellt. Diese Abstraktion erlaubt es, Informationen über den zugrundeliegenden Quellcode auszutauschen, ohne dabei allzu viele technische Implementierungsdetails offenlegen zu müssen. Diese Herangehensweise erleichtert erheblich das Verständnis der strukturellen Komponenten und fördert die effektive Kommunikation über das Gesamtsystem auf einer übergeordneten, konzeptionellen Ebene.
 
@@ -132,7 +132,7 @@ In einer zusammenfassenden Betrachtung wird deutlich, dass die Bausteinsicht ein
 
 Die Laufzeitsicht kann in zwei Aspekte unterteilt werden: die Interaktionen des Benutzers und den Ablauf des Programms.
 
-Der Ablauf der Benutzerinteraktion bezieht sich insbesondere auf den Anmeldevorgang. Um eine Verbindung zwischen beiden Sequenzdiagrammen herzustellen, wird angenommen, dass der Login erfolgreich war, sodass mit dem ersten Benutzereingabe-Schritt begonnen werden kann.
+Der Ablauf der Benutzerinteraktion bezieht sich insbesondere auf den Anmeldevorgang. Um eine Verbindung zwischen beiden Sequenzdiagrammen herzustellen, wird angenommen, dass der Login erfolgreich war, sodass mit dem ersten Schritt der Benutzereingabe begonnen werden kann.
 
 ![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/32baaefc-3ea3-4304-a0db-1ad3d936ceb8)
 
@@ -142,14 +142,13 @@ Im Sequenzdiagramm wird der Ablauf mit dem Benutzer gestartet, der versucht, sic
 
 Der Ablauf des Programms beginnt in der "Session"-Klasse, die den "IOHandler" verwendet, um eine Willkommensnachricht auszugeben und anschließend auf die Benutzereingabe zu warten. Nachdem der "IOHandler" die Benutzereingabe erhalten hat, wird diese an die "Session" zurückgegeben und von dort aus an den "BotCaller" weitergeleitet.
 
-Der "BotCaller" überprüft dann die empfangene Nachricht anhand eines festgelegten Präfixes und erkennt auf diese Weise, welchem Chatbot die Benutzereingabe zugeordnet werden soll. Der ausgewählte Chatbot identifiziert dann den spezifischen Befehl und leitet gegebenenfalls die Anfrage an die "APIConnect" Klasse weiter, um die erforderlichen Informationen abzurufen. Die Antwort von der "APIConnect" wird anschließend in einen geeigneten Textformat umgewandelt und an den "IOHandler" zurückgegeben.
+Der "BotCaller" überprüft dann die empfangene Nachricht anhand eines festgelegten Präfixes und erkennt auf diese Weise, welchem Chatbot die Benutzereingabe zugeordnet werden soll. Der ausgewählte Chatbot identifiziert dann den spezifischen Befehl und leitet gegebenenfalls die Anfrage an die "APIConnect"-Klasse weiter, um die erforderlichen Informationen abzurufen. Die Antwort von der "APIConnect" wird anschließend in einen geeigneten Textformat umgewandelt und an den "IOHandler" zurückgegeben.
 
 Schließlich gibt der "IOHandler" die Antwort aus.
 
 ## 1.6 Infrastruktursicht
 
 ![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/747bf195-9970-491e-bf26-f418735de9d8)
-
 
 Das Programm wird auf der Ausführungsebene unter Verwendung des Java Runtime Environment SE als ausführbares Artefakt mit dem Namen "persa.jar" ausgeführt. Benutzereingaben können unter dem Artefakt "script" mit dem Namen "persa.bat" eingegeben werden.
 
@@ -192,20 +191,20 @@ Zusammenfassend bieten Design Patterns wie das Abstrakte Fabrik-Muster und das S
 | DeepL API           | Übersetzungsdienst für Texte                         | GET         | HTTP                    | JSON             | API-Key 				             |
 | Wikipedia API       | Abruf von Informationen aus Wikipedia                | GET         | HTTP                    | JSON             | N/A                                                |
 | OpenWeather API     | Wetterdatenabruf für bestimmte Standorte             | GET         | HTTP                    | JSON             | API-Key				             |
-| Datenbank Connector | Kommunikation mit der Datenbank 		     | Lesen       | SQL	             | Tabellen, Objekte| Benutzername und Passwort			    
+| Datenbank Connector | Kommunikation mit der Datenbank 		     | Lesen       | SQL	             | Tabellen, Objekte| N/A			    
 
-Die Chatbot-Anwendung interagiert mit externen Systemen mithilfe von APIs, die als Schnittstellen dienen. Diese Schnittstellen ermöglichen die Bereitstellung einer Vielzahl von Diensten wie beispielsweise Textübersetzung, Wetterinformationen und Wissensabfragen. Um diese Verbindung zu den APIs herzustellen, nutzt die Anwendung die Klasse "APIConnect". Innerhalb dieser Klasse steht die Methode "connectToApi" zur Verfügung, die eine Hypertext Transfer Protocol (HTTP)-Verbindung zu den jeweiligen APIs aufbaut und JSON-formatierte Antworten empfängt. Im Kontext der Klasse "SqlOperations" wird eine Verbindung zu einer internen Datenbank hergestellt, die dazu dient, die Verlaufsdokumentation der Konversationen mit den Nutzern zu speichern.
+Die Chatbot-Anwendung interagiert mit externen Systemen mithilfe von APIs, die als Schnittstellen dienen. Diese Schnittstellen ermöglichen die Bereitstellung einer Vielzahl von Diensten wie beispielsweise Textübersetzung, Wetterinformationen und Wissensabfragen. Um diese Verbindung zu den APIs herzustellen, nutzt die Anwendung die Klasse "APIConnect". Innerhalb dieser Klasse steht die Methode "connectToApi" zur Verfügung, die eine HTTP-Verbindung zu den jeweiligen APIs aufbaut und JSON-formatierte Antworten empfängt. Im Kontext der Klasse "SqlOperations" wird eine Verbindung zu einer internen Datenbank hergestellt, die dazu dient, die Verlaufsdokumentation der Konversationen mit den Nutzern zu speichern.
 	
 ### 1.	Translation Bot
 Bei dem Translation-Bot, der die DeepL API nutzt, erhält der Chatbot durch diese Technologie Zugriff auf fortschrittliche maschinelle Übersetzungsfunktionen von DeepL. Das ermöglicht dem Chatbot, hochwertige Übersetzungen in Echtzeit anzubieten. Die Software sendet eine HTTP-Anfrage an die DeepL API, um eine Übersetzung zu erhalten. Diese Anfrage enthält den zu übersetzenden Text und die gewünschte Zielsprache. Die API antwortet daraufhin mit der übersetzten Version des Textes. 
 Die entsprechende API-URL ist: https://api-free.deepl.com/v2/translate.
 
 ### 2.	 Weather Bot
-Im Falle des Weather-Bots, welcher die Openweathermap API nutzt, ermöglicht diese Schnittstelle den Abruf von aktuellen Wetterinformationen für eine bestimmte Stadt. Die Anfrage an die Openweathermap API erfolgt ebenfalls per HTTP-Anfrage, wobei der Name der Stadt angegeben wird. Die API stellt daraufhin relevante Wetterdaten wie Temperatur und Windgeschwindigkeit für die angegebene Stadt zur Verfügung. 
-Die entsprechende API-URL ist: http://api.openweathermap.org/data/2.5/weather.
+Im Falle des Weather-Bots, welcher die Openweathermap API nutzt, ermöglicht diese Schnittstelle den Abruf von aktuellen Wetterinformationen für eine bestimmte Stadt. Die Anfrage an die Openweathermap API erfolgt ebenfalls per HTTP-Anfrage, wobei der Name der Stadt angegeben wird. Die API stellt daraufhin relevante Wetterdaten wie Temperatur und Windgeschwindigkeit für die angegebene Stadt zur Verfügung. Es ist außerdem möglich über die API eine Wetterprognose zu erhalten, um das Wetter einer Stadt für die kommenden fünf Tage ausgeben zu lassen.
+Die entsprechende API-URL ist: http://api.openweathermap.org/data/2.5.
 
 ### 3.   Wiki Bot
-Der Wiki-Bot, der die offizielle Wikipedia API nutzt, eröffnet dem Chatbot Zugriff auf die umfassende Wikipedia-Datenbank, um Nutzern gezielte Informationen zu speziellen Themen bereitzustellen. Die Kommunikation mit der Wikipedia API erfolgt durch die Software mittels einer HTTP-Anfrage, bei der der gewünschte Suchbegriff übermittelt wird. Als Antwort erhält die Software eine Liste relevanter Wikipedia-Seiten, die mit dem angegebenen Suchbegriff in Verbindung stehen. 
+Der Wiki-Bot, der die offizielle Wikipedia API nutzt, eröffnet dem Chatbot Zugriff auf die umfassende Wikipedia-Datenbank, um Nutzern gezielte Informationen zu speziellen Themen bereitzustellen. Die Kommunikation mit der Wikipedia API erfolgt durch die Software mittels einer HTTP-Anfrage, bei der der gewünschte Suchbegriff übermittelt wird. Als Antwort erhält die Software eine Liste relevanter Informationen, die mit dem angegebenen Suchbegriff in Verbindung stehen. 
 Die entsprechende API-URL lautet: https://de.wikipedia.org/w/rest.php/v1/search/page.
 
 ### 4.	 SQL-Datenbank
@@ -213,7 +212,7 @@ Die Schnittstelle zur SQL-Datenbank in der Anwendung ermöglicht einen nahtlosen
 
 Für den eigentlichen Austausch von Informationen mit den oben genannten APIs ist die Klasse APIConnect verantwortlich. Diese nimmt die zusammengestellten URLs aus den jeweiligen Bots als Parameter entgegen und ermöglicht mithilfe dieser Verbindungen zu den APIs. Innerhalb dieser Klasse steht eine generische Methode zur Verfügung, mittels derer GET-Anfragen an die entsprechenden APIs gesendet werden können. Die Antworten der APIs werden als JSONObject zurückgeliefert, das die von der API empfangenen Daten enthält. Falls es während der Kommunikation mit der API zu Fehlern kommt, werden vordefinierte Texte abgegeben oder Ausnahmen (Exceptions) geworfen, abhängig von der Art des Fehlers.
 
-## 1.9 Risiken und teschnische Schulden
+## 1.9 Risiken und technische Schulden
 
 In der Software sind verschiedene kritische Risikofaktoren und technische Herausforderungen zu identifizieren, die erheblichen Einfluss auf die Entwicklungs- und Sicherheitsbemühungen haben können. Diese Risiken betreffen hauptsächlich:
 
@@ -233,15 +232,15 @@ Um diese Risiken zu minimieren, ist es entscheidend, eine umfassende Risikobewer
 
 ## 1.10 Erweiterungen
 
-Das System ermöglicht das Hinzufügen neuer Bots, erfordert jedoch Anpassungen an drei bestimmten Stellen im Code:
+Das System ermöglicht das Hinzufügen neuer Bots. Dies erfordert jedoch Anpassungen an drei spezifischen Stellen im Code:
 
-1. Beginnen Sie damit, eine neue Klasse für Ihren Bot zu erstellen, die von der BotTemplate-Klasse abgeleitet ist. In der Methode "processRequest" erhalten Sie den vollständigen Eingabeinput. Sie können diesen Input nach Ihren Wünschen verarbeiten und ihn mit der geerbten Methode "answer" ausgeben, die einen einfachen Text als Ergebnis erwartet.
+1. Am Anfang wird eine neue Klasse für den zu erstellenden Bot angelegt, die von der BotTemplate-Klasse abgeleitet ist. In der Methode "processRequest" erhalten Sie den vollständigen Eingabeinput. Diesen Input können Sie nach Belieben verarbeiten und ihn anschließend mit der geerbten Methode "answer" ausgeben, die einen einfachen Text als Ergebnis erwartet.
 
-2. In der Methode "setBotObjects" in der BotCaller-Klasse erstellen Sie ein neues Objekt vom Typ "BotTemplate" und fügen Sie dieses Objekt der HashMap "botObjects" hinzu, wobei Sie den Botnamen in Kleinbuchstaben als Schlüssel verwenden.
+2. In der Methode "setBotObjects" in der BotCaller-Klasse erstellen Sie ein neues Objekt vom Typ "BotTemplate" und fügen dieses Objekt der HashMap "botObjects" hinzu, wobei Sie den Botnamen in Kleinbuchstaben als Schlüssel verwenden.
 
 3. In der Methode "insertBots" der BotBuilding-Klasse müssen Sie dem verschachtelten String-Array 'bots' ein neues Array mit dem Botnamen und dem Wert "False" hinzufügen.
 
-Achten Sie darauf, diesen Prozess für jeden neuen Bot zu wiederholen, den Sie integrieren möchten. Auf diese Weise können Sie erfolgreich neue Bots in Ihr System integrieren.
+Stellen Sie sicher, dass Sie diesen Prozess für jeden neuen Bot wiederholen, den Sie in Ihr System integrieren möchten. Auf diese Weise können Sie erfolgreich neue Bots in Ihr System integrieren.
 
 ## 1.11 Fehlerbehebung
 
