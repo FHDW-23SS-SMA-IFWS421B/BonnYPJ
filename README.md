@@ -1,5 +1,30 @@
-# Systemdokumentation
-## Schnittstellen
+# 1. Systemdokumentation
+
+## 1.1 Einleitung
+
+### 1.1.1 Zweck der Dokumentation???
+
+### 1.1.2 Kontext des Chatbot-Basissystems???
+
+## 1.2 Kontextabgrenzung
+
+### 1.2.1 Fachlicher Kontext
+
+### 1.2.2 Technischer Kontext
+
+### 1.2.3 Visualisierung
+
+## 1.3 Lösungsstrategie
+
+## 1.4 Bausteinschicht
+
+## 1.5 Laufzeitschicht
+
+## 1.6 Infrastrukturschicht
+
+## 1.7 Querschnittliche Konzepte
+
+## 1.8 Schnittstellen
 
 | Schnittstelle       | Zweck und Funktion                                   | Operationen | Kommunikationsprotokoll | Datenformat      | Authentifizierung                                 |
 |---------------------|------------------------------------------------------|-------------|-------------------------|------------------|---------------------------------------------------|
@@ -35,11 +60,23 @@ Tabellenform und/oder Verweis auf Schemata
 
 ## Erweiterungen
 
-# Bot Dokumentation
+## 1.9 Risiken und teschnische Schulden
 
-## Übersetzer-Bot
+## 1.10 Erweiterungen
 
-### Kontextabgrenzung
+## 1.11 Fehlerbehebung
+
+## 1.12 Installationsanleitung
+
+## 1.13 Bot-Befehlsliste
+
+## 1.14 Konfiguration
+
+# 2 Bot Dokumentation
+
+## 2.1 Übersetzer-Bot
+
+### 2.1.1 Kontextabgrenzung
 
 **Fachlicher Kontext:**
 
@@ -67,7 +104,7 @@ Im technischen Kontext des Translator Bots sind die folgenden technischen Aspekt
 
 In diesem detaillierten Kontext sind die verschiedenen Aspekte des Translator Bots hervorgehoben, sowohl im fachlichen als auch im technischen Bereich, um ein umfassendes Verständnis seiner Funktionsweise zu vermitteln.
 
-### Lösungsstrategie
+### 2.1.2 Lösungsstrategie
 
 Die Lösungsstrategie für den Übersetzer Bot beginnt mit der Aktivierung durch den Nutzer über den Befehl "!translator" im IOHandler. Dieser Befehl fungiert als Auslöser für den BotCaller, der den Übersetzer Bot aktiviert. Wenn der Nutzer lediglich den Befehl "!translator" eingibt, wird eine Liste der verfügbaren Befehle und unterstützten Sprachen angezeigt, um dem Nutzer die Auswahl zu erleichtern.
 
@@ -79,9 +116,9 @@ Im Falle eines fehlgeschlagenen Requests oder eines API-Problems wird eine entsp
 
 Auf diese Weise ermöglicht der Übersetzer Bot eine effiziente und benutzerfreundliche Übersetzung von Texten und Wörtern in verschiedenen Sprachen, wobei Fehlerbehandlung und klare Ausgabe im Vordergrund stehen.
 
-### Bausteinsicht
+### 2.1.3 Bausteinsicht
 
-### Laufzeitsicht
+### 2.1.4Laufzeitsicht
 
 ## Wetter-Bot
 
