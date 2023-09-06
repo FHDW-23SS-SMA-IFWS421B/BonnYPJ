@@ -174,19 +174,12 @@ Zusammenfassend bieten Design Patterns wie das Abstrakte Fabrik-Muster und das D
 
 ## 1.8 Schnittstellen
 
-| Schnittstelle       | Zweck und Funktion                       | Operationen      | Kommunikationsprotokoll | Datenformat       | Authentifizierung                               |
-|---------------------|------------------------------------------|------------------|-------------------------|-------------------|
-| DeepL API           | Übersetzungsdienst für Texte             | GET              | HTTP                    | JSONObject        | API-Key                                         |
-| Wikipedia API       | Abruf von Informationen aus Wikipedia    | GET              | HTTP                    | JSONObject        | N/A                                             |
-| OpenWeather API     | Wetterdatenabruf für bestimmte Standorte | GET              | HTTP                    | JSONObject        | API-Key                                         |
-| Database Connection | Kommunikation mit der Datenbank          | Lesen, Schreiben | SQL                     | Tabellen, Objekte | N/A                                             |
-
 | Schnittstelle       | Zweck und Funktion                                   | Operationen | Kommunikationsprotokoll | Datenformat      | Authentifizierung                                  |
 |---------------------|------------------------------------------------------|-------------|-------------------------|------------------|----------------------------------------------------|
 | DeepL API           | Übersetzungsdienst für Texte                         | GET         | HTTP                    | JSON             | API-Key 				             |
 | Wikipedia API       | Abruf von Informationen aus Wikipedia                | GET         | HTTP                    | JSON             | N/A                                                |
 | OpenWeather API     | Wetterdatenabruf für bestimmte Standorte             | GET         | HTTP                    | JSON             | API-Key				             |
-| Datenbank Connector | Kommunikation mit der Datenbank 		     | Lesen       | SQL	             | Tabellen, Objekte| Username und Passwort				    
+| Datenbank Connector | Kommunikation mit der Datenbank 		     | Lesen       | SQL	             | Tabellen, Objekte| Benutzername und Passwort			    
  |
 
 Die Chatbot-Anwendung interagiert mit externen Systemen mithilfe von APIs, die als Schnittstellen dienen. Diese Schnittstellen ermöglichen die Bereitstellung einer Vielzahl von Diensten wie beispielsweise Textübersetzung, Wetterinformationen und Wissensabfragen. Um diese Verbindung zu den APIs herzustellen, nutzt die Anwendung die Klasse "APIConnect". Innerhalb dieser Klasse steht die Methode "connectToApi" zur Verfügung, die eine Hypertext Transfer Protocol (HTTP)-Verbindung zu den jeweiligen APIs aufbaut und JSON-formatierte Antworten empfängt. Im Kontext der Klasse "SqlOperations" wird eine Verbindung zu einer internen Datenbank hergestellt, die dazu dient, die Verlaufsdokumentation der Konversationen mit den Nutzern zu speichern.
