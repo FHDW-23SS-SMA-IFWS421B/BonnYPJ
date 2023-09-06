@@ -54,17 +54,18 @@
 
 In einer Zeit, in der Technologie und künstliche Intelligenz immer präsenter werden, suchen viele Menschen nach multifunktionalen Lösungen, um ihren Alltag zu erleichtern. In diesem Kontext steht die Software „PERSA“ als eine innovative Lösung, die eine Kombination verschiedener Chatbot-Funktionen bietet, um den Anforderungen und Wünschen der Benutzer gerecht zu werden.
 
-Die Software „PERSA“ stellt einen Chatbot dar, der als Mehrzweck-Chatbot verschiedene Bot-Funktionen integriert, um den Benutzer ein nützliches und vielseitiges Erlebnis zu bieten. In diesem Zusammenhang wurden ein Wetterbot, ein Wikibot, ein Übersetzerbot, sowie die Funktion, weitere Chatbots einfach und nahtlos in das Gesamtsystem zu integrieren.
+Die Software „PERSA“ repräsentiert einen Mehrzweck-Chatbot, der verschiedene Bot-Funktionen integriert, um den Benutzern ein nützliches und vielseitiges Erlebnis zu bieten. Dazu gehören ein Wetterbot, ein Wikibot und ein Übersetzerbot. Zudem besteht die Möglichkeit, weitere Chatbots einfach und nahtlos in das Gesamtsystem zu integrieren.
 
-Die Nutzer werden nach erfolgreicher Anmeldung von dem Chatbot Persa angesprochen. Daraufhin entscheidet sich der Nutzer für einen der Chatbot und kann diesen direkt ansprechen.
+Nach erfolgreicher Anmeldung werden die Nutzer vom Chatbot Persa begrüßt. Anschließend kann sich der Nutzer für einen der Chatbots entscheiden und diesen direkt ansprechen.
 
-Der Wetterbot ist ein integriertes Modul, das Echtzeit-Wetterinformationen, sowie Prognosen über das Wetter aus einer Quelle abruft und dem Benutzer präsentiert.
+Das integrierte Modul "Wetterbot" ruft Echtzeit-Wetterinformationen sowie Prognosen aus einer verlässlichen Quelle ab und stellt diese dem Benutzer zur Verfügung.
 
-Der Wikibot bietet dem Benutzer die Möglichkeit, einfachen Zugriff zu bestimmten Themen, Personen, Orten oder Ereignissen aus Wikipedia zuzugreifen.
+Mithilfe des Wikibots hat der Benutzer die Möglichkeit, unkompliziert Informationen zu bestimmten Themen, Personen, Orten oder Ereignissen aus Wikipedia abzurufen.
 
-Der Übersetzerbot ermöglicht dem Benutzer Texte zwischen verschiedenen Sprachen zu übersetzen.
+Der Übersetzerbot ermöglicht es den Benutzern, Texte zwischen verschiedenen Sprachen zu übersetzen.
 
-Stakeholder des Chatbots sind die Benutzer sowie Administratoren. Alle Stakeholder erwarten eine Anwendung ohne Fehlermeldung und Störungen.
+Zu den Stakeholdern des Chatbots zählen sowohl die Benutzer als auch die Administratoren. Alle Stakeholder erwarten eine fehlerfreie und störungsfreie Anwendung.
+
 
 ## 1.2 Kontextabgrenzung
 
@@ -74,37 +75,45 @@ Um eine Kontextabgrenzung der Software zu ermöglichen, sollte im Vorhinein eine
 
 ![img.png](Kontextabgrenzung.png)
 
-In dem Diagramm sind die zwei Beteiligten Benutzer und Admin abgebildet. Der Admin kann das Gesamtsystem starten, sowie weitere Chatbots hinzufügen. Des Weiteren können Admin und Benutzer sich anmelden und daraufhin einen Chatbot auswählen und diesen ansprechen. Die Chatnachrichten werden dann in der SQLite Datenbank gespeichert und können auch abgerufen werden.
+Im vorliegenden Diagramm sind die beiden Hauptakteure, nämlich die Benutzer und der Administrator, dargestellt. Der Administrator hat die Befugnis, das Gesamtsystem zu initialisieren und zusätzliche Chatbots hinzuzufügen. Sowohl der Administrator als auch der Benutzer haben die Möglichkeit, sich anzumelden und einen bestimmten Chatbot auszuwählen, den sie ansprechen möchten. Die ausgetauschten Chatnachrichten werden in einer SQLite-Datenbank gespeichert und können zu späterem Zeitpunkt abgerufen werden.
 
-Nachdem der Benutzer oder der Admin das Chatsystem angesprochen hat, erkennt dieser aus der Nachricht welcher Chatbot gemeint ist und kann dadurch eine Anfrage an die dafür ausgewählte Rest-API senden. Diese ruft dann im Webbrowser die Informationen ab und leitet diese zurück ans Chatsystem, welches dem Benutzer oder dem Admin die Antwort anzeigt.
+Sobald der Benutzer oder der Administrator das Chatsystem nutzt, erfolgt anhand der Nachricht eine Identifizierung des relevanten Chatbots. Auf Grundlage dieser Identifizierung kann eine entsprechende Anfrage an die ausgewählte REST-API gesendet werden. Die REST-API wiederum ruft die erforderlichen Informationen im Webbrowser ab und leitet sie zurück an das Chatsystem, das die Antwort dem Benutzer oder dem Administrator präsentiert.
 
 ### 1.2.2 Fachlicher Kontext
 
-Der Benutzer interagiert mit dem System und erhält darauf Antworten. Die Konversation wird dabei in einer Datenbank gespeichert und kann gegebenenfalls abgerufen werden. Die Anfrage des Benutzers wird mittels einer Application Programming Interface (API) verarbeitet und die Antwort wird generiert und an den Benutzer weitergegeben.
+Der Nutzer interagiert aktiv mit dem System und erhält im Anschluss entsprechende Rückmeldungen. Diese Kommunikation wird sorgfältig in einer Datenbank protokolliert und kann zu einem späteren Zeitpunkt bei Bedarf eingesehen werden. Die Anfrage des Nutzers wird durch die Verwendung einer Application Programming Interface (API) verarbeitet, wodurch die Erzeugung einer Antwort erfolgt und diese schließlich dem Nutzer zur Verfügung gestellt wird.
 
 ### 1.2.3 Technischer Kontext
 
-Über das Control Panel interagiert der Benutzer mit dem System. Das System dient dabei auch als Schnittstelle für die Systemantworten und nutzt spezifische API-Anfragen, um die Daten mit der API auszutauschen. Des Weiteren wird die Verbindung zwischen dem System und der Datenbank durch eine SQL-Verbindung hergestellt.
+Der Benutzer interagiert mit dem System über das Control Panel. Das System fungiert dabei nicht nur als Schnittstelle für die Systemantworten, sondern verwendet auch gezielte API-Anfragen, um Daten mit der API auszutauschen. Darüber hinaus erfolgt die Verbindung zwischen dem System und der Datenbank über eine SQL-Verbindung.
 
 ## 1.3 Lösungsstrategie
+
 Die Lösungsstrategie umfasst die generellen Entscheidungen und Herangehensweisen bei der Realisierung des Systems.
 
 ### 1.3.1 Technologienetscheidungen
 
-Zu Projektstart, muss man sich Gedanken, über Technologien, die man einsetzten wird, machen.
-Für die Entwicklung des Projekts wurde die Programmiersprache Java ausgewählt. Java zeichnet sich durch seine Robustheit und die objektorientierte Natur aus, wodurch sich eine Struktur aus Klassen und Objekten erstellen lässt, die für die geplante Architektur erforderlich ist. Zur Datenhaltung wurde eine SQLite-Datenbank gewählt. Diese Entscheidung basiert auf der Einfachheit und der Fähigkeit von SQLite, lokal ohne Server zu arbeiten. Weitere Informationen zu den verwendeten Technologien sind in der Kontextabgrenzung zu finden.
+Bei Projektbeginn ist es von essenzieller Bedeutung, im Vorfeld sorgfältig über die eingesetzten Technologien nachzudenken.
+
+Für die Entwicklung dieses Projekts wurde die Programmiersprache Java als zentrales Element ausgewählt. Java zeichnet sich insbesondere durch seine Robustheit und die objektorientierte Natur aus, wodurch eine Struktur aus Klassen und Objekten geschaffen werden kann, die exakt den Anforderungen der geplanten Architektur entspricht.
+
+Hinsichtlich der Datenhaltung fiel die Wahl auf eine SQLite-Datenbank. Diese Entscheidung gründet sich auf ihrer Einfachheit sowie der Fähigkeit von SQLite, lokal ohne Server zu operieren. Weiterführende Informationen zu den verwendeten Technologien sind in der Kontextabgrenzung des Projekts einsehbar.
 
 ### 1.3.2 Entwurfsmuster
 
-Um sicherzustellen, dass das System zuverlässig, skalierbar und erweiterbar ist, wurden gängige Design- und Architekturmuster implementiert. Dies trägt zur besseren Wartbarkeit des Codes, zur Austauschbarkeit einzelner Komponenten und zur klaren Zuweisung von Aufgaben an spezifische Systemteile bei. Weitere Einzelheiten zu den verwendeten Mustern sind im Abschnitt "Querschnittliche Konzepte" zu finden.
+Mit dem vorrangigen Ziel, die Zuverlässigkeit, Skalierbarkeit und Erweiterbarkeit des Systems sicherzustellen, wurden bewährte Design- und Architekturmuster in die Implementierung integriert. Diese Maßnahme trägt maßgeblich zur Verbesserung der Code-Wartbarkeit bei, ermöglicht die flexible Austauschbarkeit einzelner Komponenten und schafft eine klare Zuordnung von Aufgaben zu spezifischen Systemteilen.
+
+Weitere umfassende Informationen über die verwendeten Muster und ihre Anwendung finden sich im Abschnitt "Querschnittliche Konzepte".
 
 ### 1.3.3 Qualitätsanforderungen
 
-Zur Erfüllung der diversen Qualitätsmerkmale wurden unterschiedliche Maßnahmen ergriffen. Der Code wurde bewusst sauber und übersichtlich gehalten, um eine einfache Wartung und Erweiterung zu ermöglichen. Darüber hinaus wurde viel Wert auf eine hochwertige Benutzererfahrung gelegt.
+Um die verschiedenen Qualitätsanforderungen zu erfüllen, wurden verschiedene Schritte unternommen. Der Programmcode wurde gezielt so gestaltet, dass er sauber und übersichtlich ist, was eine unkomplizierte Wartung und Erweiterung ermöglicht. Zusätzlich wurde ein besonderer Fokus auf die Schaffung einer hochwertigen Benutzererfahrung gelegt.
 
 ### 1.3.4 Organisationsentscheidungen
 
-Um eine reibungslose und gleichzeitige Zusammenarbeit mehrerer Teammitglieder sicherzustellen, wurden Aufgaben und Teilmodule definiert, die zur Umsetzung des Systems implementiert werden müssen. Zur späteren Integration dieser Module wurden Schnittstellen festgelegt, die jedem Modul geplante Eingaben und Ausgaben zuweisen. Für die Zusammenarbeit wurde GitHub genutzt, wodurch jedes Teammitglied stets Zugriff auf den aktuellsten Code hatte und im Bedarfsfall auch auf ältere Versionen zugreifen konnte.
+Um eine reibungslose und gleichzeitige Zusammenarbeit mehrerer Teammitglieder sicherzustellen, wurden im Vorfeld klare Aufgaben und Teilmodule definiert, die zur erfolgreichen Umsetzung des Systems erforderlich waren. Mit Blick auf die spätere Integration dieser Module wurden präzise Schnittstellen festgelegt, die jedem Modul geplante Eingaben und Ausgaben zuwiesen.
+
+Für die koordinierte Zusammenarbeit wurde das Tool GitHub eingesetzt, was jedem Teammitglied stets Zugriff auf den aktuellen Code ermöglichte. Darüber hinaus konnte bei Bedarf auch auf ältere Versionen des Codes zugegriffen werden.
 
 ## 1.4 Bausteinsicht
 
