@@ -290,6 +290,26 @@ Auf diese Weise ermöglicht der Übersetzer Bot eine effiziente und benutzerfreu
 
 ### 2.1.4 Laufzeitsicht
 
+![BPMN Translator (1)](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/120190475/ec5b2d42-455a-40e5-9020-49b6c4c1e2ad)
+
+**1. Initialisierung:**
+Beim Aufruf des Bots über das Kommando "!translator" im IOHandler wird dieser durch den BotCaller aktiviert. Bei fehlender weiterer Angabe gibt der Bot eine Liste von unterstützten Befehlen aus. Statische Variablen sind definiert, um feste URLs und den Authentifizierungsschlüssel für die API zu speichern.
+
+**2. Sprachauswahl:**
+Der Nutzer hat die Möglichkeit, eine Ziel-Sprache für die Übersetzung auszuwählen. Hierfür gibt er Sprachcodes (DE, EN, ES, FR, IT) ein. Die Sprachaktivierung erfolgt beispielsweise über "!translator EN".
+
+**3. Texteingabe:**
+Nach der Auswahl eines gültigen Sprachcodes fordert der Bot den Nutzer auf, über den IOHandler den zu übersetzenden Text oder ein Wort einzugeben.
+
+**4. URL-Erstellung:**
+Basierend auf dem gewählten Sprachcode und dem eingegebenen Text wird mithilfe der Methode buildApiUrl und dem angegebenen API-Key eine URL erstellt.
+
+**5. API-Verbindung:**
+Die erstellte URL wird als Parameter an die Klasse APIConnect übergeben. Diese Klasse sendet dann einen GET-Request an die API. Im Falle eines fehlgeschlagenen Requests wird eine Fehlermeldung ausgegeben.
+
+**6. Antwortverarbeitung:**
+Bei einer erfolgreichen Anfrage gibt die APIConnect-Klasse ein JSONObject zurück. Der Bot verarbeitet dieses JSONObject, formatiert es zu einem String und gibt die Übersetzung aus
+
 ## Wetter-Bot
 
 ### Kontextabgrenzung
@@ -340,6 +360,31 @@ Bei einer erfolgreichen Anfrage an die API erhält die APIConnect-Klasse ein JSO
 
 ### Laufzeitsicht
 
+![BPMN Weather](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/120190475/edbf6421-3df3-494b-90a5-8b1dda5e0b58)
+
+
+Hier ist der überarbeitete Text, der den neuen Kontext berücksichtigt:
+
+**1. Initialisierung:**
+Wenn der Nutzer das Kommando "!weather" im IOHandler eingibt, wird der Bot durch den BotCaller aktiviert. Bei fehlender weiterer Angabe gibt der Bot eine Liste von unterstützten Befehlen aus. Statische Variablen sind definiert, um feste URLs und den Authentifizierungsschlüssel für die API zu speichern.
+
+**2.Abfrageart auswählen:**
+Der Nutzer kann zwischen einer einfachen Wetterabfrage oder einer Prognose wählen. Für eine einfache Wetterabfrage gibt er "!weather" gefolgt von dem Namen der Stadt ein. Für eine Prognose gibt er "!weather", den Stadtnamen und "Prognose" ein.
+
+**3.Eingabe:**
+Über den IOHandler gibt der Nutzer die gewünschte Stadt und gegebenenfalls das Wort "Prognose" ein.
+
+**4.URL-Erstellung:**
+Basierend auf der Nutzereingabe – Stadt und ob es eine Prognose ist oder nicht – wird mithilfe der Methode buildApiUrl und dem angegebenen API-Key eine URL erstellt.
+
+**5.API-Verbindung:**
+Die erstellte URL wird als Parameter an die Klasse APIConnect übergeben. Diese Klasse sendet einen GET-Request an die API. Im Falle eines fehlgeschlagenen Requests wird eine Fehlermeldung ausgegeben.
+
+**6.Antwortverarbeitung:**
+Bei einer erfolgreichen Anfrage gibt die APIConnect-Klasse ein JSONObject zurück. Der Bot verarbeitet dieses JSONObject, formatiert es zu einem String und stellt entweder das aktuelle Wetter für die gewählte Stadt oder eine Fünf-Tages-Prognose dar.
+
+
+
 ## Wiki-Bot
 
 ### Kontextabgrenzung
@@ -387,3 +432,21 @@ Auf diese Weise ermöglicht der Wetter Bot eine effiziente und benutzerfreundlic
 ### Bausteinsicht
 
 ### Laufzeitsicht
+
+**1. Initialisierung:**
+Wenn der Nutzer das Kommando "!wiki" im IOHandler eingibt, wird der Bot durch den BotCaller aktiviert. Bei fehlender weiterer Angabe gibt der Bot eine Liste von unterstützten Befehlen aus.
+
+**2.Suchanfrage:**
+Der Benutzer kann nach einzelnen Begriffen oder nach längeren Sätzen suchen. Die Eingabe erfolgt in der Form "!wiki" gefolgt von der gewünschten Suchanfrage.
+
+**3.URL-Erstellung:**
+Basierend auf der Nutzereingabe wird mithilfe der Methode buildApiUrl eine URL erstellt. Für diese Anfrage ist kein zusätzlicher API-Key erforderlich.
+
+**4.API-Verbindung:**
+Die erstellte URL wird als Parameter an die Klasse APIConnect übergeben. Diese Klasse sendet einen GET-Request an die API. Im Falle eines fehlgeschlagenen Requests wird eine Fehlermeldung ausgegeben.
+
+**5.Antwortverarbeitung:**
+Bei einer erfolgreichen Anfrage gibt die APIConnect-Klasse ein JSONObject zurück. Der Bot verarbeitet dieses JSONObject und formatiert es zu einem String.
+
+**6.Ausgabe:**
+Die finale Ausgabe enthält den Titel der Suchanfrage sowie die drei wichtigsten Informationen darüber.
