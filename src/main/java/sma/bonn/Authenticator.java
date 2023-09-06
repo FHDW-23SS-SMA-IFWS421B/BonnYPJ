@@ -8,7 +8,7 @@ public class Authenticator {
         /* Asks for username/password and then validates them */
         String username = checkUsername(session);
         if (username != null && checkPassword(session, username)) {
-            IOHandler.output(session.getCurrentUser(), "Persa", Persa.getLogs(session.getCurrentUser()));
+            IOHandler.output(session.getCurrentUser(), "Persa", Persa.getLogs(username));
             IOHandler.output(session.getCurrentUser(), "SYSTEM", """
                     Willkommen bei PERSA. Dem PERsonal Service Assistant.
                     Für Hilfe bei der Nutzung des Bots schreibe "!Persa info\"""");
