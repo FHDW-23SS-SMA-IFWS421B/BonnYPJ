@@ -268,9 +268,9 @@ Es sollte mindestens 80 Megabyte freier Speicherplatz auf dem Rechner verfügbar
 **Erforderliche Dateien:**
 Zur Ausführung des Chatbots sind bestimmte Dateien erforderlich:
 
-- Die Datei "persa.jar": Dies ist das ausführbare JAR-Archiv des Chatbots, das seine Funktionalität enthält.
+- Die Datei "persa.jar": Dies ist das ausführbare JAR-Archiv des Programms, welches seine Funktionalität enthält.
 
-- Die Datei "persa.bat" (für Windows) oder "persa.sh" (für Linux): Diese Startskripte ermöglichen die Initiierung des Chatbots.
+- Die Datei "persa.bat" (für Windows) oder "persa.sh" (für Linux): Diese Startskripte ermöglichen die Usereingabe.
 
 - Der Ordner "database": Dieser Ordner enthält die Datenbanken und Daten, die der Chatbot während seiner Ausführung benötigt.
 
