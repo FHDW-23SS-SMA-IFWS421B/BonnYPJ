@@ -392,9 +392,9 @@ Die erstellte URL wird als Parameter an die Klasse APIConnect übergeben. Diese 
 **6. Antwortverarbeitung:**
 Bei einer erfolgreichen Anfrage gibt die APIConnect-Klasse ein JSONObject zurück. Der Bot verarbeitet dieses JSONObject, formatiert es zu einem String und gibt die Übersetzung aus
 
-## Wetter-Bot
+## 2.2 Wetter-Bot
 
-### Kontextabgrenzung
+### 2.2.1 Kontextabgrenzung
 
 **Fachlicher Kontext:**
 
@@ -424,7 +424,7 @@ Im technischen Kontext des Wetter Bots sind die folgenden technischen Aspekte vo
 
 In diesem ausführlichen Kontext werden die verschiedenen Aspekte des Wetter Bots, sowohl im fachlichen als auch im technischen Bereich, betont, um ein umfassendes Verständnis seiner Funktionsweise und seines Zwecks zu vermitteln.
 
-### Lösungsstrategie
+### 2.2.2 Lösungsstrategie
 
 Der Wetter Bot wird durch den Befehl "!weather" im IOHandler aktiviert. Der Nutzer kann dann zwischen aktuellem Wetter und Wettervorhersage wählen.
 
@@ -436,13 +436,13 @@ Bei einer erfolgreichen Anfrage erhält der Bot eine JSON-Antwort, die in einen 
 
 Der Wetter Bot ermöglicht so eine präzise Abfrage von Wetterinformationen, mit klaren Ausgaben und Fehlerbehandlung, um eine reibungslose Benutzererfahrung sicherzustellen.
 
-### Bausteinsicht
+### 2.2.3 Bausteinsicht
 
 ![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/c69dd100-9708-4883-a06d-62f717de8290)
 
 Der Wetter-Bot basiert, ähnlich wie der Übersetzungs-Bot, auf fünf Modulen, die für seine Funktionalität unerlässlich sind. Die grundlegenden Funktionen ähneln dabei stark denen des Übersetzungs-Bots. Der einzige Unterschied liegt in der "buildApiUrl"-Methode der "connection"-Klasse, da der Nutzer die Möglichkeit hat, festzulegen, ob er eine Wettervorhersage für eine bestimmte Stadt wünscht oder nicht. Abhängig davon wird ein boolean Wert namens "forecast" als Parameter an diese Methode übergeben, um die erforderliche URL zu generieren.
 
-### Laufzeitsicht
+### 2.2.4 Laufzeitsicht
 
 ![BPMN Weather](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/120190475/edbf6421-3df3-494b-90a5-8b1dda5e0b58)
 
@@ -466,9 +466,9 @@ Die erstellte URL wird als Parameter an die Klasse APIConnect übergeben. Diese 
 **6.Antwortverarbeitung:**
 Bei einer erfolgreichen Anfrage gibt die APIConnect-Klasse ein JSONObject zurück. Der Bot verarbeitet dieses JSONObject, formatiert es zu einem String und stellt entweder das aktuelle Wetter für die gewählte Stadt oder eine Fünf-Tages-Prognose dar.
 
-## Wiki-Bot
+## 2.3 Wiki-Bot
 
-### Kontextabgrenzung
+### 2.3.1 Kontextabgrenzung
 
 **Fachlicher Kontext:**
 
@@ -496,7 +496,7 @@ Im technischen Kontext des Wiki Bots sind die folgenden technischen Aspekte von 
 
 In diesem ausführlichen Kontext werden die verschiedenen Aspekte des Wiki Bots, sowohl im fachlichen als auch im technischen Bereich, hervorgehoben, um ein umfassendes Verständnis seiner Funktionsweise und seines Zwecks zu vermitteln.
 
-### Lösungsstrategie
+### 2.3.2 Lösungsstrategie
 
 Der Wetter Bot wird durch den Nutzer aktiviert, wenn dieser "!wiki" im IOHandler eingibt, was den BotCaller auslöst. Der Nutzer kann sowohl einzelne Begriffe als auch längere Sätze als Suchanfrage eingeben.
 
@@ -506,13 +506,13 @@ Bei einem erfolgreichen Request erhält die "APIConnect"-Klasse ein JSON-Objekt 
 
 Der Wetter Bot ermöglicht so eine effiziente Suche nach Wikipedia-Informationen, mit klaren Ausgaben und Fehlerbehandlung für eine reibungslose Benutzererfahrung.
 
-### Bausteinsicht
+### 2.3.3 Bausteinsicht
 
 ![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/7431cc62-046d-48d6-b0aa-dafa190f02cd)
 
 Der Wiki-Bot verwendet ebenfalls fünf Module, die für die Funktionalität des Bots unverzichtbar sind. Im Gegensatz zu den anderen Bots ist jedoch kein API-Schlüssel erforderlich, was die Implementierung dieses Bots erheblich vereinfacht hat.
 
-### Laufzeitsicht
+### 2.3.4 Laufzeitsicht
 
 ![BPMN Wiki](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/120190475/b90b901d-a6b0-4627-9692-1eed0ba6eacd)
 
@@ -534,5 +534,3 @@ Bei einer erfolgreichen Anfrage gibt die APIConnect-Klasse ein JSONObject zurüc
 
 **6.Ausgabe:**
 Die finale Ausgabe enthält den Titel der Suchanfrage sowie die drei wichtigsten Informationen darüber.
-
-# 3. Weitere Schritte
