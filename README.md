@@ -51,7 +51,7 @@
 
 ## 1.1 Einleitung
 
-In einer Zeit, in der Technologie und künstliche Intelligenz immer präsenter werden, suchen viele Menschen nach multifunktionalen Lösungen, um ihren Alltag zu erleichtern. In diesem Kontext steht die Software „PERSA“ als eine innovative Lösung, die eine Kombination verschiedener Chatbot-Funktionen bietet, um den Anforderungen und Wünschen der Benutzer gerecht zu werden.
+In einer Zeit, in der Technologie und künstliche Intelligenz immer präsenter werden, suchen viele Menschen nach multifunktionalen Lösungen, um ihren Alltag zu erleichtern. In diesem Kontext steht die Software „PERSA“, der PERsönliche Service Assistent, als eine innovative Lösung, die eine Kombination verschiedener Chatbot-Funktionen bietet, um den Anforderungen und Wünschen der Benutzer gerecht zu werden.
 
 Die Software „PERSA“ repräsentiert einen Mehrzweck-Chatbot, der verschiedene Bot-Funktionen integriert, um den Benutzern ein nützliches und vielseitiges Erlebnis zu bieten. Dazu gehören ein Wetterbot, ein Wikibot und ein Übersetzerbot. Zudem besteht die Möglichkeit, weitere Chatbots einfach und nahtlos in das Gesamtsystem zu integrieren.
 
