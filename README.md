@@ -13,7 +13,7 @@
         - [1.2.3 Technischer Kontext](#123-technischer-kontext)
     - [1.3 Lösungsstrategie](#13-lösungsstrategie)
     - [1.4 Bausteinsicht](#14-bausteinsicht)
-    - [1.5 Laufzeitsichten](#15-laufzeitsichten)
+    - [1.5 Laufzeitsicht](#15-laufzeitsichten)
     - [1.6 Infrastruktursicht](#16-infrastruktursicht)
     - [1.7 Querschnittliche Konzepte](#17-querschnittliche-konzepte)
     - [1.8 Schnittstellen](#18-schnittstellen)
