@@ -117,6 +117,18 @@ Für die koordinierte Zusammenarbeit wurde das Tool GitHub eingesetzt, was jedem
 
 ## 1.4 Bausteinsicht
 
+![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/d800b7d7-55c0-47cd-882b-1d89a4549776)
+
+Das Programm besteht aus insgesamt 17 Bausteinen, die in einer hierarchischen Struktur zusammenarbeiten. Als zentraler Baustein fungiert die Klasse Session, die Main Klasse als Einstieg des Programmes. Der Authenticator dient zur Überprüfung des Nutzernames und des Passworts. 
+
+Der IOHandler dient dazu, den Input des Users zu bekommen und jeden Output auszuführen. 
+
+Die DBBuilding Klasse ist dazu da, um beim Start zu überprüfen, ob die Datenbanken schon vorhanden sind und ob die notwendigen Daten in der Datenbank enthalten sind, ansonsten werden die Datenbanken mit den Daten erstellt. Die DBHandler lesen und schreiben in die Datenbank die Logs, lesen den Username und den Password, aktivieren und deaktivieren die Bots und zeigen die Bots und deren Status an. Die Klasse DBImplementation führt die Verbindung zur Datenbank her und führt alle Sql Statements aus den Klassen DBBuilding und DBHandler aus. 
+
+Die BotCaller Klasse rauft aus dem User Input die einzelnen Bots, den Wiki Bot, den Weather Bot, den Translator Bot oder den Persa Bot auf, von denen, abgesehen vom Persa Bot, die Verbindung zur API hergestellt wird. Die Klasse ApiConnect ermöglicht es den jeweiligen Bots, auf die externen Schnittstellen zuzugreifen, von denen sie ihre Informationen erhalten.
+
+In einer zusammenfassenden Betrachtung kann festgehalten werden, dass die Bausteinsicht eine hochgradig abstrakte Darstellungsform darstellt. Diese Abstraktion ermöglicht es, Informationen über den zugrundeliegenden Quellcode auszutauschen, ohne dabei allzu viele technische Implementierungsdetails offenlegen zu müssen. Diese Herangehensweise erleichtert erheblich das Verständnis der strukturellen Komponenten und fördert die effektive Kommunikation über das Gesamtsystem auf einer übergeordneten, konzeptionellen Ebene.
+
 ## 1.5 Laufzeitsicht
 
 Die Laufzeitsicht lässt sich in zwei Aspekte unterteilen, zum Einem in die Userinteraktionen und den Ablauf des Programms:
