@@ -128,7 +128,6 @@ public class Persa extends BotTemplate {
             String key = entry.getKey();
             String value = entry.getValue();
             if (key.equals(name)) {
-                System.out.println(value);
                 if (value.equals("false")) {
                     DBHandler.activateBot(name);
                     return name + " wurde erfolgreich aktiviert. Er ist jetzt bereit zur Nutzung.";
@@ -188,7 +187,7 @@ public class Persa extends BotTemplate {
 
     public static String getLogs(String username) {
         HashMap<Integer, String[]> logMap =  DBHandler.readLogs(username);
-        String logOutput = "\n--- Deine letzten Nachrichten ---\n";
+        String logOutput = "\n--- Deine letzten Nachrichten ---\n\n";
 
         for (Map.Entry<Integer, String[]> entry : logMap.entrySet()) {
             Integer key = entry.getKey();
@@ -197,10 +196,9 @@ public class Persa extends BotTemplate {
                 if (!value[3].equals("SYSTEM") && value[0].equals(username)) {
                     if (value[2].length() > 0){
                         String messageStart = value[2].substring(0, 4).replaceAll("\n", "");
-                        if (messageStart.equals("---"))
+                        if (messageStart.equals("---")) {
+                            System.out.println("LOGS");
                             value[2] = "AUSGABE DER LOGS";
-                        else {
-                            String a = value[2].substring(0, 3).replaceAll("\n", "");
                         }
                     }
                     if(value[3].equals("")) {
@@ -210,11 +208,19 @@ public class Persa extends BotTemplate {
                         logOutput += "Message: " + value[2].replaceAll("\n", " ") + "\n";
                         logOutput += "--------------------\n";
                     } else {
-                        logOutput+= "- Bot Output -\n";
-                        logOutput += "Time: " + value[1] + "\n";
-                        logOutput += "Message: " + value[2].replaceAll("\n", "\n| ") + "\n";
-                        logOutput += "Bot: " + value[3] + "\n";
-                        logOutput += "--------------------\n";
+                        if (value[2].contains("Deine letzten Nachrichten")) {
+                            logOutput+= "- Bot Output -\n";
+                            logOutput += "Bot: " + value[3] + "\n";
+                            logOutput += "Time: " + value[1] + "\n";
+                            logOutput += "Message: AUSGABE DER LOGS\n";
+                            logOutput += "--------------------\n";
+                        } else {
+                            logOutput+= "- Bot Output -\n";
+                            logOutput += "Bot: " + value[3] + "\n";
+                            logOutput += "Time: " + value[1] + "\n";
+                            logOutput += "Message: " + value[2].replaceAll("\n", "\n| ") + "\n";
+                            logOutput += "--------------------\n";
+                        }
 
                     }
                 }
