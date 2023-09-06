@@ -238,7 +238,7 @@ Das System ermöglicht das Hinzufügen neuer Bots. Dies erfordert jedoch Anpassu
 
 2. In der Methode "setBotObjects" in der BotCaller-Klasse erstellen Sie ein neues Objekt vom Typ "BotTemplate" und fügen dieses Objekt der HashMap "botObjects" hinzu, wobei Sie den Botnamen in Kleinbuchstaben als Schlüssel verwenden.
 
-3. In der Methode "insertBots" der BotBuilding-Klasse müssen Sie dem verschachtelten String-Array 'bots' ein neues Array mit dem Botnamen und dem Wert "False" hinzufügen.
+3. In der Methode "insertBots" der DbBuilding-Klasse müssen Sie dem verschachtelten String-Array 'bots' ein neues Array mit dem Botnamen und dem Wert "False" hinzufügen.
 
 Stellen Sie sicher, dass Sie diesen Prozess für jeden neuen Bot wiederholen, den Sie in Ihr System integrieren möchten. Auf diese Weise können Sie erfolgreich neue Bots in Ihr System integrieren.
 
