@@ -197,7 +197,6 @@ public class Persa extends BotTemplate {
                     if (value[2].length() > 0){
                         String messageStart = value[2].substring(0, 4).replaceAll("\n", "");
                         if (messageStart.equals("---")) {
-                            System.out.println("LOGS");
                             value[2] = "AUSGABE DER LOGS";
                         }
                     }
