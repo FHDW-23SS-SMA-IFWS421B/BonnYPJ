@@ -158,7 +158,7 @@ Die Ausführungsebene ermöglicht zum einen die Verbindung zur Komponente "APICo
 
 ## 1.7 Querschnittliche Konzepte
 
-Die Software nutzt das abstrakte Fabrik-Muster und das Decorator Pattern als Design Patterns, welche in verschiedenen Situationen nützlich sein können.
+Die Software nutzt das abstrakte Fabrik-Muster und das SOLID Pattern als Design Patterns, welche in verschiedenen Situationen nützlich sein können.
 
 Das Abstrakte Fabrik-Muster ermöglicht die Erzeugung von Objektfamilien, ohne die konkreten Klassen dieser Objekte zu spezifizieren. Es definiert eine abstrakte Fabrik-Schnittstelle, die konkrete Fabriken implementieren müssen. Jede konkrete Fabrik ist in der Lage, eine Familie von zusammengehörenden Objekten zu erzeugen, ohne Details über die tatsächlichen Klassen dieser Objekte preiszugeben.
 
@@ -166,11 +166,24 @@ In Bezug auf die Software könnte das Abstrakte Fabrik-Muster verwendet werden, 
 
 Das Abstrakte Fabrik-Muster ermöglicht es, Code zu schreiben, der unabhängig von der konkreten Implementierung der Objekte ist, was die Wartung und Erweiterung erleichtert. Es ist besonders nützlich, wenn eine Anwendung plattformübergreifend ist und verschiedene Varianten derselben Komponenten benötigt.
 
-Die Software verwendet das Decorator Pattern, um eine eigene Klasse für die Ausgabe zu erstellen und die Flexibilität bei der Formatierung und Erweiterung der Ausgabe zu verbessern. Indem es dieses Muster anwendet, kann die Software eine Basisklasse für die Datenerzeugung oder -verwaltung verwenden und dann verschiedene Dekoratoren hinzufügen, um die Ausgabe nach Bedarf anzupassen. Diese Dekoratoren können beispielsweise Textformatierungen, Farben oder spezielle Symbole hinzufügen, ohne die ursprüngliche Datenerzeugungsklasse zu ändern.
+Dieses Programm wurde auch unter Verwendung der SOLID-Prinzipien entwickelt, um eine saubere und robuste Softwarearchitektur zu gewährleisten. Die SOLID-Prinzipien sind eine Sammlung von fünf grundlegenden Designprinzipien in der objektorientierten Programmierung, die dazu beitragen, den Code wartbar, erweiterbar und gut strukturiert zu halten.
 
-Das Decorator Pattern ermöglicht es der Software, die Ausgabe flexibel an verschiedene Anforderungen anzupassen, indem es neue Dekoratoren hinzufügt oder bestehende kombiniert. Dies fördert die Wartbarkeit und Erweiterbarkeit des Codes, da Änderungen oder Erweiterungen an der Ausgabe unabhängig von der Kernfunktionalität vorgenommen werden können. Dadurch wird die Software anpassbarer und kann auf einfache Weise unterschiedliche Ausgabeformate und -optionen bereitstellen, was insbesondere in situationsabhängigen Umgebungen von Vorteil ist.
+**Single Responsibility Principle (SRP)**
+Jede Klasse in diesem Programm hat eine einzige klare Verantwortlichkeit. Dies erleichtert die Wartung und Änderung des Codes, da Änderungen nur an einer Stelle vorgenommen werden müssen, wenn sich die Anforderungen ändern.
 
-Zusammenfassend bieten Design Patterns wie das Abstrakte Fabrik-Muster und das Decorator Pattern bewährte Lösungen für wiederkehrende Probleme in der Softwareentwicklung und fördern die Wiederverwendbarkeit, die Wartbarkeit und die Erweiterbarkeit des Codes.
+**Open/Closed Principle (OCP)**
+Das Programm folgt dem OCP, indem es für Erweiterungen offen, aber für Modifikationen geschlossen ist. Neue Funktionalitäten werden durch die Erstellung neuer Klassen oder Schnittstellen hinzugefügt, ohne den vorhandenen Code zu ändern.
+
+**Liskov Substitution Principle (LSP)**
+Objekte abgeleiteter Klassen können nahtlos anstelle von Objekten ihrer Basisklasse verwendet werden, ohne die Funktionalität des Programms zu beeinträchtigen. Dies erleichtert die Erweiterbarkeit und Wiederverwendung von Code.
+
+**Interface Segregation Principle (ISP)**
+Schnittstellen wurden speziell für die Bedürfnisse der Clients erstellt, um zu verhindern, dass Implementierungen gezwungen sind, unnötige Methoden zu implementieren. Dies hält Schnittstellen schlank und vermeidet unnötige Abhängigkeiten.
+
+**Dependency Inversion Principle (DIP)**
+Abhängigkeiten von höheren Ebenen sind auf abstrakte Schnittstellen oder abstrakte Klassen gerichtet, nicht auf konkrete Implementierungen. Dies fördert die Entkopplung von Modulen und ermöglicht eine einfachere Ersetzbarkeit von Implementierungen.
+
+Zusammenfassend bieten Design Patterns wie das Abstrakte Fabrik-Muster und das SOLID Pattern bewährte Lösungen für wiederkehrende Probleme in der Softwareentwicklung und fördern die Wiederverwendbarkeit, die Wartbarkeit und die Erweiterbarkeit des Codes.
 
 
 ## 1.8 Schnittstellen
