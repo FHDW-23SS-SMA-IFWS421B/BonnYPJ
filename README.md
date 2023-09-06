@@ -149,7 +149,8 @@ Schließlich gibt der "IOHandler" die Antwort aus.
 
 ## 1.6 Infrastruktursicht
 
-![img_3.png](Infrastruktur.png)
+![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/9f2fdf64-3253-4661-989b-efd7882eb324)
+
 
 Das Programm wird auf der Ausführungsebene unter Verwendung des Java Runtime Environment SE als ausführbares Artefakt mit dem Namen "persa.jar" ausgeführt. Benutzereingaben können unter dem Artefakt "script" mit dem Namen "persa.bat" eingegeben werden.
 
