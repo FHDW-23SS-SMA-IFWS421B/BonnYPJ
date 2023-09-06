@@ -45,7 +45,7 @@
         - [2.3.1 Kontextabgrenzung](#231-kontextabgrenzung)
         - [2.3.2 Lösungsstrategie](#232-lösungsstrategie)
         - [2.3.3 Bausteinsicht](#233-bausteinsetz)
-        - [2.3.4 Laufzeitsicht](#23-4laufzeitsicht)
+        - [2.3.4 Laufzeitsicht](#234-aufzeitsicht)
 
 # 1. Systemdokumentation
 
@@ -365,6 +365,9 @@ So ermöglicht der Übersetzer Bot eine benutzerfreundliche Übersetzung mit kla
 
 ![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/6d796661-a48f-4fe9-aa3b-515dfc4f92e9)
 
+Der Übersetzungs-Bot besteht aus fünf Modulen, wobei die zentrale Komponente die Klasse "Translator" darstellt. Die essenzielle Funktion des Bots liegt in der Methode "connection," welche die Benutzereingabe verarbeitet. Die Grundlage für diesen Bot wird durch die abstrakte Klasse "BotTemplate" gebildet, von der alle weiteren Bot-Implementierungen abgeleitet sind und die die Erstellung neuer Bots erleichtert. "BotTemplate" basiert wiederum auf dem Interface "BotTemplateInterface," welches als Grundlage für die abstrakte Klasse dient.
+
+Die von der "connection" Methode in der "Translator" Klasse generierte Eingabe wird durch die "buildApiUrl" Methode konstruiert und an die "APIConnect" Klasse weitergeleitet. Das zurückgelieferte JSONObject wird anschließend mithilfe der "jsonFormat" Methode in einen String umgewandelt und an die "BotCaller" Klasse übergeben, die für die Weiterleitung der Ausgabe verantwortlich ist. Darüber hinaus fungiert der "BotCaller" als Schnittstelle zwischen dem Nutzer und dem Übersetzungs-Bot, und erlaubt die Aktivierung oder Deaktivierung des Übersetzungs-Bots.
 
 ### 2.1.4 Laufzeitsicht
 
@@ -436,13 +439,13 @@ Der Wetter Bot ermöglicht so eine präzise Abfrage von Wetterinformationen, mit
 
 ![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/c69dd100-9708-4883-a06d-62f717de8290)
 
+Der Wetter-Bot basiert, ähnlich wie der Übersetzungs-Bot, auf fünf Modulen, die für seine Funktionalität unerlässlich sind. Die grundlegenden Funktionen ähneln dabei stark denen des Übersetzungs-Bots. Der einzige Unterschied liegt in der "buildApiUrl"-Methode der "connection"-Klasse, da der Nutzer die Möglichkeit hat, festzulegen, ob er eine Wettervorhersage für eine bestimmte Stadt wünscht oder nicht. Abhängig davon wird ein boolean Wert namens "forecast" als Parameter an diese Methode übergeben, um die erforderliche URL zu generieren.
 
 ### Laufzeitsicht
 
 ![BPMN Weather](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/120190475/edbf6421-3df3-494b-90a5-8b1dda5e0b58)
 
-
-Hier ist der überarbeitete Text, der den neuen Kontext berücksichtigt:
+Der Wiki-Bot verwendet ebenfalls fünf Module, die für die Funktionalität des Bots unverzichtbar sind. Im Gegensatz zu den anderen Bots ist jedoch kein API-Schlüssel erforderlich, was die Implementierung dieses Bots erheblich vereinfacht hat.
 
 **1. Initialisierung:**
 Wenn der Nutzer das Kommando "!weather" im IOHandler eingibt, wird der Bot durch den BotCaller aktiviert. Bei fehlender weiterer Angabe gibt der Bot eine Liste von unterstützten Befehlen aus. Statische Variablen sind definiert, um feste URLs und den Authentifizierungsschlüssel für die API zu speichern.
@@ -461,8 +464,6 @@ Die erstellte URL wird als Parameter an die Klasse APIConnect übergeben. Diese 
 
 **6.Antwortverarbeitung:**
 Bei einer erfolgreichen Anfrage gibt die APIConnect-Klasse ein JSONObject zurück. Der Bot verarbeitet dieses JSONObject, formatiert es zu einem String und stellt entweder das aktuelle Wetter für die gewählte Stadt oder eine Fünf-Tages-Prognose dar.
-
-
 
 ## Wiki-Bot
 
@@ -508,6 +509,7 @@ Der Wetter Bot ermöglicht so eine effiziente Suche nach Wikipedia-Informationen
 
 ![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/7431cc62-046d-48d6-b0aa-dafa190f02cd)
 
+Der Wiki-Bot verwendet ebenfalls fünf Module, die für die Funktionalität des Bots unverzichtbar sind. Im Gegensatz zu den anderen Bots ist jedoch kein API-Schlüssel erforderlich, was die Implementierung dieses Bots erheblich vereinfacht hat.
 
 ### Laufzeitsicht
 
