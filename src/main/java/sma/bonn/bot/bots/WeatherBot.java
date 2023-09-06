@@ -1,5 +1,6 @@
 package sma.bonn.bot.bots;
 
+import org.json.JSONArray;
 import sma.bonn.bot.BotTemplate;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,14 +8,15 @@ import sma.bonn.apiConnection.APIConnect;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class WeatherBot extends BotTemplate {
     public String botName = "weather";
     private static final String API_KEY = "e6409848f08fd04167779a4c19729199";
-    private static final String CURRENT_WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather";
-    private static final String FORECAST_API_URL = "http://api.openweathermap.org/data/2.5/forecast/daily";
+    private static final String BASE_URL = "http://api.openweathermap.org/data/2.5/";
     private APIConnect apiConnection = new APIConnect();
     private Map<String, String> commands = new HashMap<>();
 
@@ -58,7 +60,7 @@ public class WeatherBot extends BotTemplate {
             return null;
         }
 
-        boolean forecast = command.length == 3 && command[2].equals("prognose");
+        boolean forecast = command.length == 3 && command[2].toLowerCase().equals("prognose");
         String location = command[1];
 
         String apiUrl;
@@ -67,32 +69,68 @@ public class WeatherBot extends BotTemplate {
         } catch (UnsupportedEncodingException e) {
             return null;
         }
-        if (!forecast) {
-            weatherData = apiConnection.connectToApi(apiUrl, null);
-        } else {
-            return "Forecast nicht vorhanden.";
-        }
-        String result = jsonFormat(weatherData.toString());
+
+        weatherData = apiConnection.connectToApi(apiUrl, null);
+
+        String result = jsonFormat(weatherData.toString(), forecast);
         return result;
     }
 
-    private String jsonFormat(String data) {
+    private String jsonFormat(String data, boolean forecast) {
         StringBuilder result = new StringBuilder();
         result.append(botName + ":\n");
-        try {
-            JSONObject jsonObject = new JSONObject(data);
-            String cityName = jsonObject.getString("name");
-            JSONObject mainObject = jsonObject.getJSONObject("main");
-            double temperature = mainObject.getDouble("temp");
-            JSONObject windObject = jsonObject.getJSONObject("wind");
-            double windSpeed = windObject.getDouble("speed");
+        if (forecast) {
+            try {
+                JSONObject json = new JSONObject(data);
 
-            result.append("Das Wetter in ").append(cityName).append(":\n");
-            result.append("- Temperatur: ").append(temperature).append(" °C\n");
-            result.append("- Windgeschwindigkeit: ").append(windSpeed).append(" m/s\n");
+                String cityName = json.getJSONObject("city").getString("name");
+                JSONArray weatherList = json.getJSONArray("list");
 
-        } catch (JSONException e) {
-            return null;
+                System.out.println("Das Wetter in " + cityName + " in den nächsten Tagen:");
+
+                for (int i = 0; i < weatherList.length(); i++) {
+                    JSONObject weatherData = weatherList.getJSONObject(i);
+                    String dateTime = weatherData.getString("dt_txt");
+
+                    if (dateTime.endsWith("15:00:00")) {
+                        SimpleDateFormat sdfInput = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        SimpleDateFormat sdfOutput = new SimpleDateFormat("dd.MM.yyyy");
+
+                        try {
+                            Date date = sdfInput.parse(dateTime);
+                            String formattedDate = sdfOutput.format(date);
+                            double temperature = weatherData.getJSONObject("main").getDouble("temp");
+                            double windSpeed = weatherData.getJSONObject("wind").getDouble("speed");
+
+                            System.out.println("Tag: " + formattedDate + ", Temperatur: " + temperature + " °C, Windgeschwindigkeit: " + windSpeed + " m/s");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+            } catch (
+                    JSONException e) {
+                return null;
+            }
+        } else {
+
+            try {
+                JSONObject jsonObject = new JSONObject(data);
+                String cityName = jsonObject.getString("name");
+                JSONObject mainObject = jsonObject.getJSONObject("main");
+                double temperature = mainObject.getDouble("temp");
+                JSONObject windObject = jsonObject.getJSONObject("wind");
+                double windSpeed = windObject.getDouble("speed");
+
+                result.append("Das Wetter in ").append(cityName).append(":\n");
+                result.append("- Temperatur: ").append(temperature).append(" °C\n");
+                result.append("- Windgeschwindigkeit: ").append(windSpeed).append(" m/s\n");
+
+            } catch (
+                    JSONException e) {
+                return null;
+            }
         }
 
         if (result.length() == 0) {
@@ -100,14 +138,16 @@ public class WeatherBot extends BotTemplate {
         } else {
             return result.toString();
         }
-
     }
 
     private String buildApiUrl(String location, boolean forecast) throws UnsupportedEncodingException {
         String encodedLocation = URLEncoder.encode(location, "UTF-8");
-        String baseUrl = forecast ? FORECAST_API_URL : CURRENT_WEATHER_API_URL;
-        return String.format("%s?q=%s&appid=%s&units=metric", baseUrl, encodedLocation, API_KEY);
+        String currentWeather = "weather";
+        String forecastWeather = "forecast";
+        String decideForecast = forecast ? forecastWeather : currentWeather;
+        return String.format("%s%s?q=%s&appid=%s&units=metric", BASE_URL, decideForecast, encodedLocation, API_KEY);
     }
 
 
 }
+
