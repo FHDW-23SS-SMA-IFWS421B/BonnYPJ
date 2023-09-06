@@ -119,36 +119,41 @@ Für die koordinierte Zusammenarbeit wurde das Tool GitHub eingesetzt, was jedem
 
 ![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/d800b7d7-55c0-47cd-882b-1d89a4549776)
 
-Das Programm besteht aus insgesamt 17 Bausteinen, die in einer hierarchischen Struktur zusammenarbeiten. Als zentraler Baustein fungiert die Klasse Session, die Main Klasse als Einstieg des Programmes. Der Authenticator dient zur Überprüfung des Nutzernames und des Passworts. 
+Das Programm besteht aus insgesamt 17 Bausteinen, die in einer hierarchischen Struktur zusammenarbeiten. Als zentraler Baustein fungiert die Klasse "Session," die als Einstiegspunkt des Programms dient. Der "Authenticator" ist dafür zuständig, die Überprüfung von Benutzername und Passwort durchzuführen.
 
-Der IOHandler dient dazu, den Input des Users zu bekommen und jeden Output auszuführen. 
+Der "IOHandler" wird verwendet, um Benutzereingaben zu erfassen und alle Ausgaben zu verarbeiten.
 
-Die DBBuilding Klasse ist dazu da, um beim Start zu überprüfen, ob die Datenbanken schon vorhanden sind und ob die notwendigen Daten in der Datenbank enthalten sind, ansonsten werden die Datenbanken mit den Daten erstellt. Die DBHandler lesen und schreiben in die Datenbank die Logs, lesen den Username und den Password, aktivieren und deaktivieren die Bots und zeigen die Bots und deren Status an. Die Klasse DBImplementation führt die Verbindung zur Datenbank her und führt alle Sql Statements aus den Klassen DBBuilding und DBHandler aus. 
+Die "DBBuilding"-Klasse hat die Aufgabe, beim Programmstart zu überprüfen, ob die erforderlichen Datenbanken bereits vorhanden sind. Falls nicht, werden sie mit den erforderlichen Daten erstellt. Die "DBHandler"-Klasse liest und schreibt in die Datenbankprotokolle, liest Benutzernamen und Passwörter, aktiviert und deaktiviert Chatbots und zeigt die Chatbots und ihren Status an. Die "DBImplementation"-Klasse stellt die Verbindung zur Datenbank her und führt alle SQL-Anweisungen aus den Klassen "DBBuilding" und "DBHandler" aus.
 
-Die BotCaller Klasse rauft aus dem User Input die einzelnen Bots, den Wiki Bot, den Weather Bot, den Translator Bot oder den Persa Bot auf, von denen, abgesehen vom Persa Bot, die Verbindung zur API hergestellt wird. Die Klasse ApiConnect ermöglicht es den jeweiligen Bots, auf die externen Schnittstellen zuzugreifen, von denen sie ihre Informationen erhalten.
+Die "BotCaller"-Klasse analysiert die Benutzereingabe und ruft die entsprechenden Chatbots auf, darunter der Wiki-Bot, der Wetter-Bot, der Übersetzungs-Bot und der Persa-Bot. Von diesen Chatbots, mit Ausnahme des Persa-Bots, da es sich bei diesem um das Verwaltungssystem handelt, wird eine Verbindung zu externen Schnittstellen hergestellt. Die "ApiConnect"-Klasse ermöglicht es den einzelnen Chatbots, auf diese externen Schnittstellen zuzugreifen und die benötigten Informationen abzurufen.
 
-In einer zusammenfassenden Betrachtung kann festgehalten werden, dass die Bausteinsicht eine hochgradig abstrakte Darstellungsform darstellt. Diese Abstraktion ermöglicht es, Informationen über den zugrundeliegenden Quellcode auszutauschen, ohne dabei allzu viele technische Implementierungsdetails offenlegen zu müssen. Diese Herangehensweise erleichtert erheblich das Verständnis der strukturellen Komponenten und fördert die effektive Kommunikation über das Gesamtsystem auf einer übergeordneten, konzeptionellen Ebene.
+In einer zusammenfassenden Betrachtung wird deutlich, dass die Bausteinsicht eine hochgradig abstrakte Darstellungsform darstellt. Diese Abstraktion erlaubt es, Informationen über den zugrundeliegenden Quellcode auszutauschen, ohne dabei allzu viele technische Implementierungsdetails offenlegen zu müssen. Diese Herangehensweise erleichtert erheblich das Verständnis der strukturellen Komponenten und fördert die effektive Kommunikation über das Gesamtsystem auf einer übergeordneten, konzeptionellen Ebene.
 
 ## 1.5 Laufzeitsicht
 
-Die Laufzeitsicht lässt sich in zwei Aspekte unterteilen, zum Einem in die Userinteraktionen und den Ablauf des Programms:
+Die Laufzeitsicht kann in zwei Aspekte unterteilt werden: die Interaktionen des Benutzers und den Ablauf des Programms.
 
-Der Ablauf der Userinteraktion bezieht sich auf den Login. Um die Verbindung zwischen beiden Sequenzdiagrammen herzustellen wird Programmablaufdiagramm angenommen, dass der Login erfolgreich war sodass mit dem ersten User Input angefangen wird.
+Der Ablauf der Benutzerinteraktion bezieht sich insbesondere auf den Anmeldevorgang. Um eine Verbindung zwischen beiden Sequenzdiagrammen herzustellen, wird angenommen, dass der Login erfolgreich war, sodass mit dem ersten Benutzereingabe-Schritt begonnen werden kann.
 
 ![img_1.png](Sequenzdiagramm_User.png)
 
-Im Sequenzdiagramm wird mit dem User begonnen und dieser versucht sich einzuloggen. Dies wird in der Session Klasse durchgeführt und die Eingaben (Benutzername und Passwort) werden zum überprüfen an den Authenticator übergeben. Dieser überprüft, ob die eingegebenen Daten in der Datenbank, in der die Benutzernamen und zugehörigen Passwörter gespeichert sind, vorhanden sind. Das Ergebnis wird dann wieder vom Authenticator an die Session übergeben und diese sagt dann dem User, ob der Login erfolgreich oder fehlgeschlagen hat.
+Im Sequenzdiagramm wird der Ablauf mit dem Benutzer gestartet, der versucht, sich anzumelden. Dieser Vorgang wird in der "Session"-Klasse durchgeführt, wobei die eingegebenen Daten (Benutzername und Passwort) zur Überprüfung an den "Authenticator" weitergeleitet werden. Der "Authenticator" prüft, ob die eingegebenen Daten in der Datenbank, in der die Benutzernamen und die zugehörigen Passwörter gespeichert sind, vorhanden sind. Das Ergebnis dieser Überprüfung wird dann wieder vom "Authenticator" an die "Session" zurückgegeben, und die "Session" informiert daraufhin den Benutzer, ob der Login erfolgreich war oder fehlgeschlagen ist.
 
 ![img_2.png](Sequenzdiagramm_Programm.png)
 
-Der Ablauf des Programmes beginnt mit der Session Klasse und diese lässt vom IOHandler die Willkommensnachricht ausgeben und erwartet daraufhin eine Usereingabe. Nachdem der IOHandler die Usereingabe erhalten hat, wird diese zurück an die Session und von dieser aus an den BotCaller geschickt. Der BotCaller überprüft dann die Nachricht auf den Prefix und kann anhand diesem erkennen, an welchem Chatbot die Usereingabe weitergegeben wird. Der Chatbot identifiziert dann den Command und gibt gegebenenfalls den Request and die APIConnection weiter und erhält von dieser die Antwort. Diese Antwort wird dann noch in einen String angepasst und dann an den IOHandler übergeben, welche die Antwort dann ausgibt.
+Der Ablauf des Programms beginnt in der "Session"-Klasse, die den "IOHandler" verwendet, um eine Willkommensnachricht auszugeben und anschließend auf die Benutzereingabe zu warten. Nachdem der "IOHandler" die Benutzereingabe erhalten hat, wird diese an die "Session" zurückgegeben und von dort aus an den "BotCaller" weitergeleitet.
 
+Der "BotCaller" überprüft dann die empfangene Nachricht anhand eines festgelegten Präfixes und erkennt auf diese Weise, welchem Chatbot die Benutzereingabe zugeordnet werden soll. Der ausgewählte Chatbot identifiziert dann den spezifischen Befehl und leitet gegebenenfalls die Anfrage an die "APIConnect" Klasse weiter, um die erforderlichen Informationen abzurufen. Die Antwort von der "APIConnect" wird anschließend in einen geeigneten Textformat umgewandelt und an den "IOHandler" zurückgegeben.
+
+Schließlich gibt der "IOHandler" die Antwort aus.
 
 ## 1.6 Infrastruktursicht
 
 ![img_3.png](Infrastruktur.png)
 
-Das Programm wird auf der execution Evironment Ebene unter dem Java Runtime Evironment SE als ausführbares Artifakt unter persa.jar ausgeführt. Die Usereingaben werden unter dem artifact, script unter persa.bat eingegeben. Das execution Evironment führt zum einem die Verbindung zur Komponente Api Connection, um die Api Abfragen der Chatbots durchzuführen, und zur SQL Connection für die Datenbankabfragen durch.
+Das Programm wird auf der Ausführungsebene unter Verwendung des Java Runtime Environment SE als ausführbares Artefakt mit dem Namen "persa.jar" ausgeführt. Benutzereingaben können unter dem Artefakt "script" mit dem Namen "persa.bat" eingegeben werden.
+
+Die Ausführungsebene ermöglicht zum einen die Verbindung zur Komponente "APIConnect" zur Durchführung von API-Anfragen durch die Chatbots und zum anderen zur "SQL Connection" für Datenbankabfragen.
 
 ## 1.7 Querschnittliche Konzepte
 
@@ -170,13 +175,13 @@ Zusammenfassend bieten Design Patterns wie das Abstrakte Fabrik-Muster und das D
 ## 1.8 Schnittstellen
 
 | Schnittstelle       | Zweck und Funktion                       | Operationen      | Kommunikationsprotokoll | Datenformat       | Authentifizierung                               |
-|---------------------|------------------------------------------|------------------|-------------------------|-------------------|-------------------------------------------------|
+|---------------------|------------------------------------------|------------------|-------------------------|-------------------|
 | DeepL API           | Übersetzungsdienst für Texte             | GET              | HTTP                    | JSONObject        | API-Key                                         |
 | Wikipedia API       | Abruf von Informationen aus Wikipedia    | GET              | HTTP                    | JSONObject        | N/A                                             |
 | OpenWeather API     | Wetterdatenabruf für bestimmte Standorte | GET              | HTTP                    | JSONObject        | API-Key                                         |
 | Database Connection | Kommunikation mit der Datenbank          | Lesen, Schreiben | SQL                     | Tabellen, Objekte | N/A                                             |
 
-Die Chatbot-Anwendung interagiert mit externen Systemen mithilfe von Application Programming Interfaces (APIs), die als Schnittstellen dienen. Diese Schnittstellen ermöglichen die Bereitstellung einer Vielzahl von Diensten wie beispielsweise Textübersetzung, Wetterinformationen und Wissensabfragen. Um diese Verbindung zu den APIs herzustellen, nutzt die Anwendung die Klasse "ApiConnection". Innerhalb dieser Klasse steht die Methode "connectToApi" zur Verfügung, die eine Hypertext Transfer Protocol (HTTP)-Verbindung zu den jeweiligen APIs aufbaut und JSON-formatierte Antworten empfängt. Im Kontext der Klasse "SqlOperations" wird eine Verbindung zu einer internen Datenbank hergestellt, die dazu dient, die Verlaufsdokumentation der Konversationen mit den Nutzern zu speichern.
+Die Chatbot-Anwendung interagiert mit externen Systemen mithilfe von APIs, die als Schnittstellen dienen. Diese Schnittstellen ermöglichen die Bereitstellung einer Vielzahl von Diensten wie beispielsweise Textübersetzung, Wetterinformationen und Wissensabfragen. Um diese Verbindung zu den APIs herzustellen, nutzt die Anwendung die Klasse "APIConnect". Innerhalb dieser Klasse steht die Methode "connectToApi" zur Verfügung, die eine Hypertext Transfer Protocol (HTTP)-Verbindung zu den jeweiligen APIs aufbaut und JSON-formatierte Antworten empfängt. Im Kontext der Klasse "SqlOperations" wird eine Verbindung zu einer internen Datenbank hergestellt, die dazu dient, die Verlaufsdokumentation der Konversationen mit den Nutzern zu speichern.
 	
 ### 1.	Translation Bot
 Bei dem Translation-Bot, der die DeepL API nutzt, erhält der Chatbot durch diese Technologie Zugriff auf fortschrittliche maschinelle Übersetzungsfunktionen von DeepL. Das ermöglicht dem Chatbot, hochwertige Übersetzungen in Echtzeit anzubieten. Die Software sendet eine HTTP-Anfrage an die DeepL API, um eine Übersetzung zu erhalten. Diese Anfrage enthält den zu übersetzenden Text und die gewünschte Zielsprache. Die API antwortet daraufhin mit der übersetzten Version des Textes. 
@@ -191,100 +196,83 @@ Der Wiki-Bot, der die offizielle Wikipedia API nutzt, eröffnet dem Chatbot Zugr
 Die entsprechende API-URL lautet: https://de.wikipedia.org/w/rest.php/v1/search/page.
 
 ### 4.	 SQL-Datenbank
-Die Schnittstelle zur SQL-Datenbank in unserer Anwendung ermöglicht einen nahtlosen Zugriff auf die darin gespeicherten Daten. Sie stellt eine Verbindung zur SQL-Datenbank über den Hostname der SQLite Datenbank her. Sobald die Verbindung hergestellt ist, kann die Anwendung SQL-Anfragen an die Datenbank senden, um Daten abzurufen, einzufügen, zu aktualisieren oder zu löschen. Diese Anfragen werden als SQL-Statements übermittelt, die von der Datenbank verarbeitet werden, um Daten hinzuzufügen, zu lesen oder zu ändern. Die Schnittstelle zur SQL-Datenbank spielt somit eine zentrale Rolle in der Anwendung und ermöglicht einen effizienten Umgang mit den gespeicherten Daten.
+Die Schnittstelle zur SQL-Datenbank in der Anwendung ermöglicht einen nahtlosen Zugriff auf die darin gespeicherten Daten. Sie stellt eine Verbindung zur SQL-Datenbank über den Hostnamen der SQLite-Datenbank her. Nach der erfolgreichen Herstellung dieser Verbindung kann die Anwendung SQL-Anfragen an die Datenbank senden, um Daten abzurufen, einzufügen, zu aktualisieren oder zu löschen. Diese Anfragen werden als SQL-Statements übermittelt und von der Datenbank verarbeitet, um Daten hinzuzufügen, zu lesen oder zu ändern. Die Schnittstelle zur SQL-Datenbank spielt somit eine zentrale Rolle in der Anwendung und ermöglicht einen effizienten Umgang mit den gespeicherten Daten.
 
-Für den eigentlichen Austausch von Informationen mit den oben genannten APIs ist die Klasse APIConnect verantwortlich. Diese nimmt die zusammengestellten URLs aus den jeweiligen Bots als Parameter entgegen und etabliert mithilfe dieser Verbindungen zu den APIs. Innerhalb dieser Klasse steht eine generische Methode zur Verfügung, mittels derer GET-Anfragen an die entsprechenden APIs gesendet werden können. Die Antworten der APIs werden als JSONObject zurückgeliefert, das die von der API empfangenen Daten enthält. Falls es während der Kommunikation mit der API zu Fehlern kommt, werden vordefinierte Texte abgegeben oder Ausnahmen (Exceptions) geworfen, abhängig von der Art des Fehlers.
-
-### Motivation???
-
-Neben den Kontext der Schnittstellen ist die Spezifikation zu robuster Kommunikation entscheidend. Diese Spezifikation wird hier festgelegt.
-
-### Form
-Tabellenform und/oder Verweis auf Schemata
+Für den eigentlichen Austausch von Informationen mit den oben genannten APIs ist die Klasse APIConnect verantwortlich. Diese nimmt die zusammengestellten URLs aus den jeweiligen Bots als Parameter entgegen und ermöglicht mithilfe dieser Verbindungen zu den APIs. Innerhalb dieser Klasse steht eine generische Methode zur Verfügung, mittels derer GET-Anfragen an die entsprechenden APIs gesendet werden können. Die Antworten der APIs werden als JSONObject zurückgeliefert, das die von der API empfangenen Daten enthält. Falls es während der Kommunikation mit der API zu Fehlern kommt, werden vordefinierte Texte abgegeben oder Ausnahmen (Exceptions) geworfen, abhängig von der Art des Fehlers.
 
 ## Erweiterungen
 
 ## 1.9 Risiken und teschnische Schulden
 
-In unserer Software sind mehrere kritische Risikofaktoren und technische Herausforderungen zu identifizieren, die unsere Entwicklungs- und Sicherheitsbemühungen erheblich beeinflussen können. Diese Risiken betreffen vor allem die Abhängigkeiten zu den App-Verbindungen und der SQL-Datenbank, das Fehlen von Unit Tests im Code sowie die potenzielle Vulnerabilität für SQL-Injektionen. Darüber hinaus besteht die Besorgnis, dass die derzeitigen Administratorenrechte keine hinreichende Unterscheidung zwischen einem Administrator und einem normalen Benutzer ermöglichen.
+In der Software sind verschiedene kritische Risikofaktoren und technische Herausforderungen zu identifizieren, die erheblichen Einfluss auf die Entwicklungs- und Sicherheitsbemühungen haben können. Diese Risiken betreffen hauptsächlich:
 
-1. **Abhängigkeiten zu den App-Verbindungen und der SQL-Datenbank:**
-   Unsere Software verlässt sich stark auf externe Abhängigkeiten, insbesondere auf App-Verbindungen und die SQL-Datenbank. Veränderungen in diesen Abhängigkeiten, wie API-Änderungen oder Datenbankschemamodifikationen, könnten unvorhergesehene Auswirkungen auf die Softwarefunktionalität haben. Die mangelnde Kontrolle über diese externen Abhängigkeiten stellt ein Risiko für die Stabilität und die langfristige Wartbarkeit unseres Systems dar.
+**1. Abhängigkeiten zu den App-Verbindungen und der SQL-Datenbank:**
+Die Software verlässt sich stark auf externe Abhängigkeiten wie App-Verbindungen und die SQL-Datenbank. Änderungen in diesen Abhängigkeiten, sei es durch API-Änderungen oder Datenbankschemamodifikationen, könnten unvorhersehbare Auswirkungen auf die Funktionalität der Software haben. Die begrenzte Kontrolle über diese externen Abhängigkeiten stellt ein Risiko für die Stabilität und die langfristige Wartbarkeit des Systems dar.
 
-2. **Fehlen von Unit Tests im Code:**
-   Die Abwesenheit von Unit Tests im Code erhöht das Risiko von Funktionsfehlern und Bugs erheblich. Ohne gründliche Testabdeckung kann die Identifizierung und Behebung von Fehlern zeitaufwändig und fehleranfällig sein. Dies kann zu unerwarteten Ausfällen oder Leistungsproblemen führen und die Softwarequalität insgesamt beeinträchtigen.
+**2. Fehlen von Unit Tests im Code:**
+Das Fehlen von Unit Tests im Code erhöht das Risiko von Fehlern und Bugs erheblich. Ohne eine umfassende Testabdeckung können Fehler schwer zu identifizieren und zu beheben sein, was zu unerwarteten Ausfällen und Leistungsproblemen führen kann. Dies beeinträchtigt die Gesamtqualität der Software.
 
-3. **SQL-Injektionsrisiko:**
-   Die Software zeigt eine potenzielle Schwachstelle in Bezug auf SQL-Injektionen. Wenn keine ausreichenden Schutzmechanismen implementiert sind, könnten Angreifer schädlichen SQL-Code in die Anwendung einschleusen und Datenbankzugriffe manipulieren. Dies stellt ein erhebliches Sicherheitsrisiko dar und kann zu Datenverlust, Datenschutzverletzungen oder der Kompromittierung der Integrität der Anwendung führen.
+**3. SQL-Injektionsrisiko:**
+Die Software weist eine potenzielle Schwachstelle in Bezug auf SQL-Injektionen auf. Ohne ausreichende Schutzmechanismen könnten Angreifer schädlichen SQL-Code in die Anwendung einschleusen und Datenbankzugriffe manipulieren. Dies stellt ein erhebliches Sicherheitsrisiko dar und kann zu Datenverlust, Datenschutzverletzungen oder der Kompromittierung der Anwendung führen.
 
-4. **Administratorrechte ohne Unterschied zum normalen Nutzer:**
-   Die derzeitige Implementierung der Administratorrechte innerhalb der Software bietet keinen hinreichenden Unterschied oder zusätzliche Sicherheitsvorkehrungen im Vergleich zu normalen Benutzern. Dies führt dazu, dass Administratoren und normale Benutzer ähnliche Zugriffsrechte und Privilegien haben. Dies kann zu mangelnder Kontrolle und möglichen Sicherheitsrisiken führen, da Administratoren Zugang zu sensiblen Daten und Funktionen benötigen, die von normalen Benutzern eingeschränkt sein sollten.
+**4. Administratorrechte ohne angemessene Differenzierung:**
+Die derzeitige Implementierung der Administratorrechte in der Software bietet keine ausreichende Differenzierung gegenüber normalen Benutzern. Dies führt dazu, dass Administratoren und normale Benutzer ähnliche Zugriffsrechte und Privilegien haben. Dies kann zu mangelnder Kontrolle und möglichen Sicherheitsrisiken führen, da Administratoren Zugang zu sensiblen Daten und Funktionen haben, die normalen Benutzern möglicherweise nicht zur Verfügung stehen sollten.
 
-Um diese Risiken zu minimieren, ist es unerlässlich, eine umfassende Risikobewertung und Sicherheitsüberprüfung durchzuführen. Darüber hinaus sollten Maßnahmen ergriffen werden, um die Abhängigkeiten zu externen Komponenten zu verwalten, Unit-Tests zu implementieren, um die Codequalität sicherzustellen, Sicherheitslücken durch gründliche Validierung und Prepared Statements in der Datenbank zu verhindern und die Rollen und Berechtigungen von Administratoren und normalen Benutzern sorgfältig zu überdenken und zu differenzieren. Eine kontinuierliche Überwachung und Aktualisierung dieser Sicherheits- und Entwicklungspraktiken ist entscheidend, um den reibungslosen Betrieb und die Sicherheit unserer Software zu gewährleisten.
-
+Um diese Risiken zu minimieren, ist es entscheidend, eine umfassende Risikobewertung und Sicherheitsüberprüfung durchzuführen. Es sollten Maßnahmen ergriffen werden, um die Abhängigkeiten zu externen Komponenten zu verwalten, Unit-Tests zu implementieren, um die Codequalität sicherzustellen, Sicherheitslücken durch sorgfältige Validierung und die Verwendung von Prepared Statements in der Datenbank zu verhindern. Außerdem ist es wichtig, die Rollen und Berechtigungen von Administratoren und normalen Benutzern genau zu überdenken und zu differenzieren. Eine kontinuierliche Überwachung und Aktualisierung dieser Sicherheits- und Entwicklungspraktiken ist von entscheidender Bedeutung, um einen reibungslosen Betrieb und die Sicherheit der Software zu gewährleisten.
 
 ## 1.10 Erweiterungen
 
 ## 1.11 Fehlerbehebung
 
-**Abhängigkeitsmanagement:** Es werden externe Abhängigkeiten überwacht und sicherstellt, sodass die Software mit Änderungen in den App-Verbindungen und der SQL-Datenbank kompatibel bleibt.
+**Abhängigkeitsmanagement:** Die Überwachung und Sicherstellung externer Abhängigkeiten ist entscheidend, um die Software gegenüber Veränderungen in den App-Verbindungen und der SQL-Datenbank kompatibel zu halten.
 
-**Implementierung von Unit Tests:** Es wird aktiv daran gearbeitet, Unit Tests in dem Code zu integrieren, um die Codequalität und -stabilität zu erhöhen.
+**Implementierung von Unit Tests:** Die Integration von Unit Tests in den Code ist ein aktiver Schritt zur Verbesserung der Codequalität und -stabilität. Dies trägt dazu bei, Fehler frühzeitig zu erkennen und die Gesamtqualität der Software zu steigern.
 
-**Sicherheitsüberprüfung und Schutz vor SQL-Injektionen:** Es werden geeignete Sicherheitsmaßnahmen, wie Prepared Statements und Datenvalidierung, eingeführt, um das Risiko von SQL-Injektionen zu minimieren.
+**Sicherheitsüberprüfung und Schutz vor SQL-Injektionen:** Die Einführung von Sicherheitsmaßnahmen wie Prepared Statements und Datenvalidierung ist unerlässlich, um das Risiko von SQL-Injektionen zu minimieren und die Integrität der Datenbank zu gewährleisten.
 
-**Administratorrechte:** Es werden die Rollen und Berechtigungen für Administratoren und normale Benutzer überarbeitet, um die Sicherheit und den Datenschutz zu gewährleisten.
+**Administratorrechte:** Die Überarbeitung der Rollen und Berechtigungen von Administratoren und normalen Benutzern ist ein wichtiger Schritt, um die Sicherheit und den Datenschutz zu gewährleisten und sicherzustellen, dass Zugriffsrechte angemessen verteilt sind.
 
-Es ist entscheidend, diese Risiken und Herausforderungen im Laufe des Projekts aktiv zu überwachen und geeignete Maßnahmen zu ergreifen, um die Software stabil, sicher und funktionsfähig zu halten.
+Es ist von größter Bedeutung, diese Risiken und Herausforderungen während des gesamten Projekts aktiv zu überwachen und geeignete Maßnahmen zu ergreifen, um die Software stabil, sicher und funktionsfähig zu halten.
 
 
 ## 1.12 Installationsanleitung
 
 ## 1.13 Konfiguration
 
-Der User gibt er seinen Nutzernamen sowie sein Passwort ein. Sind die eingegebenen Daten korrekt, wird der Nutzer erfolgreich eingeloggt und erhält Zugriff auf die Chatbots. Falls das eingegebene Passwort nicht korrekt ist, wird der Nutzer aufgefordert, die Daten erneut einzugeben, bis die korrekten Anmeldedaten eingegeben wurden.
+Der Benutzer gibt seinen Benutzernamen und sein Passwort ein. Bei korrekten Anmeldedaten erfolgt eine erfolgreiche Anmeldung, und der Benutzer erhält Zugriff auf die Chatbots. Im Falle eines falschen Passworts wird der Benutzer aufgefordert, die Daten erneut einzugeben, bis die korrekten Anmeldedaten vorliegen.
 
-Unser Chatsystem bietet eine breite Palette von Befehlen, die es Benutzern ermöglichen, auf verschiedene Funktionen zuzugreifen und das Chaterlebnis zu individualisieren. Hier ist eine detaillierte Auflistung der Konfigurationen und deren jeweilige Funktionen:
+Unser Chatsystem bietet eine breite Palette von Befehlen, die es Benutzern ermöglichen, auf verschiedene Funktionen zuzugreifen und ihr Chaterlebnis individuell anzupassen. Hier ist eine ausführliche Liste der Konfigurationen und ihrer jeweiligen Funktionen:
 
-**!Persa info**
+**!Persa info:**
+Dieser Befehl gibt umfassende Informationen über das PERSA Chatsystem. Wenn Sie Fragen zur Funktionsweise des Chatsystems haben oder mehr über seine Möglichkeiten erfahren möchten, ist dieser Befehl hilfreich.
 
-Dieser Befehl gibt Ihnen umfassende Informationen zum PERSA Chatsystem. Wenn Sie Fragen zur Funktionsweise des Chatsystems haben oder mehr über seine Möglichkeiten erfahren möchten, ist dieser Befehl hilfreich.
-
-**!Persa credits**
-
+**!Persa credits:**
 Mit diesem Befehl können Sie herausfinden, wer an der Entwicklung und Umsetzung des PERSA Chatsystems beteiligt war. Wir möchten die Gelegenheit nutzen, um unseren talentierten Teammitgliedern für ihre Arbeit und ihr Engagement zu danken.
 
-**!Persa log**
-
+**!Persa log:**
 Wenn Sie den Verlauf der letzten Anfragen und Antworten im Chatsystem überprüfen möchten, ist dieser Befehl genau das Richtige. Der Log liefert Einblicke in vergangene Konversationen und Interaktionen.
 
-**!Persa botliste**
-
+**!Persa botliste:**
 Mit diesem Befehl können Sie eine detaillierte Liste der verfügbaren Bots und ihren aktuellen Status abrufen. Dies ist nützlich, um zu erfahren, welche Bots derzeit aktiv sind und welche nicht.
 
-**!Persa status [botname]**
-
+**!Persa status [botname]:**
 Wenn Sie Informationen zum Status eines bestimmten Bots benötigen, verwenden Sie diesen Befehl. Geben Sie den Namen des Bots als Parameter an, um seinen aktuellen Status zu erfahren.
 
-**!Persa aktivieren [botname]**
-
+**!Persa aktivieren [botname]:**
 Sie haben die Möglichkeit, Bots individuell zu aktivieren, wenn Sie ihre Dienste nutzen möchten. Mit diesem Befehl können Sie einen bestimmten Bot aktivieren, damit er in Ihren Chats verfügbar ist.
 
-**!Persa deaktivieren [botname]**
-
+**!Persa deaktivieren [botname]:**
 Wenn Sie einen Bot vorübergehend nicht verwenden möchten, können Sie ihn mit diesem Befehl deaktivieren. Dadurch wird der Bot in Ihren Chats inaktiv, bis Sie ihn erneut aktivieren.
 
-Diese Befehle bieten eine Fülle von Möglichkeiten, das PERSA Chatsystem nach Ihren Bedürfnissen anzupassen und zu steuern. Wir haben sie sorgfältig entwickelt, um sicherzustellen, dass Sie eine reibungslose und effiziente Kommunikation erleben.
+Diese Befehle bieten eine Fülle von Möglichkeiten, das PERSA Chatsystem nach Ihren Bedürfnissen anzupassen und zu steuern. Sie wurden sorgfältig entwickelt, um sicherzustellen, dass Sie eine reibungslose und effiziente Kommunikation erleben.
 
-
-Wie Befehle verwendet werden:
+So verwenden Sie die Befehle:
 
 Um einen Befehl in Ihrem Chat einzugeben, tippen Sie einfach das Ausrufezeichen "!" gefolgt von dem Befehl und optionalen Parametern (falls erforderlich). Zum Beispiel:
 
 •	!Persa info zeigt Informationen zum Chatsystem an.
 
 •	!Persa status Bot zeigt den Status des Bots mit dem Namen "Bot" an.
-
 
 
 # 2 Bot Dokumentation
