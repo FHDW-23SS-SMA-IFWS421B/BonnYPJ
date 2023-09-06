@@ -332,15 +332,11 @@ In diesem detaillierten Kontext sind die verschiedenen Aspekte des Translator Bo
 
 ### 2.1.2 Lösungsstrategie
 
-Die Lösungsstrategie für den Übersetzer Bot beginnt mit der Aktivierung durch den Nutzer über den Befehl "!translator" im IOHandler. Dieser Befehl fungiert als Auslöser für den BotCaller, der den Übersetzer Bot aktiviert. Wenn der Nutzer lediglich den Befehl "!translator" eingibt, wird eine Liste der verfügbaren Befehle und unterstützten Sprachen angezeigt, um dem Nutzer die Auswahl zu erleichtern.
+Der Übersetzer Bot wird durch den Befehl "!translator" aktiviert, den der Nutzer im IOHandler eingibt. Dabei kann der Nutzer die Zielsprache durch Eingabe des entsprechenden Sprachcodes wählen, z. B. "DE" für Deutsch oder "EN" für Englisch. Anschließend gibt der Nutzer den zu übersetzenden Text ein.
 
-Die Zielsprache kann der Nutzer durch Eingabe des entsprechenden Sprachcodes auswählen, wobei DE für Deutsch, EN für Englisch, ES für Spanisch, FR für Französisch und IT für Italienisch stehen. Ein Beispiel wäre "!translator EN" für die Übersetzung ins Englische. Nach der Sprachauswahl wird der Nutzer aufgefordert, den zu übersetzenden Text oder das zu übersetzende Wort über den IOHandler einzugeben.
+Der Bot verarbeitet die Anfrage, generiert eine Übersetzungsdienst-API-URL und sendet einen HTTP GET-Request an die API über die "APIConnect"-Klasse. Bei einer erfolgreichen Anfrage wird die Übersetzung dem Nutzer über den IOHandler ausgegeben, während bei einem Problem eine Fehlermeldung erscheint.
 
-Der Übersetzer Bot verarbeitet den Sprachcode und den eingegebenen Text, um eine URL für die Übersetzungsdienst-API zu generieren. Diese URL wird dann an die Klasse "APIConnect" übergeben, die einen HTTP GET-Request an die API sendet und die Antwort verarbeitet.
-
-Im Falle eines fehlgeschlagenen Requests oder eines API-Problems wird eine entsprechende Fehlermeldung an den Nutzer zurückgegeben. Bei einer erfolgreichen Anfrage erhält die APIConnect-Klasse ein JSON-Objekt als Antwort, das der Übersetzer Bot verarbeitet und in einen gut formatierten Text umwandelt. Diese formatierte Übersetzung wird dem Nutzer über den IOHandler präsentiert.
-
-Auf diese Weise ermöglicht der Übersetzer Bot eine effiziente und benutzerfreundliche Übersetzung von Texten und Wörtern in verschiedenen Sprachen, wobei Fehlerbehandlung und klare Ausgabe im Vordergrund stehen.
+So ermöglicht der Übersetzer Bot eine benutzerfreundliche Übersetzung mit klarer Ausgabe und Fehlerbehandlung.
 
 ### 2.1.3 Bausteinsicht
 
@@ -400,17 +396,15 @@ In diesem ausführlichen Kontext werden die verschiedenen Aspekte des Wetter Bot
 
 ### Lösungsstrategie
 
-Der Wetter Bot wird aktiviert, wenn der Nutzer den Befehl "!weather" im IOHandler eingibt. Dieser Befehl dient als Auslöser für den BotCaller, um den Wetter Bot zu starten. Wenn der Nutzer "!weather" ohne weitere Angabe eingibt, zeigt der Bot eine Befehlsliste an, die dem Nutzer die Wahl zwischen aktuellem Wetter und Wettervorhersage ermöglicht.
+Der Wetter Bot wird durch den Befehl "!weather" im IOHandler aktiviert. Der Nutzer kann dann zwischen aktuellem Wetter und Wettervorhersage wählen.
 
-Der Nutzer kann wählen, ob er das aktuelle Wetter oder eine Wettervorhersage abfragen möchte. Für eine einfache Wetterabfrage gibt der Nutzer "!weather" gefolgt von der gewünschten Stadt ein. Wenn er eine Wettervorhersage möchte, fügt er "Prognose" hinzu, also "!weather" gefolgt von der Stadt und "Prognose".
+Für eine aktuelle Wetterabfrage gibt der Nutzer "!weather" gefolgt von der Stadt ein, während er für eine Wettervorhersage "!weather" gefolgt von der Stadt und "Prognose" eingibt.
 
-Die Stadteingabe erfolgt über den IOHandler. Der Nutzer gibt den Namen der Stadt ein, für die er das Wetter abfragen möchte. Der Bot wird dann versuchen, die Wetterdaten für diese Stadt zu erhalten.
+Der Bot verarbeitet die Eingabe, erstellt eine URL für die Anfrage an die Wetter-API und sendet einen HTTP GET-Request über die "APIConnect"-Klasse. Bei Problemen wird eine Fehlermeldung angezeigt.
 
-Der Bot verarbeitet die Eingabe des Nutzers und erstellt eine URL für die Anfrage an die Wetter-API, abhängig davon, ob eine Wetterabfrage oder eine Prognose angefordert wird. Diese URL wird an die Klasse "APIConnect" übergeben, die einen HTTP GET-Request an die API sendet und die Antwort verarbeitet.
+Bei einer erfolgreichen Anfrage erhält der Bot eine JSON-Antwort, die in einen gut formatierten Text umgewandelt wird. Dieser Text zeigt entweder das aktuelle Wetter oder eine Wettervorhersage für die angegebene Stadt an.
 
-Im Falle eines fehlgeschlagenen Requests oder anderer Probleme bei der API-Anfrage wird eine Fehlermeldung an den Nutzer zurückgegeben, um ihn über das Problem zu informieren.
-
-Bei einer erfolgreichen Anfrage an die API erhält die APIConnect-Klasse ein JSON-Objekt als Antwort. Dieses JSON-Objekt wird vom Wetter Bot verarbeitet und in einen gut formatierten Text umgewandelt. Der Text stellt entweder das aktuelle Wetter für die angegebene Stadt oder eine fünftägige Wettervorhersage dar. Auf diese Weise ermöglicht der Wetter Bot eine präzise und benutzerfreundliche Abfrage von Wetterinformationen, sowohl für das aktuelle Wetter als auch für Prognosen, wobei Fehlerbehandlung und klare Ausgabe im Vordergrund stehen, um eine reibungslose Benutzererfahrung sicherzustellen.
+Der Wetter Bot ermöglicht so eine präzise Abfrage von Wetterinformationen, mit klaren Ausgaben und Fehlerbehandlung, um eine reibungslose Benutzererfahrung sicherzustellen.
 
 ### Bausteinsicht
 
@@ -473,17 +467,13 @@ In diesem ausführlichen Kontext werden die verschiedenen Aspekte des Wiki Bots,
 
 ### Lösungsstrategie
 
-Der Wetter Bot wird durch den Nutzer aktiviert, wenn dieser den Befehl "!wiki" über den IOHandler eingibt, was den BotCaller auslöst. Wenn der Nutzer "!wiki" ohne weitere Angabe eingibt, wird eine Befehlsliste angezeigt, um dem Nutzer die verschiedenen Optionen zur Suche aufzuzeigen.
+Der Wetter Bot wird durch den Nutzer aktiviert, wenn dieser "!wiki" im IOHandler eingibt, was den BotCaller auslöst. Der Nutzer kann sowohl einzelne Begriffe als auch längere Sätze als Suchanfrage eingeben.
 
-Der Benutzer hat die Flexibilität, sowohl einzelne Begriffe als auch längere Sätze als Suchanfrage einzugeben, indem er "!wiki" gefolgt von der gewünschten Suchanfrage eingibt.
+Der Bot verarbeitet die Eingabe und generiert eine URL für die Wikipedia-API-Anfrage, ohne einen API-Schlüssel zu benötigen. Diese URL wird an die "APIConnect"-Klasse übergeben, die einen HTTP GET-Request an die Wikipedia-API sendet und die Antwort verarbeitet.
 
-Der Bot verarbeitet die Eingabe des Nutzers und generiert eine URL für die Anfrage an die Wikipedia-API. Dies geschieht mithilfe der Methode "buildApiUrl" ohne die Notwendigkeit eines zusätzlichen API-Schlüssels.
+Bei einem erfolgreichen Request erhält die "APIConnect"-Klasse ein JSON-Objekt als Antwort, das der Wetter Bot in einen gut formatierten Text umwandelt. Die Ausgabe enthält den Titel der Suchanfrage und die drei wichtigsten Informationen zum Thema.
 
-Die erstellte URL wird dann an die Klasse "APIConnect" übergeben, die einen HTTP GET-Request an die Wikipedia-API sendet und die Antwort verarbeitet. Im Falle eines fehlgeschlagenen Requests oder anderer Probleme bei der API-Anfrage gibt der Bot eine entsprechende Fehlermeldung aus, um den Nutzer zu informieren.
-
-Bei einer erfolgreichen Anfrage an die API erhält die APIConnect-Klasse ein JSON-Objekt als Antwort. Dieses JSON-Objekt wird vom Wetter Bot verarbeitet und in einen gut formatierten Text umgewandelt. Die Ausgabe enthält den Titel der Suchanfrage sowie die drei wichtigsten Informationen über das gesuchte Thema.
-
-Auf diese Weise ermöglicht der Wetter Bot eine effiziente und benutzerfreundliche Suche nach Informationen in der Wikipedia, sowohl für kurze Begriffe als auch für längere Sätze. Fehlerbehandlung und klare Ausgabe stehen im Mittelpunkt, um eine reibungslose Benutzererfahrung sicherzustellen.
+Der Wetter Bot ermöglicht so eine effiziente Suche nach Wikipedia-Informationen, mit klaren Ausgaben und Fehlerbehandlung für eine reibungslose Benutzererfahrung.
 
 ### Bausteinsicht
 
