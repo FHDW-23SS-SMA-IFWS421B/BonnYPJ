@@ -200,8 +200,6 @@ Die Schnittstelle zur SQL-Datenbank in der Anwendung ermöglicht einen nahtlosen
 
 Für den eigentlichen Austausch von Informationen mit den oben genannten APIs ist die Klasse APIConnect verantwortlich. Diese nimmt die zusammengestellten URLs aus den jeweiligen Bots als Parameter entgegen und ermöglicht mithilfe dieser Verbindungen zu den APIs. Innerhalb dieser Klasse steht eine generische Methode zur Verfügung, mittels derer GET-Anfragen an die entsprechenden APIs gesendet werden können. Die Antworten der APIs werden als JSONObject zurückgeliefert, das die von der API empfangenen Daten enthält. Falls es während der Kommunikation mit der API zu Fehlern kommt, werden vordefinierte Texte abgegeben oder Ausnahmen (Exceptions) geworfen, abhängig von der Art des Fehlers.
 
-## Erweiterungen
-
 ## 1.9 Risiken und teschnische Schulden
 
 In der Software sind verschiedene kritische Risikofaktoren und technische Herausforderungen zu identifizieren, die erheblichen Einfluss auf die Entwicklungs- und Sicherheitsbemühungen haben können. Diese Risiken betreffen hauptsächlich:
@@ -237,25 +235,30 @@ Es ist von größter Bedeutung, diese Risiken und Herausforderungen während des
 
 ## 1.12 Installationsanleitung
 
-Um das Programm erfolgreich zum Laufen zu bringen, sind einige technische Anforderungen und Schritte erforderlich, die im Folgenden bildungssprachlich und ausführlicher erläutert werden:
+Um das Programm erfolgreich auszuführen, sind bestimmte technische Anforderungen und Schritte erforderlich. Im Folgenden werden diese Anforderungen ausführlich erläutert:
 
-**Systemvoraussetzungen:** Für die reibungslose Ausführung des Chatbots wird mindestens OpenJDK Version 17 oder Java Version 8 benötigt. Diese Java-Umgebung ist erforderlich, um den Chatbot-Code zu interpretieren und auszuführen.
+**Systemvoraussetzungen:**
+Für die reibungslose Ausführung des Chatbots ist mindestens OpenJDK Version 17 oder Java Version 8 erforderlich. Diese Java-Umgebung wird benötigt, um den Code des Chatbots zu interpretieren und auszuführen.
 
-**Speicherplatz:** Stelle sicher, dass auf deinem Rechner mindestens 80 Megabyte freier Speicherplatz verfügbar sind. Dieser Speicherplatz wird benötigt, um den Chatbot und seine begleitenden Dateien zu speichern und auszuführen.
+**Speicherplatz:**
+Es sollte mindestens 80 Megabyte freier Speicherplatz auf dem Rechner verfügbar sein. Dieser Speicherplatz wird benötigt, um den Chatbot und seine begleitenden Dateien zu speichern und auszuführen.
 
-**Erforderliche Dateien:** Um den Chatbot auszuführen, werden spezifische Dateien benötigt:
+**Erforderliche Dateien:**
+Zur Ausführung des Chatbots sind bestimmte Dateien erforderlich:
 
-Die Datei "persa.jar": Dies ist das ausführbare JAR-Archiv des Chatbots, das seine Funktionalität enthält.
+- Die Datei "persa.jar": Dies ist das ausführbare JAR-Archiv des Chatbots, das seine Funktionalität enthält.
 
-Die Datei "persa.bat" (für Windows) oder "persa.sh" (für Linux): Diese Startskripte ermöglichen es, den Chatbot zu initiieren.
+- Die Datei "persa.bat" (für Windows) oder "persa.sh" (für Linux): Diese Startskripte ermöglichen die Initiierung des Chatbots.
 
-Der Ordner "database": Dieser Ordner enthält die Datenbanken und Daten, die der Chatbot während seiner Ausführung benötigt.
+- Der Ordner "database": Dieser Ordner enthält die Datenbanken und Daten, die der Chatbot während seiner Ausführung benötigt.
 
-Verzeichnisstruktur: Es ist entscheidend, dass die Verzeichnisstruktur, wie sie bereitgestellt wurde, unverändert bleibt. Dies gewährleistet, dass der Chatbot alle erforderlichen Ressourcen und Dateien findet und korrekt ausführt.
+**Verzeichnisstruktur:**
+Es ist von entscheidender Bedeutung, dass die bereitgestellte Verzeichnisstruktur unverändert bleibt. Dies stellt sicher, dass der Chatbot alle notwendigen Ressourcen und Dateien findet und korrekt ausführt.
 
-Starten des Chatbots: Um den Chatbot zu starten, führe entweder die Datei "persa.bat" (für Windows) oder "persa.sh" (für Linux) aus. Ein Terminal- oder Befehlszeilenfenster öffnet sich, und der Chatbot wird initialisiert.
+**Starten des Chatbots:**
+Um den Chatbot zu starten, wird entweder die Datei "persa.bat" (für Windows) oder "persa.sh" (für Linux) ausgeführt. Dadurch wird ein Terminal- oder Befehlszeilenfenster geöffnet, und der Chatbot wird initialisiert.
 
-Die Einhaltung dieser Schritte und Voraussetzungen gewährleistet, dass der Chatbot auf deinem System ordnungsgemäß funktioniert und du eine reibungslose Interaktion mit ihm haben kannst. Beachte bitte die spezifischen Anweisungen für dein Betriebssystem (Windows oder Linux) und die Versionsanforderungen für Java.
+Die Einhaltung dieser Schritte und Anforderungen gewährleistet, dass der Chatbot auf dem System ordnungsgemäß funktioniert und eine reibungslose Interaktion ermöglicht. Bitte beachten Sie die spezifischen Anweisungen für das Betriebssystem (Windows oder Linux) und die Versionsanforderungen für Java.
 
 ## 1.13 Konfiguration
 
