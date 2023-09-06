@@ -165,6 +165,18 @@ In diesem ausführlichen Kontext werden die verschiedenen Aspekte des Wiki Bots,
 
 ### Lösungsstrategie
 
+Der Wetter Bot wird durch den Nutzer aktiviert, wenn dieser den Befehl "!wiki" über den IOHandler eingibt, was den BotCaller auslöst. Wenn der Nutzer "!wiki" ohne weitere Angabe eingibt, wird eine Befehlsliste angezeigt, um dem Nutzer die verschiedenen Optionen zur Suche aufzuzeigen.
+
+Der Benutzer hat die Flexibilität, sowohl einzelne Begriffe als auch längere Sätze als Suchanfrage einzugeben, indem er "!wiki" gefolgt von der gewünschten Suchanfrage eingibt.
+
+Der Bot verarbeitet die Eingabe des Nutzers und generiert eine URL für die Anfrage an die Wikipedia-API. Dies geschieht mithilfe der Methode "buildApiUrl" ohne die Notwendigkeit eines zusätzlichen API-Schlüssels.
+
+Die erstellte URL wird dann an die Klasse "APIConnect" übergeben, die einen HTTP GET-Request an die Wikipedia-API sendet und die Antwort verarbeitet. Im Falle eines fehlgeschlagenen Requests oder anderer Probleme bei der API-Anfrage gibt der Bot eine entsprechende Fehlermeldung aus, um den Nutzer zu informieren.
+
+Bei einer erfolgreichen Anfrage an die API erhält die APIConnect-Klasse ein JSON-Objekt als Antwort. Dieses JSON-Objekt wird vom Wetter Bot verarbeitet und in einen gut formatierten Text umgewandelt. Die Ausgabe enthält den Titel der Suchanfrage sowie die drei wichtigsten Informationen über das gesuchte Thema.
+
+Auf diese Weise ermöglicht der Wetter Bot eine effiziente und benutzerfreundliche Suche nach Informationen in der Wikipedia, sowohl für kurze Begriffe als auch für längere Sätze. Fehlerbehandlung und klare Ausgabe stehen im Mittelpunkt, um eine reibungslose Benutzererfahrung sicherzustellen.
+
 ### Bausteinsicht
 
 ### Laufzeitsicht
