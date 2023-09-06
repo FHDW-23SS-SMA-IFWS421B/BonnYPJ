@@ -144,9 +144,7 @@ Es ist entscheidend, diese Risiken und Herausforderungen im Laufe des Projekts a
 
 ## 1.12 Installationsanleitung
 
-## 1.13 Bot-Befehlsliste
-
-## 1.14 Konfiguration
+## 1.13 Konfiguration
 
 Der User gibt er seinen Nutzernamen sowie sein Passwort ein. Sind die eingegebenen Daten korrekt, wird der Nutzer erfolgreich eingeloggt und erhält Zugriff auf die Chatbots. Falls das eingegebene Passwort nicht korrekt ist, wird der Nutzer aufgefordert, die Daten erneut einzugeben, bis die korrekten Anmeldedaten eingegeben wurden.
 
