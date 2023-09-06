@@ -433,6 +433,9 @@ Auf diese Weise ermöglicht der Wetter Bot eine effiziente und benutzerfreundlic
 
 ### Laufzeitsicht
 
+![BPMN Wiki](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/120190475/b90b901d-a6b0-4627-9692-1eed0ba6eacd)
+
+
 **1. Initialisierung:**
 Wenn der Nutzer das Kommando "!wiki" im IOHandler eingibt, wird der Bot durch den BotCaller aktiviert. Bei fehlender weiterer Angabe gibt der Bot eine Liste von unterstützten Befehlen aus.
 
@@ -450,3 +453,5 @@ Bei einer erfolgreichen Anfrage gibt die APIConnect-Klasse ein JSONObject zurüc
 
 **6.Ausgabe:**
 Die finale Ausgabe enthält den Titel der Suchanfrage sowie die drei wichtigsten Informationen darüber.
+
+# 3. Weitere Schritte
