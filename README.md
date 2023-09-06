@@ -117,7 +117,7 @@ Für die koordinierte Zusammenarbeit wurde das Tool GitHub eingesetzt, was jedem
 
 ## 1.4 Bausteinsicht
 
-![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/d800b7d7-55c0-47cd-882b-1d89a4549776)
+![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/8c019632-8ae3-4a86-acf0-b80615614ae3)
 
 Das Programm besteht aus insgesamt 17 Bausteinen, die in einer hierarchischen Struktur zusammenarbeiten. Als zentraler Baustein fungiert die Klasse "Session," die als Einstiegspunkt des Programms dient. Der "Authenticator" ist dafür zuständig, die Überprüfung von Benutzername und Passwort durchzuführen.
 
@@ -149,7 +149,7 @@ Schließlich gibt der "IOHandler" die Antwort aus.
 
 ## 1.6 Infrastruktursicht
 
-![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/9f2fdf64-3253-4661-989b-efd7882eb324)
+![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/747bf195-9970-491e-bf26-f418735de9d8)
 
 
 Das Programm wird auf der Ausführungsebene unter Verwendung des Java Runtime Environment SE als ausführbares Artefakt mit dem Namen "persa.jar" ausgeführt. Benutzereingaben können unter dem Artefakt "script" mit dem Namen "persa.bat" eingegeben werden.
