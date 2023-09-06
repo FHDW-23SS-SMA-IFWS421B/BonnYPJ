@@ -83,7 +83,7 @@ Zusammenfassend bieten Design Patterns wie das Abstrakte Fabrik-Muster und das D
 Die Chatbot-Anwendung interagiert mit externen Systemen mithilfe von Application Programming Interfaces (APIs), die als Schnittstellen dienen. Diese Schnittstellen ermöglichen die Bereitstellung einer Vielzahl von Diensten wie beispielsweise Textübersetzung, Wetterinformationen und Wissensabfragen. Um diese Verbindung zu den APIs herzustellen, nutzt die Anwendung die Klasse "ApiConnection". Innerhalb dieser Klasse steht die Methode "connectToApi" zur Verfügung, die eine Hypertext Transfer Protocol (HTTP)-Verbindung zu den jeweiligen APIs aufbaut und JSON-formatierte Antworten empfängt. Im Kontext der Klasse "SqlOperations" wird eine Verbindung zu einer internen Datenbank hergestellt, die dazu dient, die Verlaufsdokumentation der Konversationen mit den Nutzern zu speichern.
 	
 ### 1.	Translation Bot
-Bei dem Translation-Bot, der die DeepL APInutzt, erhält der Chatbot durch diese Technologie Zugriff auf fortschrittliche maschinelle Übersetzungsfunktionen von DeepL. Das ermöglicht dem Chatbot, hochwertige Übersetzungen in Echtzeit anzubieten. Die Software sendet eine HTTP-Anfrage an die DeepL API, um eine Übersetzung zu erhalten. Diese Anfrage enthält den zu übersetzenden Text und die gewünschte Zielsprache. Die API antwortet daraufhin mit der übersetzten Version des Textes. 
+Bei dem Translation-Bot, der die DeepL API nutzt, erhält der Chatbot durch diese Technologie Zugriff auf fortschrittliche maschinelle Übersetzungsfunktionen von DeepL. Das ermöglicht dem Chatbot, hochwertige Übersetzungen in Echtzeit anzubieten. Die Software sendet eine HTTP-Anfrage an die DeepL API, um eine Übersetzung zu erhalten. Diese Anfrage enthält den zu übersetzenden Text und die gewünschte Zielsprache. Die API antwortet daraufhin mit der übersetzten Version des Textes. 
 Die entsprechende API-URL ist: https://api-free.deepl.com/v2/translate.
 
 ### 2.	 Weather Bot
@@ -94,8 +94,9 @@ Die entsprechende API-URL ist: http://api.openweathermap.org/data/2.5/weather.
 Der Wiki-Bot, der die offizielle Wikipedia API nutzt, eröffnet dem Chatbot Zugriff auf die umfassende Wikipedia-Datenbank, um Nutzern gezielte Informationen zu speziellen Themen bereitzustellen. Die Kommunikation mit der Wikipedia API erfolgt durch die Software mittels einer HTTP-Anfrage, bei der der gewünschte Suchbegriff übermittelt wird. Als Antwort erhält die Software eine Liste relevanter Wikipedia-Seiten, die mit dem angegebenen Suchbegriff in Verbindung stehen. 
 Die entsprechende API-URL lautet: https://de.wikipedia.org/w/rest.php/v1/search/page.
 
-### 4.	 SQL-Datenbank (Phillip)
-Erläuterung APIConnect und Datenbank (Phillip)
+### 4.	 SQL-Datenbank
+Die Schnittstelle zur SQL-Datenbank in unserer Anwendung ermöglicht einen nahtlosen Zugriff auf die darin gespeicherten Daten. Sie stellt eine Verbindung zur SQL-Datenbank über den Hostname der SQLite Datenbank her. Sobald die Verbindung hergestellt ist, kann die Anwendung SQL-Anfragen an die Datenbank senden, um Daten abzurufen, einzufügen, zu aktualisieren oder zu löschen. Diese Anfragen werden als SQL-Statements übermittelt, die von der Datenbank verarbeitet werden, um Daten hinzuzufügen, zu lesen oder zu ändern. Die Schnittstelle zur SQL-Datenbank spielt somit eine zentrale Rolle in der Anwendung und ermöglicht einen effizienten Umgang mit den gespeicherten Daten.
+
 Für den eigentlichen Austausch von Informationen mit den oben genannten APIs ist die Klasse APIConnect verantwortlich. Diese nimmt die zusammengestellten URLs aus den jeweiligen Bots als Parameter entgegen und etabliert mithilfe dieser Verbindungen zu den APIs. Innerhalb dieser Klasse steht eine generische Methode zur Verfügung, mittels derer GET-Anfragen an die entsprechenden APIs gesendet werden können. Die Antworten der APIs werden als JSONObject zurückgeliefert, das die von der API empfangenen Daten enthält. Falls es während der Kommunikation mit der API zu Fehlern kommt, werden vordefinierte Texte abgegeben oder Ausnahmen (Exceptions) geworfen, abhängig von der Art des Fehlers.
 
 ### Motivation???
