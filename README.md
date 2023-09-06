@@ -96,7 +96,7 @@ Für die Entwicklung des Projekts wurde die Programmiersprache Java ausgewählt.
 
 Um sicherzustellen, dass das System zuverlässig, skalierbar und erweiterbar ist, wurden gängige Design- und Architekturmuster implementiert. Dies trägt zur besseren Wartbarkeit des Codes, zur Austauschbarkeit einzelner Komponenten und zur klaren Zuweisung von Aufgaben an spezifische Systemteile bei. Weitere Einzelheiten zu den verwendeten Mustern sind im Abschnitt "Querschnittliche Konzepte" zu finden.
 
-### 1.3.3Qualitätsanforderungen
+### 1.3.3 Qualitätsanforderungen
 
 Zur Erfüllung der diversen Qualitätsmerkmale wurden unterschiedliche Maßnahmen ergriffen. Der Code wurde bewusst sauber und übersichtlich gehalten, um eine einfache Wartung und Erweiterung zu ermöglichen. Darüber hinaus wurde viel Wert auf eine hochwertige Benutzererfahrung gelegt.
 
