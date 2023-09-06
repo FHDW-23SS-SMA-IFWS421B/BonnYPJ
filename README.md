@@ -23,6 +23,7 @@ Stakeholder des Chatbots sind die Benutzer sowie Administratoren. Alle Stakehold
 ## 1.2 Kontextabgrenzung
 
 Um eine Kontextabgrenzung der Software zu ermöglichen, sollte im Vorhinein eine oberflächliche Darstellung der einzelnen Akteure und deren Zusammenhänge oberflächlich vorgenommen werden. In dieser Arbeit wird dies mithilfe des beigefügten Diagramms visualisiert.
+
 ![img.png](Kontextabgrenzung.png)
 
 In dem Diagramm sind die zwei Beteiligten Benutzer und Admin abgebildet. Der Admin kann das Gesamtsystem starten, sowie weitere Chatbots hinzufügen. Des Weiteren können Admin und Benutzer sich anmelden und daraufhin einen Chatbot auswählen und diesen ansprechen. Die Chatnachrichten werden dann in der SQLite Datenbank gespeichert und können auch abgerufen werden.
@@ -83,7 +84,7 @@ Zusammenfassend bieten Design Patterns wie das Abstrakte Fabrik-Muster und das D
 
 | Schnittstelle       | Zweck und Funktion                       | Operationen      | Kommunikationsprotokoll | Datenformat       | Authentifizierung                               |
 |---------------------|------------------------------------------|------------------|-------------------------|-------------------|-------------------------------------------------|
-| DeepL API           | Übersetzungsdienst für Texte             | GET              | HTTP                    | JSONObject        | API-Key                                       	 |
+| DeepL API           | Übersetzungsdienst für Texte             | GET              | HTTP                    | JSONObject        | API-Key                                         |
 | Wikipedia API       | Abruf von Informationen aus Wikipedia    | GET              | HTTP                    | JSONObject        | N/A                                             |
 | OpenWeather API     | Wetterdatenabruf für bestimmte Standorte | GET              | HTTP                    | JSONObject        | API-Key                                         |
 | Database Connection | Kommunikation mit der Datenbank          | Lesen, Schreiben | SQL                     | Tabellen, Objekte | N/A                                             |
