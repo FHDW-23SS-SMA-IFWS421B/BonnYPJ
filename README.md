@@ -363,7 +363,8 @@ So ermöglicht der Übersetzer Bot eine benutzerfreundliche Übersetzung mit kla
 
 ### 2.1.3 Bausteinsicht
 
-![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/6d796661-a48f-4fe9-aa3b-515dfc4f92e9)
+![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/8a6d115b-5cf2-4c29-a41a-764058f9e3ff)
+
 
 Der Übersetzungs-Bot besteht aus fünf Modulen, wobei die zentrale Komponente die Klasse "Translator" darstellt. Die essenzielle Funktion des Bots liegt in der Methode "connection," welche die Benutzereingabe verarbeitet. Die Grundlage für diesen Bot wird durch die abstrakte Klasse "BotTemplate" gebildet, von der alle weiteren Bot-Implementierungen abgeleitet sind und die die Erstellung neuer Bots erleichtert. "BotTemplate" basiert wiederum auf dem Interface "BotTemplateInterface," welches als Grundlage für die abstrakte Klasse dient.
 
