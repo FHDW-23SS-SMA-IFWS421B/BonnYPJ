@@ -221,6 +221,16 @@ Um diese Risiken zu minimieren, ist es entscheidend, eine umfassende Risikobewer
 
 ## 1.10 Erweiterungen
 
+Das System bietet die Möglichkeit neue Bots hinzuzufügen. Dafür muss der Code an folgenden dreit Stellen editiert werden:
+
+1. Erstellen Sie eine neue Klasse für Ihren Bot, die von der BotTemplate-Klasse erbt. In der Methode processRequest wird der vollständige Eingabeinput übergeben. Sie können die Eingabe nach Belieben verarbeiten und sie mit der geerbten Methode answer ausgeben, die einen einfachen String als Ausgabe erwartet.
+
+2. In der Methode setBotObjects der Klasse BotCaller erstellen Sie ein neues Objekt mit dem Datentyp BotTemplate. Fügen Sie dann dieses Objekt der HashMap botObjects unter Verwendung des Botnamens in Kleinbuchstaben hinzu.
+
+3. In der Methode insertBots der Klasse BotBuilding müssen Sie dem verschachtelten String-Array 'bots' ein Array mit dem Botnamen und den Wert "False" hinzufügen.
+
+Stellen Sie sicher, dass Sie diesen Prozess für jeden neuen Bot wiederholen, den Sie hinzufügen möchten. Damit haben Sie erfolgreich einen neuen Bot in Ihr System integriert.
+
 ## 1.11 Fehlerbehebung
 
 **Abhängigkeitsmanagement:** Die Überwachung und Sicherstellung externer Abhängigkeiten ist entscheidend, um die Software gegenüber Veränderungen in den App-Verbindungen und der SQL-Datenbank kompatibel zu halten.
