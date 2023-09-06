@@ -2,17 +2,33 @@
 
 ## 1.1 Einleitung
 
-### 1.1.1 Zweck der Dokumentation???
+Die Software „PERSA“ stellt einen Chatbot dar, der als Mehrzweck-Chatbot verschiedene Bot-Funktionen integriert, um den Benutzer ein nützliches und vielseitiges Erlebnis zu bieten. In diesem Zusammenhang wurden ein Wetterbot, ein Wikibot, ein Übersetzerbot, sowie die Funktion, weitere Chatbots einfach und nahtlos in das Gesamtsystem zu integrieren.
 
-### 1.1.2 Kontext des Chatbot-Basissystems???
+Die Nutzer werden nach erfolgreicher Anmeldung von dem Chatbot Persa angesprochen. Daraufhin entscheidet sich der Nutzer für einen der Chatbot und kann diesen direkt ansprechen.
+
+Der Wetterbot ist ein integriertes Modul, das Echtzeit-Wetterinformationen, sowie Prognosen über das Wetter aus einer Quelle abruft und dem Benutzer präsentiert.
+
+Der Wikibot bietet dem Benutzer die Möglichkeit, einfachen Zugriff zu bestimmten Themen, Personen, Orten oder Ereignissen aus Wikipedia zuzugreifen.
+
+Der Übersetzerbot ermöglicht dem Benutzer Texte zwischen verschiedenen Sprachen zu übersetzen.
+
+Stakeholder des Chatbots sind die Benutzer sowie Administratoren. Alle Stakeholder erwarten eine Anwendung ohne Fehlermeldung und Störungen.
 
 ## 1.2 Kontextabgrenzung
 
+Um eine Kontextabgrenzung der Software zu ermöglichen, sollte im Vorhinein eine oberflächliche Darstellung der einzelnen Akteure und deren Zusammenhänge oberflächlich vorgenommen werden. In dieser Arbeit wird dies mithilfe des beigefügten Diagramms visualisiert.
+![img.png](Kontextabgrenzung.png)
+In dem Diagramm sind die zwei Beteiligten Benutzer und Admin abgebildet. Der Admin kann das Gesamtsystem starten, sowie weitere Chatbots hinzufügen. Des Weiteren können Admin und Benutzer sich anmelden und daraufhin einen Chatbot auswählen und diesen ansprechen. Die Chatnachrichten werden dann in der SQLite Datenbank gespeichert und können auch abgerufen werden.
+
+Nachdem der Benutzer oder der Admin das Chatsystem angesprochen hat, erkennt dieser aus der Nachricht welcher Chatbot gemeint ist und kann dadurch eine Anfrage an die dafür ausgewählte Rest-API senden. Diese ruft dann im Webbrowser die Informationen ab und leitet diese zurück ans Chatsystem, welches dem Benutzer oder dem Admin die Antwort anzeigt.
+
 ### 1.2.1 Fachlicher Kontext
+
+Der Benutzer interagiert mit dem System und erhält darauf Antworten. Die Konversation wird dabei in einer Datenbank gespeichert und kann gegebenenfalls abgerufen werden. Die Anfrage des Benutzers wird mittels einer Application Programming Interface (API) verarbeitet und die Antwort wird generiert und an den Benutzer weitergegeben.
 
 ### 1.2.2 Technischer Kontext
 
-### 1.2.3 Visualisierung
+Über das Control Panel interagiert der Benutzer mit dem System. Das System dient dabei auch als Schnittstelle für die Systemantworten und nutzt spezifische API-Anfragen, um die Daten mit der API auszutauschen. Des Weiteren wird die Verbindung zwischen dem System und der Datenbank durch eine SQL-Verbindung hergestellt.
 
 ## 1.3 Lösungsstrategie
 
@@ -20,18 +36,49 @@
 
 ## 1.5 Laufzeitschicht
 
+Die Laufzeitsicht lässt sich in zwei Aspekte unterteilen, zum Einem in die Userinteraktionen und den Ablauf des Programms:
+
+Der Ablauf der Userinteraktion bezieht sich auf den Login. Um die Verbindung zwischen beiden Sequenzdiagrammen herzustellen wird Programmablaufdiagramm angenommen, dass der Login erfolgreich war sodass mit dem ersten User Input angefangen wird.
+
+![img_1.png](Sequenzdiagramm_User.png)
+
+Im Sequenzdiagramm wird mit dem User begonnen und dieser versucht sich einzuloggen. Dies wird in der Session Klasse durchgeführt und die Eingaben (Benutzername und Passwort) werden zum überprüfen an den Authenticator übergeben. Dieser überprüft, ob die eingegebenen Daten in der Datenbank, in der die Benutzernamen und zugehörigen Passwörter gespeichert sind, vorhanden sind. Das Ergebnis wird dann wieder vom Authenticator an die Session übergeben und diese sagt dann dem User, ob der Login erfolgreich oder fehlgeschlagen hat.
+
+![img_2.png](Sequenzdiagramm_Programm.png)
+
+Der Ablauf des Programmes beginnt mit der Session Klasse und diese lässt vom IOHandler die Willkommensnachricht ausgeben und erwartet daraufhin eine Usereingabe. Nachdem der IOHandler die Usereingabe erhalten hat, wird diese zurück an die Session und von dieser aus an den BotCaller geschickt. Der BotCaller überprüft dann die Nachricht auf den Prefix und kann anhand diesem erkennen, an welchem Chatbot die Usereingabe weitergegeben wird. Der Chatbot identifiziert dann den Command und gibt gegebenenfalls den Request and die APIConnection weiter und erhält von dieser die Antwort. Diese Antwort wird dann noch in einen String angepasst und dann an den IOHandler übergeben, welche die Antwort dann ausgibt.
+
+
 ## 1.6 Infrastrukturschicht
+
+![img_3.png](Infrastruktur.png)
+Das Programm wird auf der execution Evironment Ebene unter dem Java Runtime Evironment SE als ausführbares Artifakt unter persa.jar ausgeführt. Die Usereingaben werden unter dem artifact, script unter persa.bat eingegeben. Das execution Evironment führt zum einem die Verbindung zur Komponente Api Connection, um die Api Abfragen der Chatbots durchzuführen, und zur SQL Connection für die Datenbankabfragen durch.
 
 ## 1.7 Querschnittliche Konzepte
 
+Die Software nutzt das abstrakte Fabrik-Muster und das Decorator Pattern als Design Patterns, welche in verschiedenen Situationen nützlich sein können.
+
+Das Abstrakte Fabrik-Muster ermöglicht die Erzeugung von Objektfamilien, ohne die konkreten Klassen dieser Objekte zu spezifizieren. Es definiert eine abstrakte Fabrik-Schnittstelle, die konkrete Fabriken implementieren müssen. Jede konkrete Fabrik ist in der Lage, eine Familie von zusammengehörenden Objekten zu erzeugen, ohne Details über die tatsächlichen Klassen dieser Objekte preiszugeben.
+
+In Bezug auf die Software könnte das Abstrakte Fabrik-Muster verwendet werden, um die verschiedenen Api Verbindungen und Chatbots zu erzeugen. Sie könnten eine abstrakte Fabrik definieren, die die Methoden zur Erstellung dieser Komponenten vorgibt. Dann würden konkrete Fabriken für jede unterstützte Plattform diese abstrakte Fabrik implementieren und die spezifischen Komponenten für ihre Plattform erzeugen.
+
+Das Abstrakte Fabrik-Muster ermöglicht es, Code zu schreiben, der unabhängig von der konkreten Implementierung der Objekte ist, was die Wartung und Erweiterung erleichtert. Es ist besonders nützlich, wenn eine Anwendung plattformübergreifend ist und verschiedene Varianten derselben Komponenten benötigt.
+
+Die Software verwendet das Decorator Pattern, um eine eigene Klasse für die Ausgabe zu erstellen und die Flexibilität bei der Formatierung und Erweiterung der Ausgabe zu verbessern. Indem es dieses Muster anwendet, kann die Software eine Basisklasse für die Datenerzeugung oder -verwaltung verwenden und dann verschiedene Dekoratoren hinzufügen, um die Ausgabe nach Bedarf anzupassen. Diese Dekoratoren können beispielsweise Textformatierungen, Farben oder spezielle Symbole hinzufügen, ohne die ursprüngliche Datenerzeugungsklasse zu ändern.
+
+Das Decorator Pattern ermöglicht es der Software, die Ausgabe flexibel an verschiedene Anforderungen anzupassen, indem es neue Dekoratoren hinzufügt oder bestehende kombiniert. Dies fördert die Wartbarkeit und Erweiterbarkeit des Codes, da Änderungen oder Erweiterungen an der Ausgabe unabhängig von der Kernfunktionalität vorgenommen werden können. Dadurch wird die Software anpassbarer und kann auf einfache Weise unterschiedliche Ausgabeformate und -optionen bereitstellen, was insbesondere in situationsabhängigen Umgebungen von Vorteil ist.
+
+Zusammenfassend bieten Design Patterns wie das Abstrakte Fabrik-Muster und das Decorator Pattern bewährte Lösungen für wiederkehrende Probleme in der Softwareentwicklung und fördern die Wiederverwendbarkeit, die Wartbarkeit und die Erweiterbarkeit des Codes.
+
+
 ## 1.8 Schnittstellen
 
-| Schnittstelle       | Zweck und Funktion                                   | Operationen | Kommunikationsprotokoll | Datenformat      | Authentifizierung                                 |
-|---------------------|------------------------------------------------------|-------------|-------------------------|------------------|---------------------------------------------------|
-| DeepL API           | Übersetzungsdienst für Texte                         | GET         | HTTP                    | JSONObject       | API-Key                                       	  |
-| Wikipedia API       | Abruf von Informationen aus Wikipedia                | GET         | HTTP                    | JSONObject       | N/A                                               |
-| OpenWeather API     | Wetterdatenabruf für bestimmte Standorte             | GET         | HTTP                    | JSONObject       | API-Key                                           |
-| PHILLIP DATENBANK |  | Lesen       |                |  |  |
+| Schnittstelle       | Zweck und Funktion                       | Operationen      | Kommunikationsprotokoll | Datenformat       | Authentifizierung                               |
+|---------------------|------------------------------------------|------------------|-------------------------|-------------------|-------------------------------------------------|
+| DeepL API           | Übersetzungsdienst für Texte             | GET              | HTTP                    | JSONObject        | API-Key                                       	 |
+| Wikipedia API       | Abruf von Informationen aus Wikipedia    | GET              | HTTP                    | JSONObject        | N/A                                             |
+| OpenWeather API     | Wetterdatenabruf für bestimmte Standorte | GET              | HTTP                    | JSONObject        | API-Key                                         |
+| Database Connection | Kommunikation mit der Datenbank          | Lesen, Schreiben | SQL                     | Tabellen, Objekte | N/A                                             |
 
 Die Chatbot-Anwendung interagiert mit externen Systemen mithilfe von Application Programming Interfaces (APIs), die als Schnittstellen dienen. Diese Schnittstellen ermöglichen die Bereitstellung einer Vielzahl von Diensten wie beispielsweise Textübersetzung, Wetterinformationen und Wissensabfragen. Um diese Verbindung zu den APIs herzustellen, nutzt die Anwendung die Klasse "ApiConnection". Innerhalb dieser Klasse steht die Methode "connectToApi" zur Verfügung, die eine Hypertext Transfer Protocol (HTTP)-Verbindung zu den jeweiligen APIs aufbaut und JSON-formatierte Antworten empfängt. Im Kontext der Klasse "SqlOperations" wird eine Verbindung zu einer internen Datenbank hergestellt, die dazu dient, die Verlaufsdokumentation der Konversationen mit den Nutzern zu speichern.
 	
@@ -62,15 +109,88 @@ Tabellenform und/oder Verweis auf Schemata
 
 ## 1.9 Risiken und teschnische Schulden
 
+In unserer Software sind mehrere kritische Risikofaktoren und technische Herausforderungen zu identifizieren, die unsere Entwicklungs- und Sicherheitsbemühungen erheblich beeinflussen können. Diese Risiken betreffen vor allem die Abhängigkeiten zu den App-Verbindungen und der SQL-Datenbank, das Fehlen von Unit Tests im Code sowie die potenzielle Vulnerabilität für SQL-Injektionen. Darüber hinaus besteht die Besorgnis, dass die derzeitigen Administratorenrechte keine hinreichende Unterscheidung zwischen einem Administrator und einem normalen Benutzer ermöglichen.
+
+1. **Abhängigkeiten zu den App-Verbindungen und der SQL-Datenbank:**
+   Unsere Software verlässt sich stark auf externe Abhängigkeiten, insbesondere auf App-Verbindungen und die SQL-Datenbank. Veränderungen in diesen Abhängigkeiten, wie API-Änderungen oder Datenbankschemamodifikationen, könnten unvorhergesehene Auswirkungen auf die Softwarefunktionalität haben. Die mangelnde Kontrolle über diese externen Abhängigkeiten stellt ein Risiko für die Stabilität und die langfristige Wartbarkeit unseres Systems dar.
+
+2. **Fehlen von Unit Tests im Code:**
+   Die Abwesenheit von Unit Tests im Code erhöht das Risiko von Funktionsfehlern und Bugs erheblich. Ohne gründliche Testabdeckung kann die Identifizierung und Behebung von Fehlern zeitaufwändig und fehleranfällig sein. Dies kann zu unerwarteten Ausfällen oder Leistungsproblemen führen und die Softwarequalität insgesamt beeinträchtigen.
+
+3. **SQL-Injektionsrisiko:**
+   Die Software zeigt eine potenzielle Schwachstelle in Bezug auf SQL-Injektionen. Wenn keine ausreichenden Schutzmechanismen implementiert sind, könnten Angreifer schädlichen SQL-Code in die Anwendung einschleusen und Datenbankzugriffe manipulieren. Dies stellt ein erhebliches Sicherheitsrisiko dar und kann zu Datenverlust, Datenschutzverletzungen oder der Kompromittierung der Integrität der Anwendung führen.
+
+4. **Administratorrechte ohne Unterschied zum normalen Nutzer:**
+   Die derzeitige Implementierung der Administratorrechte innerhalb der Software bietet keinen hinreichenden Unterschied oder zusätzliche Sicherheitsvorkehrungen im Vergleich zu normalen Benutzern. Dies führt dazu, dass Administratoren und normale Benutzer ähnliche Zugriffsrechte und Privilegien haben. Dies kann zu mangelnder Kontrolle und möglichen Sicherheitsrisiken führen, da Administratoren Zugang zu sensiblen Daten und Funktionen benötigen, die von normalen Benutzern eingeschränkt sein sollten.
+
+Um diese Risiken zu minimieren, ist es unerlässlich, eine umfassende Risikobewertung und Sicherheitsüberprüfung durchzuführen. Darüber hinaus sollten Maßnahmen ergriffen werden, um die Abhängigkeiten zu externen Komponenten zu verwalten, Unit-Tests zu implementieren, um die Codequalität sicherzustellen, Sicherheitslücken durch gründliche Validierung und Prepared Statements in der Datenbank zu verhindern und die Rollen und Berechtigungen von Administratoren und normalen Benutzern sorgfältig zu überdenken und zu differenzieren. Eine kontinuierliche Überwachung und Aktualisierung dieser Sicherheits- und Entwicklungspraktiken ist entscheidend, um den reibungslosen Betrieb und die Sicherheit unserer Software zu gewährleisten.
+
+
 ## 1.10 Erweiterungen
 
 ## 1.11 Fehlerbehebung
+
+**Abhängigkeitsmanagement:** Es werden externe Abhängigkeiten überwacht und sicherstellt, sodass die Software mit Änderungen in den App-Verbindungen und der SQL-Datenbank kompatibel bleibt.
+
+**Implementierung von Unit Tests:** Es wird aktiv daran gearbeitet, Unit Tests in dem Code zu integrieren, um die Codequalität und -stabilität zu erhöhen.
+
+**Sicherheitsüberprüfung und Schutz vor SQL-Injektionen:** Es werden geeignete Sicherheitsmaßnahmen, wie Prepared Statements und Datenvalidierung, eingeführt, um das Risiko von SQL-Injektionen zu minimieren.
+
+**Administratorrechte:** Es werden die Rollen und Berechtigungen für Administratoren und normale Benutzer überarbeitet, um die Sicherheit und den Datenschutz zu gewährleisten.
+
+Es ist entscheidend, diese Risiken und Herausforderungen im Laufe des Projekts aktiv zu überwachen und geeignete Maßnahmen zu ergreifen, um die Software stabil, sicher und funktionsfähig zu halten.
+
 
 ## 1.12 Installationsanleitung
 
 ## 1.13 Bot-Befehlsliste
 
 ## 1.14 Konfiguration
+
+Der User gibt er seinen Nutzernamen sowie sein Passwort ein. Sind die eingegebenen Daten korrekt, wird der Nutzer erfolgreich eingeloggt und erhält Zugriff auf die Chatbots. Falls das eingegebene Passwort nicht korrekt ist, wird der Nutzer aufgefordert, die Daten erneut einzugeben, bis die korrekten Anmeldedaten eingegeben wurden.
+
+Unser Chatsystem bietet eine breite Palette von Befehlen, die es Benutzern ermöglichen, auf verschiedene Funktionen zuzugreifen und das Chaterlebnis zu individualisieren. Hier ist eine detaillierte Auflistung der Konfigurationen und deren jeweilige Funktionen:
+
+**!Persa info**
+
+Dieser Befehl gibt Ihnen umfassende Informationen zum PERSA Chatsystem. Wenn Sie Fragen zur Funktionsweise des Chatsystems haben oder mehr über seine Möglichkeiten erfahren möchten, ist dieser Befehl hilfreich.
+
+**!Persa credits**
+
+Mit diesem Befehl können Sie herausfinden, wer an der Entwicklung und Umsetzung des PERSA Chatsystems beteiligt war. Wir möchten die Gelegenheit nutzen, um unseren talentierten Teammitgliedern für ihre Arbeit und ihr Engagement zu danken.
+
+**!Persa log**
+
+Wenn Sie den Verlauf der letzten Anfragen und Antworten im Chatsystem überprüfen möchten, ist dieser Befehl genau das Richtige. Der Log liefert Einblicke in vergangene Konversationen und Interaktionen.
+
+**!Persa botliste**
+
+Mit diesem Befehl können Sie eine detaillierte Liste der verfügbaren Bots und ihren aktuellen Status abrufen. Dies ist nützlich, um zu erfahren, welche Bots derzeit aktiv sind und welche nicht.
+
+**!Persa status [botname]**
+
+Wenn Sie Informationen zum Status eines bestimmten Bots benötigen, verwenden Sie diesen Befehl. Geben Sie den Namen des Bots als Parameter an, um seinen aktuellen Status zu erfahren.
+
+**!Persa aktivieren [botname]**
+
+Sie haben die Möglichkeit, Bots individuell zu aktivieren, wenn Sie ihre Dienste nutzen möchten. Mit diesem Befehl können Sie einen bestimmten Bot aktivieren, damit er in Ihren Chats verfügbar ist.
+
+**!Persa deaktivieren [botname]**
+
+Wenn Sie einen Bot vorübergehend nicht verwenden möchten, können Sie ihn mit diesem Befehl deaktivieren. Dadurch wird der Bot in Ihren Chats inaktiv, bis Sie ihn erneut aktivieren.
+
+Diese Befehle bieten eine Fülle von Möglichkeiten, das PERSA Chatsystem nach Ihren Bedürfnissen anzupassen und zu steuern. Wir haben sie sorgfältig entwickelt, um sicherzustellen, dass Sie eine reibungslose und effiziente Kommunikation erleben.
+
+
+Wie Befehle verwendet werden:
+
+Um einen Befehl in Ihrem Chat einzugeben, tippen Sie einfach das Ausrufezeichen "!" gefolgt von dem Befehl und optionalen Parametern (falls erforderlich). Zum Beispiel:
+
+•	!Persa info zeigt Informationen zum Chatsystem an.
+
+•	!Persa status Bot zeigt den Status des Bots mit dem Namen "Bot" an.
+
+
 
 # 2 Bot Dokumentation
 
