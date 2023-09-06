@@ -83,9 +83,9 @@ Nachdem der Benutzer oder der Admin das Chatsystem angesprochen hat, erkennt die
 
 ## 1.3 Lösungsstrategie
 
-## 1.4 Bausteinschicht
+## 1.4 Bausteinsicht
 
-## 1.5 Laufzeitschicht
+## 1.5 Laufzeitsicht
 
 Die Laufzeitsicht lässt sich in zwei Aspekte unterteilen, zum Einem in die Userinteraktionen und den Ablauf des Programms:
 
@@ -100,7 +100,7 @@ Im Sequenzdiagramm wird mit dem User begonnen und dieser versucht sich einzulogg
 Der Ablauf des Programmes beginnt mit der Session Klasse und diese lässt vom IOHandler die Willkommensnachricht ausgeben und erwartet daraufhin eine Usereingabe. Nachdem der IOHandler die Usereingabe erhalten hat, wird diese zurück an die Session und von dieser aus an den BotCaller geschickt. Der BotCaller überprüft dann die Nachricht auf den Prefix und kann anhand diesem erkennen, an welchem Chatbot die Usereingabe weitergegeben wird. Der Chatbot identifiziert dann den Command und gibt gegebenenfalls den Request and die APIConnection weiter und erhält von dieser die Antwort. Diese Antwort wird dann noch in einen String angepasst und dann an den IOHandler übergeben, welche die Antwort dann ausgibt.
 
 
-## 1.6 Infrastrukturschicht
+## 1.6 Infrastruktursicht
 
 ![img_3.png](Infrastruktur.png)
 
