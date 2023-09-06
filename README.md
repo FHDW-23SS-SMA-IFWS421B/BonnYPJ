@@ -351,6 +351,9 @@ So ermöglicht der Übersetzer Bot eine benutzerfreundliche Übersetzung mit kla
 
 ### 2.1.3 Bausteinsicht
 
+![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/6d796661-a48f-4fe9-aa3b-515dfc4f92e9)
+
+
 ### 2.1.4 Laufzeitsicht
 
 ![BPMN Translator (1)](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/120190475/ec5b2d42-455a-40e5-9020-49b6c4c1e2ad)
@@ -418,6 +421,9 @@ Bei einer erfolgreichen Anfrage erhält der Bot eine JSON-Antwort, die in einen 
 Der Wetter Bot ermöglicht so eine präzise Abfrage von Wetterinformationen, mit klaren Ausgaben und Fehlerbehandlung, um eine reibungslose Benutzererfahrung sicherzustellen.
 
 ### Bausteinsicht
+
+![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/c69dd100-9708-4883-a06d-62f717de8290)
+
 
 ### Laufzeitsicht
 
@@ -487,6 +493,9 @@ Bei einem erfolgreichen Request erhält die "APIConnect"-Klasse ein JSON-Objekt 
 Der Wetter Bot ermöglicht so eine effiziente Suche nach Wikipedia-Informationen, mit klaren Ausgaben und Fehlerbehandlung für eine reibungslose Benutzererfahrung.
 
 ### Bausteinsicht
+
+![image](https://github.com/FHDW-23SS-SMA-IFWS421B/BonnYPJ/assets/128595643/7431cc62-046d-48d6-b0aa-dafa190f02cd)
+
 
 ### Laufzeitsicht
 
