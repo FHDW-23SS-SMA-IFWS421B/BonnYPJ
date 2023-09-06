@@ -221,15 +221,15 @@ Um diese Risiken zu minimieren, ist es entscheidend, eine umfassende Risikobewer
 
 ## 1.10 Erweiterungen
 
-Das System bietet die Möglichkeit neue Bots hinzuzufügen. Dafür muss der Code an folgenden dreit Stellen editiert werden:
+Das System ermöglicht das Hinzufügen neuer Bots, erfordert jedoch Anpassungen an drei bestimmten Stellen im Code:
 
-1. Erstellen Sie eine neue Klasse für Ihren Bot, die von der BotTemplate-Klasse erbt. In der Methode processRequest wird der vollständige Eingabeinput übergeben. Sie können die Eingabe nach Belieben verarbeiten und sie mit der geerbten Methode answer ausgeben, die einen einfachen String als Ausgabe erwartet.
+1. Beginnen Sie damit, eine neue Klasse für Ihren Bot zu erstellen, die von der BotTemplate-Klasse abgeleitet ist. In der Methode "processRequest" erhalten Sie den vollständigen Eingabeinput. Sie können diesen Input nach Ihren Wünschen verarbeiten und ihn mit der geerbten Methode "answer" ausgeben, die einen einfachen Text als Ergebnis erwartet.
 
-2. In der Methode setBotObjects der Klasse BotCaller erstellen Sie ein neues Objekt mit dem Datentyp BotTemplate. Fügen Sie dann dieses Objekt der HashMap botObjects unter Verwendung des Botnamens in Kleinbuchstaben hinzu.
+2. In der Methode "setBotObjects" in der BotCaller-Klasse erstellen Sie ein neues Objekt vom Typ "BotTemplate" und fügen Sie dieses Objekt der HashMap "botObjects" hinzu, wobei Sie den Botnamen in Kleinbuchstaben als Schlüssel verwenden.
 
-3. In der Methode insertBots der Klasse BotBuilding müssen Sie dem verschachtelten String-Array 'bots' ein Array mit dem Botnamen und den Wert "False" hinzufügen.
+3. In der Methode "insertBots" der BotBuilding-Klasse müssen Sie dem verschachtelten String-Array 'bots' ein neues Array mit dem Botnamen und dem Wert "False" hinzufügen.
 
-Stellen Sie sicher, dass Sie diesen Prozess für jeden neuen Bot wiederholen, den Sie hinzufügen möchten. Damit haben Sie erfolgreich einen neuen Bot in Ihr System integriert.
+Achten Sie darauf, diesen Prozess für jeden neuen Bot zu wiederholen, den Sie integrieren möchten. Auf diese Weise können Sie erfolgreich neue Bots in Ihr System integrieren.
 
 ## 1.11 Fehlerbehebung
 
