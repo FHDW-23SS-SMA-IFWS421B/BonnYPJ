@@ -1,3 +1,9 @@
+# B O doppel N
+**Mitglieder:**
+* Youssef Abdellaoui
+* Philipp Amendt
+* Jan Höltje
+
 # 1. Systemdokumentation
 
 ## 1.1 Einleitung
