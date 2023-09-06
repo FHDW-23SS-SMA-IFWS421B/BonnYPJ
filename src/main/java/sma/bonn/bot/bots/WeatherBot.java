@@ -89,6 +89,7 @@ public class WeatherBot extends BotTemplate {
                 System.out.println("Das Wetter in " + cityName + " in den nächsten Tagen:");
 
                 for (int i = 0; i < weatherList.length(); i++) {
+
                     JSONObject weatherData = weatherList.getJSONObject(i);
                     String dateTime = weatherData.getString("dt_txt");
 
