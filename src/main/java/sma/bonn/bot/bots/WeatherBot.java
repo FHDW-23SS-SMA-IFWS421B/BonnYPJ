@@ -102,7 +102,7 @@ public class WeatherBot extends BotTemplate {
                             double temperature = weatherData.getJSONObject("main").getDouble("temp");
                             double windSpeed = weatherData.getJSONObject("wind").getDouble("speed");
 
-                            System.out.println("Tag: " + formattedDate + ", Temperatur: " + temperature + " °C, Windgeschwindigkeit: " + windSpeed + " m/s");
+                            result.append("Tag: " + formattedDate + ", Temperatur: " + temperature + " °C, Windgeschwindigkeit: " + windSpeed + " m/s\n");
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
